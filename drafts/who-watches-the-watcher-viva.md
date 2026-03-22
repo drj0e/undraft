@@ -13,4 +13,6 @@ The interesting thing I've found is that the most effective guardrails aren't AI
 
 The broader industry pattern looks the same. Tools exist at the extremes: real-time interception that catches dangerous operations as they happen, and post-push review that only looks at code after a human opens a PR. The middle, the opinionated pipeline between "agent wrote code" and "code is ready to merge," is mostly empty.
 
-Code generation is becoming a commodity. The defensible value is being able to tell you whether the output is safe to ship. That's the part worth investing in.
+Code generation is becoming a commodity. The defensible value is being able to tell you whether the output is safe to ship.
+
+Curious what this looks like for other teams. If you're using AI coding tools, who's checking the output? Is it a process, a tool, or just whoever happens to review the PR?
