@@ -1,49 +1,53 @@
 # Undraft
 
-A personal communication translation tool for turning raw technical thinking into audience-appropriate output. Not a writing improver — a translation system for people who have substance but lack a reliable process for making it legible.
+I have plenty to say about the work I do. The problem was never substance — it was the translation. Raw technical thinking doesn't map cleanly to a Slack message for your boss or a blog post for your peers. The friction of figuring out how to say it without sounding like a showboater or a corporate drone meant I just... didn't say it. The work stayed invisible.
 
-Takes messy input (meeting dumps, architecture notes, rants, things you just figured out) and produces versions for different audiences without removing the struggle, the nuance, or the voice.
+Undraft fixes that. Paste in whatever you've got — a meeting dump, an architecture note, a rant about a bad decision, something you figured out at 2am — and get back versions for different audiences. It keeps the substance. It keeps the voice. It flags where you're being defensive, self-erasing, or vague.
+
+It's a system prompt in a Claude Project. No app. No code. The prompt is the product.
 
 ## What's in this repo
 
-| File | What it is |
-|------|-----------|
-| `undraft-system-prompt.md` | The system prompt. Paste everything below the `---` line into a Claude Project. This is the product. |
-| `undraft design.md` | Design doc covering the problem, workflow, output modes, phases, and success criteria. Reference material, not needed for the tool to work. |
-| `claude.md` | Voice models, banned AI writing tells, and operating rules. Defines what good output looks like and what patterns to kill. Also serves as project instructions for Claude Code. |
+`undraft-system-prompt.md` is the system prompt. Everything below the `---` line goes into a Claude Project. That's the tool.
+
+`claude.md` has the voice rules and the kill list — a catalog of AI writing tells that are banned from all output. If the output sounds like a LinkedIn post or a press release, these rules are what catch it.
+
+`undraft design.md` is the design doc. Problem statement, output modes, phases, success criteria. Reference material for understanding why things work the way they do. Not needed to use the tool.
+
+`friction-patterns.md` is a scratch file for tracking which Friction Report patterns repeat across inputs. Over time, it builds a picture of your communication habits.
 
 ## Setup
 
-1. Create a new Claude Project called "Undraft" at [claude.ai](https://claude.ai)
-2. Open `undraft-system-prompt.md`
-3. Copy everything below the first `---` line
-4. Paste it into the project's system prompt (Project Instructions)
-5. Also paste the contents of `claude.md` into the project knowledge or system prompt — this gives the model the voice rules and kill list
-6. Start a conversation. Paste in raw input. Get back translations.
+Create a Claude Project called "Undraft" at claude.ai. Open `undraft-system-prompt.md`, copy everything below the first `---` line, paste it into the project's system prompt. Then append the full contents of `claude.md` below it, separated by a `---`. Start a conversation and paste in something real.
 
 ## Output modes
 
-Every input produces four outputs by default:
+Every input produces four sections by default.
 
-- **Core Point** — 1-3 sentences. What you're actually saying.
-- **Up** — Translated for leadership. Outcome-led, direct, no corporate sludge.
-- **Peers** — Translated for senior engineers and architects. Full technical depth, preserves tradeoffs and learning journey.
-- **Friction Report** — Line-by-line callouts of defensive, inflated, self-erasing, vague, abrasive, or performative patterns.
+**Core Point** is 1-3 sentences of what you're actually saying underneath all the words. Gut check on your own thinking.
 
-**Lobby** (cross-functional partners) is available on request by adding `AUDIENCE: cross-functional` to your input.
+**Up** is translated for leadership. Outcome-led, direct, no buzzwords, no performative enthusiasm. Keeps the technical substance — your leadership is technical — but leads with what happened and why it matters.
 
-## Steering the output
+**Peers** is translated for senior engineers, architects, and tech leads. Full technical depth. Preserves the tradeoffs, the learning journey, the "I tried X first and it didn't work" parts. Closest to your natural voice, just organized.
 
-Optional tags you can add before your raw dump:
+**Friction Report** goes through the original input and flags specific patterns: defensive framing, inflation, self-erasure, vagueness, abrasiveness, performative language, misread risk. This is the most valuable output. It teaches you your own patterns over time.
+
+**Lobby** is opt-in. Add `AUDIENCE: cross-functional` to your input when writing for PMs, QA, marketing, or other non-technical partners.
+
+## Steering it
+
+You can add optional tags before your raw dump to steer the output:
 
 ```
-AUDIENCE: [who this is for — skip for all default modes]
-CONTEXT: [what prompted this — a meeting, a decision, a win]
-INTENT: [what you want the reader to DO or FEEL]
+AUDIENCE: [who this is for]
+CONTEXT: [what prompted this]
+INTENT: [what you want the reader to do or feel]
 ```
 
-Tone adjustments mid-conversation: "too corporate," "too raw," "pull back the anger," "shorter," "more detail."
+Or skip the tags and just paste. It'll figure it out.
+
+Mid-conversation, you can adjust: "too corporate," "too raw," "pull back the anger," "shorter," "more detail."
 
 ## What this is not
 
-Not a blog. Not a publishing pipeline. Not an app. It's a system prompt in a Claude Project. If the translation works, the platform can evolve. Get the prompt right first.
+Not an app. Not a publishing pipeline. Not a writing improver. It's a translation system for someone who has things worth saying but gets stuck on the part where you have to say them in a way that lands with a specific audience. The prompt is the product. If it works, the platform can evolve. Get the translation right first.
