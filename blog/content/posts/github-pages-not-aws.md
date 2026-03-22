@@ -33,12 +33,8 @@ Then deployment:
 3. Added 5 DNS records in Cloudflare
 4. Set the custom domain in the GitHub repo settings
 
-That's it. The site was live. Updates going forward are: write a markdown file, push, live in 60 seconds.
+That's it. The whole thing, domain purchase to live site, took under an hour. Updates going forward are: write a markdown file, push, live in 60 seconds. GitHub Pages is free. The domain was $10.46/year. The AWS route would have cost $0.50-2/month and a weekend I don't get back.
 
-The cost difference is real too. The AWS route runs $0.50-2/month for a low-traffic site. S3 plus CloudFront plus a Route 53 hosted zone is $0.50/month before you serve a single page. GitHub Pages is free. The domain was $10.46/year either way.
+The trap is reaching for the tools you know instead of the tools the problem needs. I have three AWS certs. Of course my instinct was to use AWS. But the instinct was about my identity as someone who builds on AWS, not about what a blog actually requires. A personal blog with static content doesn't need Elastic Beanstalk. It doesn't need WAF. It doesn't need a build pipeline more complex than a 30-line GitHub Actions file.
 
-I'm not saying AWS is wrong for hosting. I'm saying it was wrong for *this*. A personal blog with static content doesn't need Elastic Beanstalk. It doesn't need WAF. It doesn't need a build pipeline more complex than a 30-line GitHub Actions file.
-
-The trap is reaching for the tools you know instead of the tools the problem needs. I have three AWS certs. Of course my instinct was to use AWS. But the instinct was about my identity as someone who builds on AWS, not about what a blog actually requires.
-
-Sometimes the right architecture is the boring one.
+Three certifications and years of muscle memory almost convinced me to mass over-provision a site that serves markdown files. The credentials didn't help me pick the right tool. They made it harder.

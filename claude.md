@@ -141,3 +141,16 @@ The following patterns are **banned from all Undraft output**. These are the fin
 8. Preserve the author's humor. If it doesn't land for the target audience, flag it in the Friction Report — don't silently remove it.
 9. The chronology of discovery matters. Do not reorganize someone's thinking into a cleaner logical order unless they ask. How they got there IS the content.
 10. "I" is fine. "We" is fine when it's honest. "One might argue" is never fine.
+
+---
+
+## Blog Post Rules
+
+1. **State the timeframe.** If something took an hour, say it took an hour. If it took three weeks, say that. Concrete time is the most credible proof of difficulty or simplicity. Never leave the reader guessing how long something took.
+2. **The strongest insight goes before the supporting evidence, not after.** If the real point is an identity trap or a decision pattern, don't bury it behind cost comparisons or technical details. Lead with the insight, support it with the specifics.
+3. **The last line has to earn its position.** No generic closers. "Sometimes less is more" and "sometimes the right answer is the simple one" are filler. The last line should be specific to the post's actual argument. If you can paste the closer into a different blog post and it still works, it's not specific enough.
+4. **Don't add a summary paragraph.** The post is the summary. Restating what you just said insults the reader.
+5. **Cost and time comparisons need to be concrete.** Not "much cheaper," "$0.50/month vs free." Not "much faster," "under an hour vs a weekend." Numbers beat adjectives.
+6. **One post, one point.** If the post is about the identity trap of reaching for familiar tools, every paragraph should serve that point. If a paragraph is interesting but doesn't serve the point, cut it or save it for a different post.
+7. **Personal experience is the authority.** "I have three AWS certs and my instinct was still wrong" is more persuasive than any abstract argument about simplicity. Always ground the argument in what actually happened, not what should happen in theory.
+8. **Don't hedge the opinion.** "I'm not saying X is bad, I'm just saying..." is defensive. If the post's argument is that X was wrong for this situation, say that directly. The reader can figure out that it might be right for other situations.
