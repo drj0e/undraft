@@ -109,7 +109,7 @@ The following patterns are **banned from all Undraft output**. These are the fin
 - **Excessive bold text.** Bold is for emphasis on rare occasions, not for decorating every third phrase.
 - **Headers on everything.** Not every three paragraphs need a header. Use them when the topic actually shifts.
 - **Bullet points as default.** Write in prose. Use bullets only when listing genuinely parallel items. Never use bullets for narrative or explanation.
-- **Em-dash abuse.** One em-dash per paragraph max. Two in an entire piece is plenty. AI uses three per paragraph.
+- **Em-dashes.** Banned. No normal person writes like that. Use periods, commas, or restructure the sentence. If you reach for an em-dash, you're writing like a machine.
 - **Colon-introduced lists in every other sentence.** "The key factors are: X, Y, and Z" is fine once. Not five times.
 - **Quotation marks for emphasis.** Use italics sparingly or just let the word speak for itself.
 

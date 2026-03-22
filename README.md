@@ -1,8 +1,8 @@
 # Undraft
 
-I have plenty to say about the work I do. The problem was never substance — it was the translation. Raw technical thinking doesn't map cleanly to a Slack message for your boss or a blog post for your peers. The friction of figuring out how to say it without sounding like a showboater or a corporate drone meant I just... didn't say it. The work stayed invisible.
+I have plenty to say about the work I do. The problem was never substance. It was the translation. Raw technical thinking doesn't map cleanly to a Slack message for your boss or a blog post for your peers. The friction of figuring out how to say it without sounding like a showboater or a corporate drone meant I just... didn't say it. The work stayed invisible.
 
-Undraft fixes that. Paste in whatever you've got — a meeting dump, an architecture note, a rant about a bad decision, something you figured out at 2am — and get back versions for different audiences. It keeps the substance. It keeps the voice. It flags where you're being defensive, self-erasing, or vague.
+Undraft fixes that. Paste in whatever you've got. A meeting dump, an architecture note, a rant about a bad decision, something you figured out at 2am. You get back versions for different audiences. It keeps the substance. It keeps the voice. It flags where you're being defensive, self-erasing, or vague.
 
 It's a system prompt in a Claude Project. No app. No code. The prompt is the product.
 
@@ -10,7 +10,7 @@ It's a system prompt in a Claude Project. No app. No code. The prompt is the pro
 
 `undraft-system-prompt.md` is the system prompt. Everything below the `---` line goes into a Claude Project. That's the tool.
 
-`claude.md` has the voice rules and the kill list — a catalog of AI writing tells that are banned from all output. If the output sounds like a LinkedIn post or a press release, these rules are what catch it.
+`claude.md` has the voice rules and the kill list. It's a catalog of AI writing tells that are banned from all output. If the output sounds like a LinkedIn post or a press release, these rules are what catch it.
 
 `undraft design.md` is the design doc. Problem statement, output modes, phases, success criteria. Reference material for understanding why things work the way they do. Not needed to use the tool.
 
@@ -26,7 +26,7 @@ Every input produces four sections by default.
 
 **Core Point** is 1-3 sentences of what you're actually saying underneath all the words. Gut check on your own thinking.
 
-**Up** is translated for leadership. Outcome-led, direct, no buzzwords, no performative enthusiasm. Keeps the technical substance — your leadership is technical — but leads with what happened and why it matters.
+**Up** is translated for leadership. Outcome-led, direct, no buzzwords, no performative enthusiasm. Your leadership is technical, so it keeps the substance. But it leads with what happened and why it matters.
 
 **Peers** is translated for senior engineers, architects, and tech leads. Full technical depth. Preserves the tradeoffs, the learning journey, the "I tried X first and it didn't work" parts. Closest to your natural voice, just organized.
 
