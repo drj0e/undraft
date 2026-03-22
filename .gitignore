@@ -17,3 +17,6 @@ desktop.ini
 # Hugo local server
 hugo_stats.json
 .hugo_build.lock
+
+# Superpowers brainstorm sessions
+.superpowers/

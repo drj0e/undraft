@@ -1,0 +1,481 @@
+/* ==============================================
+   Undraft Theme - Custom PaperMod Overrides
+   Typography: Space Grotesk / Newsreader / Inter
+   ============================================== */
+
+/* --- CSS Variables --- */
+:root {
+    --gap: 24px;
+    --content-gap: 24px;
+    --nav-width: 680px;
+    --main-width: 680px;
+    --header-height: auto;
+    --footer-height: auto;
+    --radius: 0px;
+    --theme: #f8f7f5;
+    --entry: #f8f7f5;
+    --primary: #1a1a1a;
+    --secondary: #6b6b6b;
+    --tertiary: #e8e7e5;
+    --content: #1a1a1a;
+    --code-block-bg: #1c1d21;
+    --code-bg: #f0efed;
+    --border: rgba(0, 0, 0, 0.08);
+    --accent: #5a7d8a;
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    --theme: #141414;
+    --entry: #141414;
+    --primary: #d1d1d1;
+    --secondary: #8a8a8a;
+    --tertiary: #1c1c1c;
+    --content: #d1d1d1;
+    --code-block-bg: #0e0e0e;
+    --code-bg: #1c1c1c;
+    --border: rgba(255, 255, 255, 0.06);
+    --accent: #8fb8c9;
+    color-scheme: dark;
+}
+
+/* --- Global Typography --- */
+body {
+    font-family: 'Newsreader', Georgia, serif;
+    background: var(--theme);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.7;
+}
+
+/* --- Header / Nav --- */
+.header {
+    background: var(--theme);
+    box-shadow: none;
+    border: none;
+}
+
+.nav {
+    max-width: calc(var(--nav-width) + var(--gap) * 2);
+    line-height: 1;
+    padding: 48px 0 0;
+    align-items: baseline;
+}
+
+.logo a {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+}
+
+.logo a img,
+.logo a svg {
+    border-radius: 0;
+}
+
+#menu {
+    gap: 24px;
+}
+
+#menu li + li {
+    margin-inline-start: 0;
+}
+
+#menu a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    transition: color 0.15s;
+}
+
+#menu a:hover {
+    color: var(--accent);
+}
+
+#menu .active {
+    font-weight: 500;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
+
+/* Theme toggle */
+button#theme-toggle {
+    color: var(--secondary);
+}
+
+button#theme-toggle:hover {
+    color: var(--accent);
+}
+
+/* --- Home Info (hero section) --- */
+.first-entry.home-info {
+    min-height: auto;
+    margin: 48px 0 56px 0;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.home-info .entry-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+
+.home-info .entry-content {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--secondary);
+    line-height: 1.6;
+    -webkit-line-clamp: unset;
+    max-width: 50ch;
+    margin: 16px 0 0;
+    overflow: visible;
+}
+
+.home-info .entry-content p {
+    margin: 0;
+}
+
+.home-info .entry-footer {
+    display: none;
+}
+
+/* --- Post Entries (list items) --- */
+.post-entry {
+    margin-bottom: 0 !important;
+    padding: 32px 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    border-radius: 0 !important;
+    transition: none !important;
+    box-shadow: none !important;
+}
+
+.post-entry:first-of-type {
+    border-top: 1px solid var(--border) !important;
+}
+
+.post-entry:active {
+    transform: none !important;
+}
+
+.tag-entry {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.entry-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+.post-entry:hover .entry-header h2 {
+    color: var(--accent);
+}
+
+.entry-content {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1rem;
+    color: var(--secondary);
+    line-height: 1.6;
+    margin: 8px 0;
+    -webkit-line-clamp: 3;
+}
+
+.entry-footer {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--secondary);
+}
+
+/* Remove entry cover images from list */
+.entry-cover {
+    display: none;
+}
+
+/* --- Page Header (Archives, Tags, etc.) --- */
+.page-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+/* --- Single Post --- */
+.post-header {
+    margin: 24px auto 48px auto;
+}
+
+.post-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+}
+
+.post-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--secondary);
+}
+
+.breadcrumbs {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.post-description {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--secondary);
+}
+
+/* Post body content */
+.post-content {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--content);
+    margin: 30px 0;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.post-content p,
+.post-content ul,
+.post-content ol,
+.post-content dl,
+.post-content figure {
+    margin-bottom: 24px;
+}
+
+.post-content li {
+    margin-top: 6px;
+}
+
+/* Inline code */
+.post-content code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85em;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 0;
+    margin: 0 2px;
+}
+
+/* Code blocks */
+.post-content pre code {
+    padding: 20px 24px;
+    border-radius: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.post-content .highlight:not(table) {
+    border-radius: 0;
+    margin: 32px auto;
+}
+
+.post-content .highlight table {
+    border-radius: 0;
+}
+
+/* Blockquotes */
+.post-content blockquote {
+    border-inline-start: none;
+    background: var(--code-bg);
+    padding: 28px 32px;
+    margin: 32px 0;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+/* Links in content */
+.post-content a {
+    color: var(--accent);
+    box-shadow: none;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness 0.15s;
+}
+
+.post-content a:hover {
+    text-decoration-thickness: 2px;
+}
+
+/* Images */
+.post-content img {
+    border-radius: 0;
+}
+
+/* --- Post Tags --- */
+.post-tags {
+    gap: 12px;
+}
+
+.post-tags a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    line-height: 1.5;
+    transition: text-decoration 0.15s;
+}
+
+.post-tags a:hover {
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* --- Post Navigation (prev/next) --- */
+.paginav {
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+    padding-top: 24px;
+}
+
+.paginav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding: 0;
+}
+
+.paginav a:hover {
+    background: transparent;
+    color: var(--accent);
+}
+
+.paginav .title {
+    font-family: 'Inter', sans-serif;
+    color: var(--secondary);
+}
+
+.paginav span:hover:not(.title) {
+    box-shadow: none;
+    color: var(--accent);
+}
+
+/* --- Pagination (page numbers) --- */
+.pagination a {
+    border-radius: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* --- Footer --- */
+.footer {
+    max-width: calc(var(--main-width) + var(--gap) * 2);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 48px var(--gap);
+}
+
+.footer a {
+    border-bottom: none;
+    color: var(--secondary);
+    transition: color 0.15s;
+}
+
+.footer a:hover {
+    color: var(--accent);
+    border-bottom: none;
+}
+
+/* --- Scroll to Top Button --- */
+.top-link {
+    border-radius: 0;
+    background: var(--tertiary);
+}
+
+/* --- Copy Code Button --- */
+.copy-code {
+    border-radius: 0;
+}
+
+/* --- Search page --- */
+.search-wrapper input {
+    font-family: 'Newsreader', Georgia, serif;
+    border-radius: 0;
+}
+
+/* --- Terms (tag listing pages) --- */
+.terms-tags a {
+    font-family: 'Inter', sans-serif;
+    border-radius: 0;
+}
+
+/* --- TOC --- */
+.toc {
+    border-radius: 0;
+}
+
+/* --- List page background fix --- */
+.list {
+    background: var(--theme);
+}
+
+[data-theme="dark"] .list {
+    background: var(--theme);
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+    .nav {
+        padding: 24px 0 0;
+    }
+
+    .home-info .entry-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .post-title {
+        font-size: 1.7rem;
+    }
+}

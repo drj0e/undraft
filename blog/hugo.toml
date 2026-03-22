@@ -9,10 +9,27 @@ theme = "PaperMod"
   ShowReadingTime = true
   ShowPostNavLinks = true
   ShowCodeCopyButtons = true
+  defaultTheme = "light"
+  disableSpecial1stPost = true
+  hideFooter = false
 
-[params.homeInfoParams]
-  Title = "Joe Capozzoli"
-  Content = "Lead Enterprise Architect. Writing about architecture decisions, production AI, and what I'm learning along the way."
+  [[params.footerLinks]]
+    name = "GitHub"
+    url = "https://github.com/drj0e"
+    external = true
+  [[params.footerLinks]]
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/josephcapozzoli/"
+    external = true
+
+# homeInfoParams removed — homepage goes straight to post list
+# Bio lives on the About page
+
+[params.assets]
+  disableFingerprinting = false
+
+[params.footer]
+  hideCopyright = false
 
 [menu]
   [[menu.main]]
@@ -20,6 +37,10 @@ theme = "PaperMod"
     url = "/posts/"
     weight = 1
   [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 2
+    weight = 3
