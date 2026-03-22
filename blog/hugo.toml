@@ -1,0 +1,25 @@
+baseURL = "https://YOURDOMAIN.com/"
+languageCode = "en-us"
+title = "Joe Capozzoli"
+theme = "PaperMod"
+
+[params]
+  author = "Joe Capozzoli"
+  description = "Architecture, AI, and the things that actually happen when you build enterprise software."
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+
+[params.homeInfoParams]
+  Title = "Joe Capozzoli"
+  Content = "Lead Enterprise Architect. Writing about architecture decisions, production AI, and what I'm learning along the way."
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
