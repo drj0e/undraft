@@ -473,6 +473,75 @@ This is manual. Don't automate this yet.
 
 ---
 
+### Task 8.5: Hugo SEO Defaults (one-time, ~30 min)
+
+Configure the baseline SEO settings in Hugo so they're handled once and apply to every future post automatically.
+
+**Files:**
+- Modify: `blog/hugo.toml`
+- Modify: `blog/content/about.md`
+- Create: `blog/archetypes/posts.md`
+- Create: `docs/tag-taxonomy.md`
+
+- [ ] **Step 1: Configure Open Graph and Twitter meta tags**
+
+PaperMod supports these natively. Add the social metadata to `blog/hugo.toml`: site title, description, author, and a default social image if you have one. This controls what posts look like when shared on LinkedIn/Twitter.
+
+- [ ] **Step 2: Verify sitemap.xml**
+
+After a build, confirm `josephcapozzoli.com/sitemap.xml` is accessible and not disabled in the config. Hugo generates this by default.
+
+```bash
+cd blog
+hugo server &
+curl -s http://localhost:1313/sitemap.xml | head -20
+```
+
+- [ ] **Step 3: Establish the summary field convention**
+
+Create a post archetype at `blog/archetypes/posts.md` so every new post created with `hugo new posts/...` includes the `summary` field in its front matter:
+
+```markdown
+---
+title: "{{ replace .Name "-" " " | title }}"
+date: {{ .Date }}
+draft: true
+tags: []
+summary: ""
+---
+```
+
+- [ ] **Step 4: Fill out the About page**
+
+Replace the placeholder in `blog/content/about.md` with real content. Name, role, what you write about, why. Keep it short. Search engines and human visitors both look at this.
+
+- [ ] **Step 5: Establish tag taxonomy**
+
+Create `docs/tag-taxonomy.md` listing the current tags and a short description of when to use each one. Current tags: `aws`, `github-pages`, `infrastructure`. Update this file whenever a new tag is introduced.
+
+- [ ] **Step 6: Add summary to the first post**
+
+Go back to `blog/content/posts/github-pages-not-aws.md` and add a `summary` field to the front matter. 1-2 sentences describing the post as you'd tell a friend about it.
+
+- [ ] **Step 7: Commit and push**
+
+```bash
+cd undraft
+git add blog/ docs/tag-taxonomy.md
+git commit -m "Configure Hugo SEO defaults, tag taxonomy, post archetype"
+git push
+```
+
+- [ ] **Step 8: Verify social preview**
+
+Share the post link somewhere you can see the preview (LinkedIn, Twitter, or a tool like opengraph.xyz). Confirm it shows the title, summary, and site name.
+
+**Not in scope:** keyword research, analytics setup, Google Search Console, social media automation. These are Phase 4 "if needed" items, not Phase 2.
+
+**Success gate:** Sharing a post link on LinkedIn shows a proper preview with title, description, and site name. Sitemap is accessible. About page has real content.
+
+---
+
 ## Phase 3: The Flywheel
 
 ### Task 9: Establish the rhythm

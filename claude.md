@@ -154,3 +154,19 @@ The following patterns are **banned from all Undraft output**. These are the fin
 6. **One post, one point.** If the post is about the identity trap of reaching for familiar tools, every paragraph should serve that point. If a paragraph is interesting but doesn't serve the point, cut it or save it for a different post.
 7. **Personal experience is the authority.** "I have three AWS certs and my instinct was still wrong" is more persuasive than any abstract argument about simplicity. Always ground the argument in what actually happened, not what should happen in theory.
 8. **Don't hedge the opinion.** "I'm not saying X is bad, I'm just saying..." is defensive. If the post's argument is that X was wrong for this situation, say that directly. The reader can figure out that it might be right for other situations.
+
+---
+
+## Tag and SEO Rules
+
+**Tags:**
+1. 2-4 tags per post. No exceptions.
+2. Only use tags you expect to use on at least 2-3 other future posts. If a tag is one-and-done, it's not a tag, it's a keyword stuffed into metadata.
+3. Maintain a running tag taxonomy. Before creating a new tag, check what tags already exist across published posts. Reuse existing tags before inventing new ones. The taxonomy lives in `docs/tag-taxonomy.md`.
+4. Tags should be lowercase, hyphenated where needed. Keep them short: "aws" not "amazon-web-services", "architecture" not "software-architecture-decisions".
+5. Aim for 10-15 total unique tags across the first 20 posts. If you're approaching 1:1 tag-to-post ratio, you're tagging wrong.
+6. Good tags describe a recurring *topic* ("aws", "kubernetes", "architecture", "ai-tooling"). Bad tags describe the *post* ("my-first-blog", "things-i-learned-today").
+
+**SEO (one-time setup, then forget about it):**
+7. Every post should have a `summary` field in the front matter. 1-2 sentences. This becomes the meta description and the social preview text. Write it like a human would describe the post to a friend, not like a keyword-stuffed search result.
+8. Don't chase SEO. The audience is peers finding posts through shares, not Google searches. If a post is useful and honest, it gets shared. Keyword optimization is not a priority and should never influence what gets written or how.
