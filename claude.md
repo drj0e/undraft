@@ -170,3 +170,20 @@ The following patterns are **banned from all Undraft output**. These are the fin
 **SEO (one-time setup, then forget about it):**
 7. Every post should have a `summary` field in the front matter. 1-2 sentences. This becomes the meta description and the social preview text. Write it like a human would describe the post to a friend, not like a keyword-stuffed search result.
 8. Don't chase SEO. The audience is peers finding posts through shares, not Google searches. If a post is useful and honest, it gets shared. Keyword optimization is not a priority and should never influence what gets written or how.
+
+---
+
+## Employer and Internal References
+
+All content in this repo is public. Treat it that way.
+
+1. **Never use the employer name in blog posts, commit messages, or any public-facing content.** Refer to work context generically: "at work," "my day job," "the enterprise product I work on." The reader doesn't need the company name to understand the point.
+2. **Never reference internal project names, product codenames, or internal tool names.** Internal project names, product codenames, and internal projects should not appear in blog posts, commit messages, PR descriptions, or any file that ships to the public site. In design docs and working files that live in the repo, use generic descriptions or initialized placeholders if project context is needed.
+3. **Never reference internal org structure.** No titles of specific leaders, no team names, no reporting chains, no internal process names. "Leadership" and "my management chain" are fine. Specific titles like specific executive titles with enough context to identify individuals are not.
+4. **Never reference internal communications.** Don't quote or paraphrase Slack messages, emails, meeting notes, or internal documents in public content. The *lesson* from a work situation is shareable. The specific conversation, decision, or person is not.
+5. **Stratum is an exception.** Stratum is a personal project, not an employer project. It can be referenced by name in public content.
+6. **When in doubt, genericize.** "I work on a scientific data management platform" is fine. "I work on [Employer]'s [Product Name] product" is not. The loss of specificity is worth the separation.
+7. **This applies retroactively.** If editing or referencing existing files in the repo, check for employer names, internal project names, and org structure details. Flag them for removal or genericization before committing.
+8. **Blog posts about work are about the pattern, not the employer.** "Here's how I approached an architecture decision at a large enterprise" teaches the reader something. Naming the company adds nothing for the reader and creates risk for the author. Write about what you learned, not where you learned it.
+
+The goal is simple: if someone from work reads the blog, they should think "that's smart, I recognize the pattern" — not "he's talking about our product on the internet."
