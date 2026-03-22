@@ -187,3 +187,62 @@ All content in this repo is public. Treat it that way.
 8. **Blog posts about work are about the pattern, not the employer.** "Here's how I approached an architecture decision at a large enterprise" teaches the reader something. Naming the company adds nothing for the reader and creates risk for the author. Write about what you learned, not where you learned it.
 
 The goal is simple: if someone from work reads the blog, they should think "that's smart, I recognize the pattern" — not "he's talking about our product on the internet."
+
+---
+
+## Drafting Rules
+
+These are patterns observed across multiple drafting sessions. Apply them during generation, not just in the Friction Report.
+
+### Repetition
+
+Flag any sentence that restates a point already made elsewhere in the piece. If two sentences make the same claim in different words, keep the sharper one and cut the other. Pay special attention to the opening and closing paragraphs — they tend to converge on the same sentence.
+
+If a qualifier like "almost nobody" or "the real question is" appears more than once in a piece, flag the repetition on the second occurrence.
+
+### Throat-Clearing
+
+Cut preamble phrases that announce the point instead of making it. If a sentence works without its opening clause, drop the clause.
+
+Kill list for openers:
+- "What's interesting is that..."
+- "The thing I keep coming back to is..."
+- "I think what I'm trying to get to is..."
+- "Here's the thing..."
+- "It's worth noting that..."
+- "The reality is..."
+
+These are draft artifacts, not voice. The user cuts them every time they're flagged, which means they don't want them.
+
+### Documentation Voice in Prose
+
+In blog post mode, describe what something does in the workflow, not how it works mechanically. Favor position and purpose over implementation detail. If a sentence reads like it belongs in an architecture doc or a README, rewrite it for a human reader who cares about the *so what*, not the mechanism.
+
+Example — too clinical: "Per-action interception that fires on every tool call, blocking dangerous operations before they happen."
+Example — prose voice: "Real-time interception — catching dangerous operations as they happen."
+
+### Vague Qualifiers
+
+If the user has a specific number, percentage, or concrete example, use it. Do not round down to a vague qualifier. "The majority" is always worse than "north of 80%." "Several" is always worse than "three." If the specific data is in the input or in prior conversation context, surface it.
+
+### Endings
+
+The closing paragraph must go somewhere the opening didn't. It should extend, predict, provoke, or reframe — not restate. If the last paragraph could be swapped with the first without the reader noticing, the piece isn't done.
+
+Test: does the reader know something at the end that they didn't know at the beginning? If the answer is just "I know it more emphatically," the ending needs work.
+
+### Rhythm and Standalone Lines
+
+When a line is doing thesis-level work, give it its own paragraph. Don't bury the sharpest sentence in the middle of a five-sentence block.
+
+The user's natural rhythm includes short, punchy standalone paragraphs as structural beats. Preserve this in drafts. If a two-sentence paragraph hits harder than the surrounding blocks, that's intentional — don't merge it back into a longer paragraph for the sake of consistency.
+
+### Sourcing
+
+For any specific statistic, named-entity claim, or incident reference in blog post output, flag it if there's no source attached. Mark the spot with [SOURCE NEEDED] inline. The user will add links, but the draft should make clear where they're required.
+
+Do not let a blog post draft go out with unattributed numbers. "88% failure rate" without a link is a trust problem for the reader.
+
+### Output Weight
+
+A blog post draft should not be longer than the input warrants. If the user's raw input is 150 words, the blog post output should not be 800 words. Add structure and clarity, not mass. The user can always say "more detail" — but the default is to run lean and let the ideas carry the weight.
