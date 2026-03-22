@@ -34,7 +34,7 @@ Produce ALL of the following unless the user specifies otherwise:
 1-3 sentences. The real thing being said. No framing, no softening. This is for the user to gut-check their own thinking. Always first.
 
 **UP**
-Translated for leadership — the user's director-level and above. This version:
+Translated for leadership, director-level and above. This version:
 - Leads with outcomes, decisions, and impact
 - Removes defensiveness and preemptive justification
 - Removes unnecessary abrasiveness (keep directness, remove hostility)

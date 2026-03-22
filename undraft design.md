@@ -174,7 +174,7 @@ Two parallel tracks from day one. Track 1: get the translation engine right. Tra
 
 ### Phase 1 — Translation Engine (Weeks 1-2)
 
-Rework the system prompt to produce two audience tiers by default: **Up** (leadership — director-level and above) and **Peers** (senior engineers, architects, tech leads). Keep Core Point and Friction Report. Drop the current Raw Truth / Professional split in favor of this elevator model. Add **Lobby** (cross-functional partners) as an opt-in tier when the input specifies that audience.
+Rework the system prompt to produce two audience tiers by default: **Up** (leadership, director-level and above) and **Peers** (senior engineers, architects, tech leads). Keep Core Point and Friction Report. Drop the current Raw Truth / Professional split in favor of this elevator model. Add **Lobby** (cross-functional partners) as an opt-in tier when the input specifies that audience.
 
 Set up a Claude Project with the updated prompt. Test daily with real inputs — architecture tradeoffs, things you just figured out, post-meeting dumps. Tune the prompt based on what comes back wrong. Keep the prompt versioned in the repo so iterations are tracked and you're not editing in a web UI with no history.
 
@@ -204,7 +204,7 @@ Post to Viva Engage weekly, even if short. Two posts in six weeks is too sparse 
 
 By mid-Phase 3, start sharing drafts with 1-2 trusted peers before publishing. Not for approval — for calibration. The Friction Report catches your patterns. A human reader catches what it can't: things that land differently than intended, missing context that's obvious to you but invisible to the reader. This is a feedback loop the tool can't replace.
 
-This cadence will collapse during heavy work weeks. Product investigations, sprint commitments, production incidents — these will eat the writing time and that's fine. The plan expects this. The measure of success isn't an unbroken streak. It's recovery speed. When the heavy week ends, how fast do you get back to the rhythm? A week off followed by a weekend review session is healthy. Three weeks off with mounting guilt is a failure mode. Define "getting back on the horse" concretely: the first thing you do after a gap is one raw dump. Not a full blog post. One dump. The flywheel restarts from the smallest motion.
+This cadence will collapse during heavy work weeks. Product investigations, sprint commitments, production incidents. These will eat the writing time and that's fine. The plan expects this. The measure of success isn't an unbroken streak. It's recovery speed. When the heavy week ends, how fast do you get back to the rhythm? A week off followed by a weekend review session is healthy. Three weeks off with mounting guilt is a failure mode. Define "getting back on the horse" concretely: the first thing you do after a gap is one raw dump. Not a full blog post. One dump. The flywheel restarts from the smallest motion.
 
 **Success gate:** Published 3-4 posts AND recovered from at least one week where writing didn't happen. Weekly Viva Engage posts happening. At least one draft has been reviewed by a trusted peer before publishing.
 

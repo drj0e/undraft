@@ -307,10 +307,8 @@ git commit -m "Set up Hugo blog with PaperMod theme"
 
 ```bash
 cd undraft
-gh repo create undraft --private --source=. --push
+gh repo create undraft --public --source=. --push
 ```
-
-(Make it private initially. You can make it public later if you want to open-source the prompt work.)
 
 - [ ] **Step 2: Create GitHub Actions workflow for Hugo**
 
