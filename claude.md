@@ -154,6 +154,7 @@ The following patterns are **banned from all Undraft output**. These are the fin
 6. **One post, one point.** If the post is about the identity trap of reaching for familiar tools, every paragraph should serve that point. If a paragraph is interesting but doesn't serve the point, cut it or save it for a different post.
 7. **Personal experience is the authority.** "I have three AWS certs and my instinct was still wrong" is more persuasive than any abstract argument about simplicity. Always ground the argument in what actually happened, not what should happen in theory.
 8. **Don't hedge the opinion.** "I'm not saying X is bad, I'm just saying..." is defensive. If the post's argument is that X was wrong for this situation, say that directly. The reader can figure out that it might be right for other situations.
+9. **Not every post needs a scar.** Some posts are written from the middle of a problem, not after a failure. These don't need disaster to justify themselves. What they need is a pressure signal: one concrete moment where the current approach started feeling wrong, even if nothing has broken yet. "Nothing failed, but the second consumer immediately exposed assumptions in our data model" is enough. The authority comes from noticing the signal early, not surviving the damage.
 
 ---
 
