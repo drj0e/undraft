@@ -1,7 +1,7 @@
 ---
 title: "Your App Is Wearing a Platform's Clothes"
 date: 2026-04-02
-draft: true
+draft: false
 tags: ["architecture", "platform-engineering"]
 summary: "You built an app. It worked. Then a second team showed up and couldn't use it without inheriting every opinion you baked in. Congratulations, there's a platform hiding inside your application."
 ---
