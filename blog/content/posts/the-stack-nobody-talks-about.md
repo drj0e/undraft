@@ -1,7 +1,7 @@
 ---
 title: "The Stack Nobody Talks About"
 date: 2026-04-05
-draft: true
+draft: false
 tags: ["ai-tooling", "architecture", "automation"]
 summary: "The model is not the system. The system is everything required to make model output selectable, constrainable, auditable, and stoppable. I spent a month building that system. Here's what it actually looks like."
 ---
