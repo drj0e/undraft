@@ -2,7 +2,7 @@
 title: "I Almost Over-Engineered a Blog with AWS"
 date: 2026-03-22
 draft: false
-tags: ["aws", "github-pages", "infrastructure"]
+tags: ["aws", "infrastructure"]
 ---
 
 I used to think publishing a personal site meant AWS, WAF, Route 53, and a weekend of debugging. Turns out it's a markdown file and `git push`.
