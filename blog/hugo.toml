@@ -2,6 +2,7 @@ baseURL = "https://josephcapozzoli.com/"
 languageCode = "en-us"
 title = "Joe Capozzoli"
 theme = "PaperMod"
+enableRobotsTXT = true
 
 [params]
   author = "Joe Capozzoli"
