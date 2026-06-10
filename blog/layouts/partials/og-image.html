@@ -1,0 +1,14 @@
+{{- $img := "" }}
+{{- if .IsPage }}
+{{- $base := resources.Get "og-base.png" }}
+{{- $canvas := resources.Get "og-text-canvas.png" }}
+{{- $font := resources.Get "fonts/SpaceGrotesk-Bold.ttf" }}
+{{- if and $base $canvas $font }}
+{{- $titleOpts := dict "color" "#1a1a1a" "size" 68 "linespacing" 14 "x" 0 "y" 0 "font" $font }}
+{{- $text := $canvas.Filter (images.Text (.Title | plainify) $titleOpts) }}
+{{- $footerOpts := dict "color" "#e8501a" "size" 30 "x" 80 "y" 540 "font" $font }}
+{{- $card := $base.Filter (images.Overlay $text 80 140) (images.Text "Joe Capozzoli · josephcapozzoli.com" $footerOpts) }}
+{{- $img = $card | resources.Copy (path.Join .RelPermalink "og.png") }}
+{{- end }}
+{{- end }}
+{{- return $img }}
