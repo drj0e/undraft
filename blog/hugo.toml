@@ -25,6 +25,9 @@ enableRobotsTXT = true
     name = "LinkedIn"
     url = "https://www.linkedin.com/in/josephcapozzoli/"
     external = true
+  [[params.footerLinks]]
+    name = "Now"
+    url = "/now/"
 
 # homeInfoParams removed — homepage goes straight to post list
 # Bio lives on the About page

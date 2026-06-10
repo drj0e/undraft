@@ -16,3 +16,5 @@ Off the clock, I run a 24-container homelab behind Prometheus and Grafana. Partl
 I write about the parts of large-scale software that usually stay hidden: the platforms inside applications, the evaluation systems that decide whether AI is shippable, and the decisions that look obvious in retrospect but felt impossible in the moment.
 
 If you build software in a regulated industry and you're sorting out where AI fits, you've probably had some of the same arguments I have.
+
+If you want the current snapshot instead of the bio, there's a [now page](/now/).
