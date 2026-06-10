@@ -21,7 +21,9 @@
     --code-block-bg: #1c1d21;
     --code-bg: #f0efed;
     --border: rgba(0, 0, 0, 0.08);
-    --accent: #5a7d8a;
+    --accent: #e8501a;
+    --accent-faint: rgba(232, 80, 26, 0.18);
+    --accent-wash: rgba(232, 80, 26, 0.28);
     color-scheme: light;
 }
 
@@ -35,7 +37,9 @@
     --code-block-bg: #0e0e0e;
     --code-bg: #1c1c1c;
     --border: rgba(255, 255, 255, 0.06);
-    --accent: #8fb8c9;
+    --accent: #ff6a35;
+    --accent-faint: rgba(255, 106, 53, 0.20);
+    --accent-wash: rgba(255, 106, 53, 0.30);
     color-scheme: dark;
 }
 
@@ -311,7 +315,7 @@ button#theme-toggle:hover {
 
 /* Blockquotes */
 .post-content blockquote {
-    border-inline-start: none;
+    border-inline-start: 3px solid var(--accent);
     background: var(--code-bg);
     padding: 28px 32px;
     margin: 32px 0;
@@ -478,4 +482,23 @@ button#theme-toggle:hover {
     .post-title {
         font-size: 1.7rem;
     }
+}
+
+/* --- Accent top bar (the flag) --- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--accent);
+    z-index: 999;
+}
+
+/* --- Marker highlight: one load-bearing line per post, max --- */
+.post-content mark {
+    background: linear-gradient(transparent 55%, var(--accent-wash) 55%);
+    color: inherit;
+    padding: 0 2px;
 }
