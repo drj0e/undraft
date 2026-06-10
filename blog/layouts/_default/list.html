@@ -70,7 +70,7 @@
   <header class="entry-header">
     {{- if $.IsHome }}{{/* undraft */}}
     {{- $num := sub $total (add (mul (sub $paginator.PageNumber 1) $paginator.PagerSize) $index) }}
-    <span class="entry-number">№ {{ printf "%02d" $num }}</span>
+    <span class="entry-number" aria-hidden="true">№ {{ printf "%02d" $num }}</span>
     {{- end }}
     <h2 class="entry-hint-parent">
       {{- .Title }}
