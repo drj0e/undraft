@@ -30,7 +30,7 @@ Replace the accent color and apply it deliberately. Everything not listed stays 
 ## 3. Content surfaces
 
 - **/projects/ page:** a home for things the user builds. First entry: Stratum (a personal project, explicitly cleared for public reference by name per CLAUDE.md). Each entry: name, one-paragraph description in the user's voice, status, link. Gets a "Projects" item in the main menu.
-- **/now/ page:** a dated snapshot of current work and thinking (nownownow.com pattern). A skeleton draft is generated from repo context; **the user must rewrite/approve the words before it ships** (Undraft voice rules apply). Linked from the About page and footer, not the main menu, to keep the nav at four items (Posts, Tags, Projects, About).
+- **/now/ page:** a dated snapshot of current work and thinking (nownownow.com pattern). A skeleton draft is generated from repo context; **the user must rewrite/approve the words before it ships** (Undraft voice rules apply). Linked from the About page and footer, not the main menu. Final main menu: Posts, Projects, Tags, Search, About.
 
 ## 4. Social preview cards (OG images)
 
