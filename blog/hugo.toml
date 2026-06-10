@@ -4,6 +4,9 @@ title = "Joe Capozzoli"
 theme = "PaperMod"
 enableRobotsTXT = true
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [params]
   author = "Joe Capozzoli"
   description = "Architecture, AI, and the things that actually happen when you build enterprise software."
@@ -38,10 +41,18 @@ enableRobotsTXT = true
     url = "/posts/"
     weight = 1
   [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
+  [[menu.main]]
     name = "Tags"
     url = "/tags/"
-    weight = 2
+    weight = 3
+  [[menu.main]]
+    name = "Search"
+    url = "/search/"
+    weight = 4
   [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 3
+    weight = 5
