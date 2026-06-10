@@ -1,6 +1,7 @@
 # Hugo build output
 public/
 resources/_gen/
+blog/resources/_gen/
 
 # OS files
 .DS_Store
