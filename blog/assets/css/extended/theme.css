@@ -498,6 +498,22 @@ body::before {
     pointer-events: none;
 }
 
+/* --- Reading progress (posts only): flag fades to track, fill is full accent --- */
+body.has-progress::before {
+    background: var(--accent-faint);
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 0;
+    background: var(--accent);
+    z-index: 1000;
+    pointer-events: none;
+}
+
 /* --- Marker highlight: one load-bearing line per post, max --- */
 .post-content mark {
     background: linear-gradient(transparent 55%, var(--accent-wash) 55%);
