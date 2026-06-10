@@ -7,6 +7,10 @@ enableRobotsTXT = true
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 
+# Allow inline HTML in markdown (needed for <mark> highlights; all content is author-written)
+[markup.goldmark.renderer]
+  unsafe = true
+
 [params]
   author = "Joe Capozzoli"
   description = "Architecture, AI, and the things that actually happen when you build enterprise software."

@@ -14,7 +14,7 @@ They didn't want the approval workflows. They didn't need the validation rules. 
 
 What that actually looks like: a team that needs get and put has to deploy two applications and inherit north of 70% of functionality they will never use. They needed a storage layer. They got a whole product with someone else's workflows bolted on.
 
-That's when I realized: this isn't an app with a storage feature. It's a platform wearing an app's clothes.
+That's when I realized: this isn't an app with a storage feature. <mark>It's a platform wearing an app's clothes.</mark>
 
 Martin Fowler wrote about this in 2003. He called it a [Harvested Platform](https://martinfowler.com/bliki/HarvestedFramework.html). You build an app. A second app shows up with overlapping needs. The shared parts get extracted into a platform. He contrasts this with a Foundation Platform, building the platform first, and says the harvested approach "seems to work better in practice." You can't know what the platform should look like until at least two consumers have proven what they actually need. Before that, you're guessing. After that, you're harvesting.
 

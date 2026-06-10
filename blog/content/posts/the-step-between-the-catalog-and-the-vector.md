@@ -10,7 +10,7 @@ Enterprise data strategy has changed its destination. A few years ago the target
 
 The step between those two didn't go away.
 
-Embeddings inherit whatever structure exists in the source data. Whatever shape it's in when you vectorize it is the shape it carries into the model. If your systems agree on what a customer is, your embeddings will too. If they don't, the embeddings encode the disagreement. The silos don't disappear. They move into the vector space, where they're harder to see and harder to debug.
+Embeddings inherit whatever structure exists in the source data. Whatever shape it's in when you vectorize it is the shape it carries into the model. If your systems agree on what a customer is, your embeddings will too. If they don't, the embeddings encode the disagreement. The silos don't disappear. <mark>They move into the vector space, where they're harder to see and harder to debug.</mark>
 
 This isn't a reason to slow down on vectors. Embeddings are useful. They make semantic search work, they power retrieval-augmented generation, they let AI systems find relationships keyword search would miss. The point isn't to delay them. It's to make sure they land on something they can stand on.
 

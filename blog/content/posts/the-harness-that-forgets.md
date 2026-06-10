@@ -14,7 +14,7 @@ In her model, iteration is human work. *Whenever an issue happens multiple times
 
 In the [operational layer I described last time](https://josephcapozzoli.com/posts/the-stack-nobody-talks-about/), agents run overnight on schedules, across multiple repos, on a budget. Nobody is sitting there spotting the third occurrence of the same misunderstood instruction. By morning, the same broken changeset shape has produced four rejections across three repos. The harness held. It also forgot.
 
-A pipeline that resets every run is not a regulator. It is a checkpoint.
+<mark>A pipeline that resets every run is not a regulator.</mark> It is a checkpoint.
 
 ## The cheapest checks are also the dumbest
 

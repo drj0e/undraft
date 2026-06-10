@@ -10,7 +10,7 @@ A few weeks ago I wrote about [the missing verification layer](/posts/who-watche
 
 I built that pipeline. It works. And it immediately exposed the next problem, and the one after that, and the one after that.
 
-The model is not the system. The system is everything required to make model output selectable, constrainable, auditable, affordable, and stoppable. I've spent the past month building that system across two projects: one that generates and guards code, and one that orchestrates autonomous workflows through GitHub Actions. The takeaway is simple: once you go past interactive pair-programming, reliability stops being a model-quality problem and becomes a systems-design problem.
+<mark>The model is not the system.</mark> The system is everything required to make model output selectable, constrainable, auditable, affordable, and stoppable. I've spent the past month building that system across two projects: one that generates and guards code, and one that orchestrates autonomous workflows through GitHub Actions. The takeaway is simple: once you go past interactive pair-programming, reliability stops being a model-quality problem and becomes a systems-design problem.
 
 Each layer I built exists because the layer below it wasn't enough.
 

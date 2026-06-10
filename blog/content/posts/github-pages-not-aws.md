@@ -37,4 +37,4 @@ That's it. The whole thing, domain purchase to live site, took under an hour. Up
 
 The trap is reaching for the tools you know instead of the tools the problem needs. I have three AWS certs. Of course my instinct was to use AWS. But the instinct was about my identity as someone who builds on AWS, not about what a blog actually requires. A personal blog with static content doesn't need Elastic Beanstalk. It doesn't need WAF. It doesn't need a build pipeline more complex than a 30-line GitHub Actions file.
 
-Three certifications and years of muscle memory almost convinced me to mass over-provision a site that serves markdown files. The credentials didn't help me pick the right tool. They made it harder.
+<mark>Three certifications and years of muscle memory almost convinced me to mass over-provision a site that serves markdown files.</mark> The credentials didn't help me pick the right tool. They made it harder.

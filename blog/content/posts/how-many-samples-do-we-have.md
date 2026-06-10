@@ -56,6 +56,6 @@ And then it isn't finished, because this part has no end state. The steward keep
 
 The steps are easy to list and brutal to execute, and almost all of the difficulty sits in the first one, because the first one isn't an engineering task. It's getting a person to put their name on a definition and defend it the next time a team wants an exception.
 
-The catalog, the semantic layer, the contract tooling: you can buy every bit of it. A data steward who will own what a sample is, and keep owning it as the org shifts around them, you have to appoint. That's the line nobody puts on a roadmap.
+<mark>The catalog, the semantic layer, the contract tooling: you can buy every bit of it.</mark> A data steward who will own what a sample is, and keep owning it as the org shifts around them, you have to appoint. That's the line nobody puts on a roadmap.
 
 So the question was never which semantic layer. It was who gets to decide what a sample is. If you can't name that person, you don't have a tooling gap. You have your actual first project.

@@ -6,7 +6,7 @@ tags: ["ai-tooling", "architecture", "code-quality"]
 summary: "Code generation is a commodity. The defensible value is knowing whether the output is safe to ship, and almost nobody is building for that."
 ---
 
-Code generation is a commodity. The defensible value isn't "my agent writes better code." It's "my system can tell you whether the code is safe to ship." Almost nobody is building for that. The demo is always the generation, never the check.
+Code generation is a commodity. The defensible value isn't "my agent writes better code." It's "my system can tell you whether the code is safe to ship." Almost nobody is building for that. <mark>The demo is always the generation, never the check.</mark>
 
 The tools that do exist sit at the extremes. On one end, real-time interception, catching dangerous operations as they happen. On the other, post-push review, looking at code only after a human opens a PR. That pipeline between "agent wrote code" and "code is ready to merge," the opinionated, layered system that actually decides if the output is trustworthy? It doesn't exist yet.
 
