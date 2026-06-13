@@ -4,6 +4,7 @@ date: 2026-06-28
 draft: false
 tags: ["architecture", "platform-engineering"]
 summary: "The moment you harvest a platform out of an app, the app stops being something you can change quietly. That standing cost lands hardest on the team that built it, and most extraction plans never budget for it."
+reviewed: true
 ---
 
 Pulling a platform out of an app doesn't set the app free. It puts the app on a leash, and hands the other end to everyone who shows up next.
