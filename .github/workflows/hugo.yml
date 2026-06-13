@@ -23,7 +23,20 @@ defaults:
     working-directory: ./blog
 
 jobs:
+  # Deterministic pre-publish gate. Fails closed: if any post trips a mechanical
+  # rule, the build/deploy never run and the workflow goes red (notifying the
+  # author). Posts are future-dated with a buffer, so a blocked post costs a
+  # notification, not a missed publish.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Pre-publish post gate
+        working-directory: ${{ github.workspace }}
+        run: python3 scripts/lint_posts.py
+
   build:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

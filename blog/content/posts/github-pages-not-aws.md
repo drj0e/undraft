@@ -3,6 +3,7 @@ title: "I Almost Over-Engineered a Blog with AWS"
 date: 2026-03-22
 draft: false
 tags: ["aws", "infrastructure"]
+summary: "I have three AWS certs, so my instinct for a personal blog was Beanstalk, Route 53, WAF, and a build pipeline. It needed a markdown file and git push. The credentials didn't help me pick the right tool, they made it harder."
 ---
 
 I used to think publishing a personal site meant AWS, WAF, Route 53, and a weekend of debugging. Turns out it's a markdown file and `git push`.
