@@ -13,10 +13,15 @@ judgment and are the model reviewer's job. This layer just guarantees the
 dumb failures can't ship. Cheapest checks, no model call: the guard-pipeline
 pattern from "The Stack Nobody Talks About".
 """
-import sys, re, glob, os
+import sys, re, glob, os, datetime
 
 POSTS_DIR = "blog/content/posts"
 TAXONOMY = "docs/tag-taxonomy.md"
+# Posts dated after this (the day the pre-publish reviewer went live) must carry
+# 'reviewed: true' before they are allowed to go live. Older posts are
+# grandfathered. This makes the model reviewer a hard gate, not best-effort: if
+# it never stamped a post, that post cannot publish.
+REVIEW_ERA = "2026-06-13"
 
 # High-precision AI-tell phrases only. Context-independent, so safe to hard-fail.
 # Intentionally omits words with legitimate uses on this blog (harness, landscape,
@@ -70,6 +75,7 @@ def field(fm, name):
 
 def main():
     allowed = load_allowed_tags()
+    today = datetime.date.today().isoformat()
     posts = sorted(glob.glob(os.path.join(POSTS_DIR, "*.md")))
     slugs = {os.path.splitext(os.path.basename(p))[0] for p in posts}
     errors = []
@@ -113,6 +119,16 @@ def main():
         for slug in re.findall(r"\]\(/posts/([^/)]+?)/?\)", body):
             if slug not in slugs:
                 errors.append(f"{name}: internal link /posts/{slug}/ resolves to no post")
+
+        # Enforced review: a reviewer-era post may not go live unreviewed.
+        post_date = (field(fm, "date") or "")[:10]
+        is_draft = (field(fm, "draft") or "false").strip().lower() == "true"
+        is_reviewed = (field(fm, "reviewed") or "false").strip().lower() == "true"
+        if not is_draft and REVIEW_ERA < post_date <= today and not is_reviewed:
+            errors.append(
+                f"{name}: live (dated {post_date}) but never reviewed "
+                f"(no 'reviewed: true'); the reviewer must clear it before its date"
+            )
 
     if errors:
         print("POST GATE FAILED ({} issue(s)):".format(len(errors)))
