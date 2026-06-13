@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   veto:
-    if: github.event.issue.state_reason == 'not_planned' && startsWith(github.event.issue.title, 'Review: ')
+    if: "github.event.issue.state_reason == 'not_planned' && startsWith(github.event.issue.title, 'Review:')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
