@@ -55,7 +55,7 @@ jobs:
               echo ""
               echo "---"
               echo ""
-              awk '/^---[[:space:]]*$/{c++; next} c>=2{print}' "$f"
+              awk '/^---[[:space:]]*$/{c++; next} c>=2{print}' "$f" | sed 's#](/#](https://josephcapozzoli.com/#g'
             } > /tmp/body.md
             gh issue create --title "$title" --body-file /tmp/body.md --assignee drj0e
           done
