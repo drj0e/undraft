@@ -1,6 +1,6 @@
 ---
 title: "The Agent Is a Custodian, Never an Owner"
-date: 2026-06-19
+date: 2026-06-16
 draft: false
 tags: ["ai-tooling", "compliance", "data"]
 summary: "The whole agent-reliability project is trying to engineer the one thing a tool can't have: accountability. Data governance already named this. The agent is a custodian, and we keep trying to promote it to owner."

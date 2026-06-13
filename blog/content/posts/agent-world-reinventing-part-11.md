@@ -1,6 +1,6 @@
 ---
 title: "The Agent World Is Reinventing 21 CFR Part 11"
-date: 2026-06-15
+date: 2026-06-13
 draft: false
 tags: ["ai-tooling", "compliance", "automation"]
 summary: "I built audit logs and self-voiding approval gates to make an autonomous agent safe to run unattended, then realized I'd rebuilt a regulation the FDA shipped in 1997. The regulated world solved agent trust before agents existed."
