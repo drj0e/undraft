@@ -1,0 +1,61 @@
+name: Post preview issues
+
+# For every queued (future-dated), reviewed, non-draft post, open ONE issue
+# containing the post's full text and the reviewer's verdict, assigned to Joe.
+# This is the veto surface: the post publishes on its date by default; closing
+# the issue as "Not planned" pulls it (see veto.yml). Idempotent: skips a post
+# that already has an issue.
+
+on:
+  push:
+    branches: ["main"]
+    paths: ["blog/content/posts/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Open preview/veto issues for queued reviewed posts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          today=$(date -u +%Y-%m-%d)
+          for f in blog/content/posts/*.md; do
+            slug=$(basename "$f" .md)
+            pdate=$(grep -m1 '^date:' "$f" | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
+            draft=$(grep -m1 '^draft:' "$f" | sed 's/draft:[[:space:]]*//' | tr -d '[:space:]\r' || true)
+            reviewed=$(grep -m1 '^reviewed:[[:space:]]*true' "$f" || true)
+            [ -n "$pdate" ] || continue
+            [ "$pdate" \> "$today" ] || continue   # future-dated only
+            [ "$draft" != "true" ] || continue      # not held
+            [ -n "$reviewed" ] || continue          # passed the reviewer
+            title="Review: $slug"
+            if gh issue list --state all --search "in:title \"$title\"" --json title -q '.[].title' | grep -Fxq "$title"; then
+              continue
+            fi
+            ttl=$(grep -m1 '^title:' "$f" | sed 's/^title:[[:space:]]*//; s/^"//; s/"$//')
+            revline=$(grep -m1 -- " $slug: " docs/review-log.md 2>/dev/null | sed 's/^- //' || echo "(no review-log entry)")
+            {
+              echo "**\"$ttl\"** is queued to publish on **$pdate**."
+              echo ""
+              echo "- Do nothing → it publishes automatically on $pdate."
+              echo "- To STOP it → close this issue as **Not planned**."
+              echo "- Close as Completed just to clear it from your list (it still publishes)."
+              echo ""
+              echo "Reviewer: $revline"
+              echo ""
+              echo "---"
+              echo ""
+              awk '/^---[[:space:]]*$/{c++; next} c>=2{print}' "$f"
+            } > /tmp/body.md
+            gh issue create --title "$title" --body-file /tmp/body.md --assignee drj0e
+          done
