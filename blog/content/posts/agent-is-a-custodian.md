@@ -4,6 +4,7 @@ date: 2026-06-19
 draft: false
 tags: ["ai-tooling", "compliance", "data"]
 summary: "The whole agent-reliability project is trying to engineer the one thing a tool can't have: accountability. Data governance already named this. The agent is a custodian, and we keep trying to promote it to owner."
+reviewed: true
 ---
 
 In a regulated shop, the database administrator never signs off that a batch number is correct. They run the system the number lives in. They provision access, take the backups, keep the lights on. The person who stakes their name on what the number *means*, in front of someone who can hold up a shipment, sits on the business side. Data management has a word for each of them. The one who runs the system is the custodian. The one who answers for the meaning is the owner. It's a split the field has formalized for decades in frameworks like [DAMA's DMBOK](https://dama.org/learning-resources/dama-data-management-body-of-knowledge-dmbok/), and [I've argued before](/posts/data-governance-that-survives-an-inspection/) that it's the load-bearing line in the whole discipline. If IT owns the data, no business decision about it ever sticks, because the custodian can't overrule the function that generated it.

@@ -4,6 +4,7 @@ date: 2026-06-15
 draft: false
 tags: ["ai-tooling", "compliance", "automation"]
 summary: "I built audit logs and self-voiding approval gates to make an autonomous agent safe to run unattended, then realized I'd rebuilt a regulation the FDA shipped in 1997. The regulated world solved agent trust before agents existed."
+reviewed: true
 ---
 
 I spent a month building the controls that let an autonomous coding agent run unattended without scaring me. I [wrote about that stack already](/posts/the-stack-nobody-talks-about/): append-only audit logs, per-agent budget caps with hard stops, approval gates with hash-based validation so a spec edited after sign-off automatically voids its own approval. None of it was the model. All of it was provenance and constraint.
