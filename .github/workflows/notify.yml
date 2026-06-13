@@ -1,0 +1,54 @@
+name: Blog review alerts
+
+# Emails Joe when the pre-publish reviewer holds or flags a post. The reviewer
+# records every decision in docs/review-log.md; when a push adds a HELD or NOTE
+# line, this opens an issue assigned to drj0e, which GitHub turns into a
+# notification email. Uses the built-in token, so no SMTP secret is needed.
+# (Deploy/gate failures already email via GitHub's default Actions notifications.)
+
+on:
+  push:
+    branches: ["main"]
+    paths: ["docs/review-log.md"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Open an issue for new HELD/NOTE entries
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            gh issue create \
+              --title "Blog review alert (test)" \
+              --body "Test alert from the review-notify workflow. If this reached you as an email, your notifications are working." \
+              --assignee drj0e
+            exit 0
+          fi
+          before='${{ github.event.before }}'
+          after='${{ github.event.after }}'
+          if ! git cat-file -e "${before}^{commit}" 2>/dev/null; then
+            echo "No usable before-SHA; skipping."
+            exit 0
+          fi
+          added="$(git diff "$before" "$after" -- docs/review-log.md \
+            | grep '^+' | grep -vE '^\+\+\+' | sed 's/^+//' \
+            | grep -iE 'HELD|NOTE' || true)"
+          if [ -n "$added" ]; then
+            gh issue create \
+              --title "Blog review alert" \
+              --body "$(printf 'The pre-publish reviewer flagged something before publish:\n\n%s' "$added")" \
+              --assignee drj0e
+          else
+            echo "No HELD/NOTE entries added in this push."
+          fi
