@@ -17,7 +17,7 @@ Before the extraction, the storage internals belonged to my team. A field that n
 
 The moment a second consumer depends on that surface, the same edit is a contract change. [I argued before](/posts/two-consumers-dont-make-a-platform/) that the boundary should be provisional and versioned, so the next consumer can push on it instead of inheriting it in silence. That's still right. But versioning isn't free. It's the machinery that turns a thing you used to change in an afternoon into a thing you announce, deprecate, and migrate.
 
-<mark>You don't pay for a platform in the extraction. You pay for it every time you can no longer change something quietly.</mark>
+You don't pay for a platform in the extraction. You pay for it every time you can no longer change something quietly.
 
 And the part that caught me off guard: your own first app is now one of the consumers. Usually the most demanding one, because it has more invested in the old shape than anyone. It grew up assuming it could reach straight into those internals. Now it has to ask. You spend the extraction work convincing yourself you're serving some future second team, and then notice the consumer you've inconvenienced most is yourself, six months ago.
 

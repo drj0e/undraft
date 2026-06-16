@@ -3,9 +3,9 @@
 
 Runs in CI before the Hugo build. Fails the job (blocking deploy) if any post
 in blog/content/posts/ violates a mechanical rule. These are the binary checks
-that need no judgment: front matter, tags against the taxonomy, exactly one
-<mark>, no em-dashes, no leftover placeholders, a tight high-precision AI-tell
-list, and internal links that actually resolve.
+that need no judgment: front matter, tags against the taxonomy, at most two
+<mark> tags (zero is fine), no em-dashes, no leftover placeholders, a tight
+high-precision AI-tell list, and internal links that actually resolve.
 
 What this does NOT check, by design: whether the post is true, whether it
 recycles an existing post's argument, or whether it's any good. Those need
@@ -100,9 +100,13 @@ def main():
             if t not in allowed:
                 errors.append(f"{name}: tag '{t}' not in taxonomy")
 
+        # Highlighting is optional and should be uneven across the feed. A post
+        # with no <mark> is fine (and common); the cap stops a post from turning
+        # into a highlighter mess. Variety of placement is enforced at the feed
+        # level by check_diversity.py, not here.
         n_mark = len(re.findall(r"<mark>", body))
-        if n_mark != 1:
-            errors.append(f"{name}: {n_mark} <mark> tags, must be exactly 1")
+        if n_mark > 2:
+            errors.append(f"{name}: {n_mark} <mark> tags, cap is 2 (0 is fine)")
 
         if "—" in body:
             errors.append(f"{name}: contains em-dash (banned)")

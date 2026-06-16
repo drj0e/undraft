@@ -112,6 +112,7 @@ The following patterns are **banned from all Undraft output**. These are the fin
 - **Em-dashes.** Banned. No normal person writes like that. Use periods, commas, or restructure the sentence. If you reach for an em-dash, you're writing like a machine.
 - **Colon-introduced lists in every other sentence.** "The key factors are: X, Y, and Z" is fine once. Not five times.
 - **Quotation marks for emphasis.** Use italics sparingly or just let the word speak for itself.
+- **The same highlight in the same spot every post.** A single `<mark>`ed thesis sentence dropped two-thirds of the way through, post after post, is a template wearing a person's voice. Highlighting is optional and should be the exception: most posts need none. When a sentence genuinely earns standout emphasis, use one, but never as a fixed structural beat and never in a predictable position. A run of posts should be uneven — some with no highlight, some early, some late. If the last few posts all highlighted, this one shouldn't.
 
 ---
 

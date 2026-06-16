@@ -35,10 +35,19 @@ def load():
             continue
         tm = re.search(r"(?m)^tags:\s*(.+)$", t)
         tags = re.findall(r'"([^"]+)"', tm.group(1)) if tm else []
+        # Body = everything after the second front-matter fence. Used to locate
+        # the <mark> so we can see if every recent post highlights in the same spot.
+        body = t.split("\n---", 1)[1] if t.startswith("---") else t
+        body = body.split("\n---", 1)[1] if body.startswith("---") else body
+        marks = [m.start() for m in re.finditer(r"<mark>", body)]
+        blen = max(len(body), 1)
         posts.append({
             "slug": os.path.splitext(os.path.basename(path))[0],
             "date": dm.group(1),
             "tags": tags,
+            "n_mark": len(marks),
+            # position of the first mark as a fraction through the body (None if no mark)
+            "mark_pos": (marks[0] / blen) if marks else None,
         })
     posts.sort(key=lambda p: (p["date"], p["slug"]))
     return posts
@@ -78,6 +87,33 @@ def main():
     if heavy:
         order = sorted(heavy.items(), key=lambda kv: -kv[1])
         print(f"HEAVY THEME across last {len(tail)} posts: " + ", ".join(f"{t} x{n}" for t, n in order))
+
+    # Formatting monotony: is every recent post highlighting one sentence in the
+    # same place? That reads as a template, not a person. Advisory only — variety
+    # is taste, and you can't "fix" already-published history — so this never
+    # changes the exit code; it just tells the writer to break the pattern.
+    def band(pos):
+        if pos is None:
+            return "none"
+        return "early" if pos < 0.34 else ("mid" if pos < 0.67 else "late")
+
+    recent = posts[-3:]
+    if len(recent) == 3:
+        print()
+        print("Highlight placement (last 3):")
+        for p in recent:
+            where = band(p["mark_pos"])
+            pct = "" if p["mark_pos"] is None else f" (~{round(p['mark_pos']*100)}%)"
+            print(f"  {p['date']} | {p['n_mark']} mark, {where}{pct} | {p['slug']}")
+        all_marked = all(p["n_mark"] >= 1 for p in recent)
+        bands = {band(p["mark_pos"]) for p in recent}
+        if all_marked and len(bands) == 1:
+            print("  FORMATTING MONOTONY: 3 in a row highlight in the same "
+                  f"position ({bands.pop()}). Next post: no <mark>, or a clearly "
+                  "different placement and structure.")
+        elif all_marked:
+            print("  NOTE: 3 in a row carry a highlight. A post with no <mark> "
+                  "would vary the feed.")
 
     actionable = any(a for *_, a in clashes)
     print()
