@@ -4,6 +4,7 @@ date: 2026-06-23
 draft: false
 tags: ["data", "life-sciences"]
 summary: "Every governance program is built to add definitions and none of them can retire one. In a regulated shop that gets worse, because the instinct to keep every record gets misread as a ban on ever deprecating a definition. They're different objects."
+reviewed: true
 ---
 
 Every data governance program I've watched is built to add definitions. None of them is built to remove one.
