@@ -4,6 +4,7 @@ date: 2026-06-26
 draft: false
 tags: ["automation", "architecture"]
 summary: "Months ago I listed what a system needs before an agent can run unattended, and I left off the one that matters most after the first crash. A stop button handles the runaway. It does nothing for the run that dies on step nine of fourteen."
+reviewed: true
 ---
 
 Months back I [listed what a system needs](/posts/the-stack-nobody-talks-about/) before you let an agent run without watching it: the output has to be selectable, constrained, audited, and stoppable. I built all of it. I was proudest of the stop button, the budget caps and the hard kill, because the nightmare everyone pictures is the agent that won't quit.
