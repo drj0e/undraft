@@ -21,3 +21,7 @@ hugo_stats.json
 
 # Superpowers brainstorm sessions
 .superpowers/
+
+# Python
+__pycache__/
+*.pyc

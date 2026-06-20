@@ -73,12 +73,107 @@ def field(fm, name):
     return m.group(1) if m else None
 
 
+# --- Advisory self-citation checks (non-blocking) ------------------------------
+# These never fail the build. A regex can't decide whether a paraphrase of a
+# prior post is faithful, so it doesn't try. It surfaces the spots a human (and
+# the model reviewer) must verify, and flags the one shape that IS mechanical:
+# a citing post that lists a strict subset of a list in the post it links to.
+
+_CLAIM_CUE = re.compile(
+    r"\b(?:I (?:listed|argued|said|wrote|covered|called|described|noted|"
+    r"mentioned|explained|made the case)|months? back|weeks? back|"
+    r"a few weeks ago|last time|previously|earlier)\b",
+    re.IGNORECASE,
+)
+_INTERNAL_LINK = re.compile(r"\]\(/posts/([^/)]+?)/?\)")
+# A run of three or more comma-separated single words, optional "and/or" before
+# the last item: "selectable, constrained, audited, and stoppable". The
+# negative lookahead keeps the middle run from swallowing ", and X" so the final
+# item lands in the trailing conjunction group instead of being dropped.
+_LIST = re.compile(
+    r"[A-Za-z][\w-]*(?:,\s+(?!(?:and|or)\b)[A-Za-z][\w-]*){2,}"
+    r"(?:,?\s+(?:and|or)\s+[A-Za-z][\w-]*)?"
+)
+
+
+def _sentences(text):
+    flat = re.sub(r"\s+", " ", text).strip()
+    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z\"'\[])", flat)
+    return [p for p in parts if p.strip()]
+
+
+def _stem(word):
+    w = word.lower().strip(".,;:!?\"'()[]")
+    for suf in ("ability", "ibility", "able", "ible", "ation", "ing", "ed", "es", "s"):
+        if w.endswith(suf) and len(w) - len(suf) >= 3:
+            return w[: -len(suf)]
+    return w
+
+
+def _list_items(text):
+    """Every 3+ item comma-list in `text`, each as its list of head words."""
+    out = []
+    for m in _LIST.finditer(text):
+        parts = re.split(r",\s*(?:and\s+|or\s+)?|\s+(?:and|or)\s+", m.group(0))
+        items = [p.strip() for p in parts if p.strip() and p.strip().lower() not in ("and", "or")]
+        if len(items) >= 3:
+            out.append(items)
+    return out
+
+
+def find_self_citations(body):
+    """Sentences that claim what a prior (internal-linked) post said.
+
+    Returns the sentence text for each, so the reviewer/human can confirm the
+    claim against the linked post rather than trusting the paraphrase.
+    """
+    hits = []
+    for s in _sentences(body):
+        if _INTERNAL_LINK.search(s) and _CLAIM_CUE.search(s):
+            hits.append(s.strip())
+    return hits
+
+
+def find_subset_enumerations(body, target_bodies):
+    """Citing lists that are a strict subset of a list in the post they link to.
+
+    `target_bodies` maps slug -> that post's body. For each sentence that holds
+    both an internal link and a comma-list, if the cited post contains a longer
+    list whose members are a strict superset (by word stem), report the dropped
+    member(s) -- the exact failure where a recap quietly shrinks a prior list.
+    """
+    hits = []
+    for s in _sentences(body):
+        slugs = _INTERNAL_LINK.findall(s)
+        if not slugs:
+            continue
+        for citing in _list_items(s):
+            cset = {_stem(w) for w in citing}
+            for slug in slugs:
+                tbody = target_bodies.get(slug)
+                if not tbody:
+                    continue
+                for target in _list_items(tbody):
+                    tmap = {_stem(w): w for w in target}
+                    tset = set(tmap)
+                    if cset < tset:  # strict subset: citing dropped member(s)
+                        hits.append({
+                            "slug": slug,
+                            "citing": citing,
+                            "target": target,
+                            "missing": [tmap[st] for st in tset - cset],
+                        })
+                        break
+    return hits
+
+
 def main():
     allowed = load_allowed_tags()
     today = datetime.date.today().isoformat()
     posts = sorted(glob.glob(os.path.join(POSTS_DIR, "*.md")))
     slugs = {os.path.splitext(os.path.basename(p))[0] for p in posts}
     errors = []
+    bodies = {}
 
     for path in posts:
         name = os.path.basename(path)
@@ -88,6 +183,7 @@ def main():
         if fm is None:
             errors.append(f"{name}: no front matter")
             continue
+        bodies[os.path.splitext(name)[0]] = body
 
         for fld in REQUIRED_FIELDS:
             if field(fm, fld) is None:
@@ -134,12 +230,34 @@ def main():
                 f"(no 'reviewed: true'); the reviewer must clear it before its date"
             )
 
+    # Advisory pass: surfaces self-citations to verify and flags subset-list
+    # recaps. Never changes the exit code -- judgment belongs to the reviewer.
+    dropped = []
+    citations = []
+    for slug, body in sorted(bodies.items()):
+        for hit in find_subset_enumerations(body, bodies):
+            dropped.append((slug, hit))
+        for sentence in find_self_citations(body):
+            citations.append((slug, sentence))
+
+    if dropped:
+        print("\nADVISORY -- possible dropped list member (verify against source):")
+        for slug, hit in dropped:
+            print(f"  - {slug}.md cites /posts/{hit['slug']}/ listing "
+                  f"{hit['citing']}, but that post lists {hit['target']}; "
+                  f"missing: {', '.join(hit['missing'])}")
+    if citations:
+        print("\nADVISORY -- self-citations to verify against the linked post:")
+        for slug, sentence in citations:
+            short = sentence if len(sentence) <= 140 else sentence[:137] + "..."
+            print(f"  - {slug}.md: {short}")
+
     if errors:
-        print("POST GATE FAILED ({} issue(s)):".format(len(errors)))
+        print("\nPOST GATE FAILED ({} issue(s)):".format(len(errors)))
         for e in errors:
             print("  - " + e)
         sys.exit(1)
-    print(f"Post gate passed: {len(posts)} posts clean.")
+    print(f"\nPost gate passed: {len(posts)} posts clean.")
 
 
 if __name__ == "__main__":
