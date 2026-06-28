@@ -1,9 +1,10 @@
 ---
 title: "The Guard the Agent Can See"
 date: 2026-07-05
-draft: false
+draft: true
 tags: ["ai-tooling", "automation", "code-quality"]
 summary: "I built cheap deterministic gates to catch what agents break, and I was proud of them. What I underrated is what happens the moment a guard's verdict goes back to the agent so it can retry. The guard stops measuring and starts being a target it learns to pass."
+reviewed: true
 ---
 
 A guard the agent can see is a guard the agent will eventually pass. Not because the code got correct. Because the guard became part of what it was optimizing.
