@@ -4,6 +4,7 @@ date: 2026-07-12
 draft: false
 tags: ["platform-engineering", "architecture"]
 summary: "A public API can force you off an old version by making the endpoint go dark on a date. An internal platform has the same compatibility burden and no way to ever pull that lever, so nothing it ships ever gets retired."
+reviewed: true
 ---
 
 A public API has a way to make you leave. It sets a `Sunset` header months out with a date attached, [tells every client](https://www.rfc-editor.org/rfc/rfc8594.html) when the endpoint stops answering, and on the appointed morning the old URL returns [`410 Gone`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/410). Not an error. A verdict: this existed, we removed it on purpose, stop calling. The caller has no appeal. They migrated or they broke, and the vendor priced that outcome in before shipping the deprecation.
