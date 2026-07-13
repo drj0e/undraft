@@ -11,9 +11,9 @@ Running list of tags in use across published posts. Per CLAUDE.md: reuse before 
 | `aws` | AWS-specific decisions | github-pages-not-aws |
 | `infrastructure` | Hosting, deployment, ops | github-pages-not-aws |
 | `code-quality` | Verification, review, guard rails | who-watches-the-watcher, the-guard-the-agent-can-see, the-author-you-cant-ask |
-| `platform-engineering` | Platforms inside and underneath apps | platforms-clothes, two-consumers, the-platform-tax, nobody-chose-your-platform, the-410-you-cant-send |
+| `platform-engineering` | Platforms inside and underneath apps | platforms-clothes, two-consumers, the-platform-tax, nobody-chose-your-platform, the-410-you-cant-send, every-request-weighs-the-same |
 | `life-sciences` | Regulated life sciences domain context | data-governance-inspection, record-is-not-the-definition |
 | `compliance` | GxP, inspections, regulatory data integrity | data-governance-inspection, agent-world-part-11, agent-is-a-custodian, the-answer-has-no-audit-trail |
-| `leadership` | Engineering decisions, org dynamics, how teams are measured | nobody-chose-your-platform, generation-got-cheap-review-didnt |
+| `leadership` | Engineering decisions, org dynamics, how teams are measured | nobody-chose-your-platform, generation-got-cheap-review-didnt, every-request-weighs-the-same |
 
-11 unique tags across 21 posts. Budget: 10-15 across the first 20 posts, so new tags need a strong case.
+11 unique tags across 22 posts. Budget: 10-15 across the first 20 posts, so new tags need a strong case.
