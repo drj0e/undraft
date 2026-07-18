@@ -12,7 +12,7 @@ Then a second team wanted to use it.
 
 They didn't want the approval workflows. They didn't need the validation rules. They didn't care about the metadata schema we'd built around our specific use case. They just wanted to store files and get them back. But they couldn't, because all of that application logic is woven into the storage layer. You can't take the storage without taking the opinions.
 
-What that actually looks like: a team that needs get and put has to deploy two applications and inherit north of 70% of functionality they will never use. They needed a storage layer. They got a whole product with someone else's workflows bolted on.
+What that actually looks like: a team that needs get and put has to deploy two applications and inherit a pile of functionality they will never use. They needed a storage layer. They got a whole product with someone else's workflows bolted on.
 
 That's when I realized: this isn't an app with a storage feature. <mark>It's a platform wearing an app's clothes.</mark>
 

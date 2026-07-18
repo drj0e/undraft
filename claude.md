@@ -116,6 +116,55 @@ The following patterns are **banned from all Undraft output**. These are the fin
 
 ---
 
+## Rhetorical Tics — The Rotation List
+
+The Kill List bans words that are wrong in any sentence. This list is different. These are *moves* — argument shapes and sentence rhythms that are good exactly once and become a fingerprint through repetition. Every one of them earned its place in some post, worked, and then became the default. A move that shows up in most posts stops being voice and starts being a template wearing a voice.
+
+Audited 2026-07-18 across the first 24 posts. The counts are the reason each move is here. `scripts/check_tics.py` tracks all of this across the feed — run it before drafting to see what's currently worn out, and treat its ACTIONABLE lines as edits, not suggestions.
+
+### Frequency-capped moves
+
+Default budget: **one per post**, and zero if either of the two previous posts leaned on the same move.
+
+- **The negation flip.** "X isn't Y. It's Z." / "Not because A. Because B." Found 41 times across 19 of 24 posts, five in a single post at the worst. This is the blog's strongest tell. One flip can carry a thesis; three per post is an engine idling. Most corrections don't need the denial half at all — state Z and trust the reader to notice it isn't Y.
+- **The christening.** Make a point, then baptize it: "That's the tax." "That's the tell." "That's the moment." 14 times across 12 posts. Naming a concept once per post is a feature; a ritual christening every 300 words is a verbal logo.
+- **"nobody" as intensifier.** "the role nobody seats", "the count nobody renegotiated". 46 uses across 19 posts, plus two titles. The word has honest uses, so the checker flags at three — treat two as the hard ceiling and ask whether the honest phrase is "few teams", "we didn't", or a named person who actually did.
+- **"the one X that Y."** "the one lever that makes deprecation stick", "the one term in the equation nobody renegotiated". 11 across 8 posts. Superlative-definite phrasing makes every post claim to have found the single hidden variable. By the fifth post it reads as a formula, not a discovery.
+- **"quietly" / "silently."** 9 posts. The stealth-failure adverb. If the failure is silent, show the silence ("nobody notices until a regulator asks") instead of labeling it.
+- **"load-bearing."** 5 posts. Retired until it stops feeling like house style.
+- **Lower-grade repeats to rotate, not ban:** "the moment X" as a pivot (8 posts), "the half/part that Y" (9 posts), and pricing metaphors (bill, price, tax, currency, comes due) in posts that are not actually about platform economics.
+
+### Closer templates — the big one
+
+All 24 posts end on an aphorism, and at least ten end on the same *shape*: the negated-expectation flip. Four share the identical scaffold: "The teams that [come out ahead / regret it / figure this out] won't be the ones [obvious thing]. They'll be the ones [real thing]."
+
+1. The "The teams that..." closer is dead. Don't use it again.
+2. If the previous post closed on a flip, this one can't. `check_tics.py` prints the last five closer shapes.
+3. An ending doesn't have to punch. Rotate real alternatives: a fact stated flatly, an instruction, a concrete image, a number, an open question the post genuinely can't answer. A quiet ending after 700 sharp words lands harder than the tenth consecutive mic-drop.
+
+### Aphorism budget
+
+Not every paragraph gets to end on a quotable line. When everything punches, nothing does, and the reader learns the rhythm by post three. Two mic-drop sentences per post, counting the closer. The other sentences are allowed to just carry information.
+
+### The watch list (banned outright)
+
+Known tells from AI-written prose, banned preemptively before they take root here. The lint gate hard-fails the phrase forms in any post dated after 2026-07-18 (`TIC_KILL` in `scripts/lint_posts.py`); the structural forms are flagged by `check_tics.py`:
+
+- "No X, no Y, no Z" chains ("No fluff, no filler, no jargon.")
+- "did not X, did not Y" chains
+- "Don't call it X. Call it Y." — a negated verb, then the same verb corrected
+- "That's the whole point / game / thing" and "is the entire point / game / business model" (both word orders — "is the entire promise" already slipped through twice)
+- "The X is real, and..." concession riffs (already appeared once: "The platform is real, the second consumer is real, and...")
+- "sit with that" and every therapist-voiced cousin: "worth naming", "that loss is real and it's worth naming", "that's not nothing"
+- "You already know." / "you already know the answer"
+- "The punchline is..."
+
+### Title rotation
+
+The same wear rule applies to titles. Current clusters: "nobody" twice (The Stack Nobody Talks About, Nobody Chose Your Platform) and "The X You Can't Y" twice (The 410 You Can't Send, The Author You Can't Ask). A title shape used twice is retired for the next ten posts.
+
+---
+
 ## What Good Undraft Output Looks Like
 
 - **Sentence length varies wildly.** Short declarative sentences next to longer ones that build an argument. Just like a real person thinks.
@@ -156,6 +205,9 @@ The following patterns are **banned from all Undraft output**. These are the fin
 7. **Personal experience is the authority.** "I have three AWS certs and my instinct was still wrong" is more persuasive than any abstract argument about simplicity. Always ground the argument in what actually happened, not what should happen in theory.
 8. **Don't hedge the opinion.** "I'm not saying X is bad, I'm just saying..." is defensive. If the post's argument is that X was wrong for this situation, say that directly. The reader can figure out that it might be right for other situations.
 9. **Not every post needs a scar.** Some posts are written from the middle of a problem, not after a failure. These don't need disaster to justify themselves. What they need is a pressure signal: one concrete moment where the current approach started feeling wrong, even if nothing has broken yet. "Nothing failed, but the second consumer immediately exposed assumptions in our data model" is enough. The authority comes from noticing the signal early, not surviving the damage.
+10. **One concrete anchor per post, minimum.** The posts readers quote are the ones with an incident in them: three numbers from three systems and a meeting to reconcile them, the AWS weekend that turned out to be a markdown file and `git push`. A post built entirely from assertion and aphorism is an op-ed, and op-eds are where the templates live. Every post carries at least one of: a specific incident, a real number, a named tool or regulation, an artifact (an error message, a header, a query, a log line). If the draft has none, it isn't ready.
+11. **Vary the essay shape across the feed.** The current default is one shape: assertion, escalation, flip, aphorism, ~700 words. It's a good shape. It can't be the only one. Some posts should be a story told in the order it happened, a teardown of one artifact, a question the post honestly fails to answer, or a 300-word note that makes one point and leaves. If the last three posts were argument essays, the next one isn't.
+12. **Pitch the thesis before drafting the post.** Write 3-5 candidate theses as single sentences. For each, name the nearest place the claim already lives: a canonical study, a framework, a consultancy line, folklore ("verification is the bottleneck," "measure satisfaction, not adoption," "fix your data before you AI it"). If a well-read peer would have written the sentence themselves before reading the post, it's a retread — kill it at the sentence stage, where it costs a minute instead of a full write-review cycle. Draft the survivor with the strongest operative delta: the decision or test it hands the reader that the known version doesn't. The best theses in this feed split something the audience treats as one object into two (the record vs. the definition, the risk of a change vs. the count of changes) or hand the reader a test they can run at work on Monday ("has your steward ever retired a definition?"). The reviewer applies this same test as a toss-level FAIL bar (docs/review-checklist.md, check 6); a thesis that dies at pitch would have died there after costing a whole post.
 
 ---
 
@@ -233,6 +285,8 @@ The closing paragraph must go somewhere the opening didn't. It should extend, pr
 
 Test: does the reader know something at the end that they didn't know at the beginning? If the answer is just "I know it more emphatically," the ending needs work.
 
+Form matters as much as content. The feed's endings have converged on one shape (see "Closer templates" in Rhetorical Tics): if the closer is a negation flip and the previous post's was too, rewrite the shape, not just the words.
+
 ### Rhythm and Standalone Lines
 
 When a line is doing thesis-level work, give it its own paragraph. Don't bury the sharpest sentence in the middle of a five-sentence block.
@@ -244,6 +298,10 @@ The user's natural rhythm includes short, punchy standalone paragraphs as struct
 For any specific statistic, named-entity claim, or incident reference in blog post output, flag it if there's no source attached. Mark the spot with [SOURCE NEEDED] inline. The user will add links, but the draft should make clear where they're required.
 
 Do not let a blog post draft go out with unattributed numbers. "88% failure rate" without a link is a trust problem for the reader.
+
+The bar is highest for the load-bearing sentence — the one the argument cannot survive losing. If it's a number, a frequency claim ("most," "almost always"), or a cost comparison, it must be cited, witnessed in the post with checkable specifics, or explicitly scoped to first-hand experience ("every program I've watched," "in my shop"). An experience scope never licenses fake precision: what you've watched supports "most," not "north of 80%." A naked load-bearing claim is a toss at review (check 7), not a style note, and it can't be repaired by softening the adverb.
+
+Existence claims get the same treatment at draft time. Before writing "nobody builds this" or "that pipeline doesn't exist yet," spend one search finding the strongest counterexample a hostile commenter would post, then name it in the post and say why it isn't the thing. The post that already ran that search reads as confident; the one that didn't gets the search run on it in the comments within the hour.
 
 ### Output Weight
 
