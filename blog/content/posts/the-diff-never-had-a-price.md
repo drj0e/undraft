@@ -4,6 +4,7 @@ date: 2026-07-26
 draft: false
 tags: ["ai-tooling", "compliance", "life-sciences"]
 summary: "The agent pitch prices a change by what it costs to produce. A validated GxP system never priced changes that way, and the regulated world already renegotiated the real price once, before agents showed up."
+reviewed: true
 ---
 
 What does a one-line change cost in a validated system?
