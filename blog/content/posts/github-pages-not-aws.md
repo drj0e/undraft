@@ -21,7 +21,7 @@ The plan I almost executed looked like this:
 - A full build pipeline to deploy changes
 - S3 and CloudFront if I went the "simpler" static route
 
-That's a weekend project minimum. Route 53 hosted zone setup, DNS propagation alone takes hours, configuring CloudFront distributions, debugging IAM permissions when something doesn't connect right. I've done this before. Multiple times. And every time it felt like the reasonable way to host a website, because that's the toolset I know.
+That's a weekend project minimum. Route 53 hosted zone setup, ACM certificate validation, waiting on CloudFront distributions to deploy, debugging IAM permissions when something doesn't connect right. I've done this before. Multiple times. And every time it felt like the reasonable way to host a website, because that's the toolset I know.
 
 Here's what actually happened today.
 

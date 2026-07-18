@@ -18,7 +18,7 @@ The evidence keeps piling up. Cursor turned hundreds of agents loose to [generat
 
 The generation works. Nobody's reliably verifying the output.
 
-The shape of the answer isn't complicated. Does it compile? Did it stay within the files it was assigned? Did it break any structural invariants? Does the diff contain real changes? Run those first. Deterministic questions with binary answers. In my experience, they catch north of 80% of the problems agents introduce without burning a single token. Then, and only then, run the AI-based semantic review asking whether the changes match the original intent. Each stage is cheaper than the next. Most problems never reach the expensive stage.
+The shape of the answer isn't complicated. Does it compile? Did it stay within the files it was assigned? Did it break any structural invariants? Does the diff contain real changes? Run those first. Deterministic questions with binary answers. In my experience, they catch most of the problems agents introduce without burning a single token. Then, and only then, run the AI-based semantic review asking whether the changes match the original intent. Each stage is cheaper than the next. Most problems never reach the expensive stage.
 
 Most teams skip all of this. Let the agent generate, maybe run tests, hope a human catches the rest.
 
