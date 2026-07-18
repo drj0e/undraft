@@ -18,6 +18,8 @@ Scope: future-dated, not-yet-live posts that lack `reviewed: true`. For each, wo
 
 4. **Feed clustering (NOTE only, never a hold).** Run `scripts/check_diversity.py`. Log a NOTE on an actionable clash, but do not hold — you cannot fix an adjacency with nothing to slot between.
 
+5. **Rhetorical tics (fix-before-stamp bar).** Run `scripts/check_tics.py`. The deterministic gate already hard-fails the banned phrase forms (`TIC_KILL`); this covers the frequency moves a regex can't judge. If the post under review breaches a per-post budget, uses a move the trailing window has worn out, or extends a closer-shape streak (see CLAUDE.md "Rhetorical Tics — The Rotation List"), reword to break the pattern before stamping. Rewriting a flip or a closer is in the reviewer's scope; changing the argument is not. Log a NOTE naming the tic and the fix. If the post's whole structure is the tic — a flip in every section, a templated closer carrying the thesis — that is a **HELD** like any other failed bar. Flags on already-live posts are context, not work: published history does not get edited for style.
+
 ## Outcome
 
 - All FAIL-bar checks pass → set `reviewed: true`; log `PASS` with a one-line rationale per dimension (facts / recycling / self-citation / consistency), naming what you verified.

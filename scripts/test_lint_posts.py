@@ -12,7 +12,7 @@ import sys
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lint_posts import find_self_citations, find_subset_enumerations
+from lint_posts import find_self_citations, find_subset_enumerations, tic_hits
 
 
 class FindSelfCitations(unittest.TestCase):
@@ -78,6 +78,34 @@ class FindSubsetEnumerations(unittest.TestCase):
             )
         }
         self.assertEqual(find_subset_enumerations(citing, targets), [])
+
+
+class TicHits(unittest.TestCase):
+    def test_flags_therapist_voice_and_whole_point_family(self):
+        body = (
+            "That loss is real and it's worth naming. Sit with that for a "
+            "moment. The signature is the entire load-bearing idea, and "
+            "that's the whole point.\n"
+        )
+        hits = tic_hits(body)
+        self.assertIn("worth naming", hits)
+        self.assertIn("sit with that", hits)
+        self.assertIn("is the entire l", hits)
+        self.assertIn("that's the whole point", hits)
+
+    def test_you_already_know_only_in_tic_forms(self):
+        # Standalone-beat and known-object forms are the tic...
+        self.assertTrue(tic_hits("And the fix? You already know.\n"))
+        self.assertTrue(tic_hits("You already know the answer here.\n"))
+        # ...a plain relative clause is not.
+        self.assertEqual(tic_hits("Use the tools you already know well.\n"), [])
+
+    def test_clean_prose_passes(self):
+        body = (
+            "The migration is real work nobody funded. Naming the steward "
+            "matters more than naming the tool.\n"
+        )
+        self.assertEqual(tic_hits(body), [])
 
 
 if __name__ == "__main__":
