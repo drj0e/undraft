@@ -5,7 +5,9 @@ Runs in CI before the Hugo build. Fails the job (blocking deploy) if any post
 in blog/content/posts/ violates a mechanical rule. These are the binary checks
 that need no judgment: front matter, tags against the taxonomy, at most two
 <mark> tags (zero is fine), no em-dashes, no leftover placeholders, a tight
-high-precision AI-tell list, and internal links that actually resolve.
+high-precision AI-tell list (plus an era-gated tic list added later, so
+grandfathered history keeps building), and internal links that actually
+resolve.
 
 What this does NOT check, by design: whether the post is true, whether it
 recycles an existing post's argument, or whether it's any good. Those need
@@ -44,7 +46,34 @@ KILL = [
     r"\bfirstly\b",
     r"\bsynergy\b",
 ]
+
+# Phrase-form rhetorical tics, banned the same way but only for posts dated
+# after TIC_ERA — a couple of live posts contain them ("worth naming",
+# "worth sitting with") and published history doesn't get edited for style,
+# so a blanket ban would wedge the build on immutable posts. Same
+# grandfathering pattern as REVIEW_ERA. These are the single-phrase tells;
+# their frequency/structure cousins (negation flips, "that's the ___",
+# closer templates) can't be hard-failed by regex and live in
+# scripts/check_tics.py + the reviewer instead.
+TIC_ERA = "2026-07-18"
+TIC_KILL = [
+    r"\bsit(?:ting|s)? with (?:that|this|it|the discomfort)\b",
+    r"\bworth naming\b",
+    r"\bnot nothing\b",
+    r"\bthe punch ?line\b",
+    r"\byou already know(?:\s*[.!?,]| the answer| what to| how this)",
+    r"\b(?:that'?s|that is|this is|is) the whole (?:point|game|thing|story|job|pitch)\b",
+    r"\bis the entire [a-z]",
+    r"\bthe entire (?:point|game|thing|story|job|pitch|business model) is\b",
+]
 REQUIRED_FIELDS = ["title", "date", "tags", "summary"]
+
+
+def tic_hits(body):
+    """Era-gated tic phrases found in `body` (already lowercased or not)."""
+    low = body.lower()
+    return [m.group(0).strip() for m in
+            (re.search(p, low) for p in TIC_KILL) if m]
 
 
 def load_allowed_tags():
@@ -216,12 +245,17 @@ def main():
             if m:
                 errors.append(f"{name}: banned phrase '{m.group(0).strip()}'")
 
+        post_date = (field(fm, "date") or "")[:10]
+        if post_date > TIC_ERA:
+            for hit in tic_hits(body):
+                errors.append(f"{name}: banned tic phrase '{hit}' "
+                              f"(post-{TIC_ERA} posts; see CLAUDE.md Rhetorical Tics)")
+
         for slug in re.findall(r"\]\(/posts/([^/)]+?)/?\)", body):
             if slug not in slugs:
                 errors.append(f"{name}: internal link /posts/{slug}/ resolves to no post")
 
         # Enforced review: a reviewer-era post may not go live unreviewed.
-        post_date = (field(fm, "date") or "")[:10]
         is_draft = (field(fm, "draft") or "false").strip().lower() == "true"
         is_reviewed = (field(fm, "reviewed") or "false").strip().lower() == "true"
         if not is_draft and REVIEW_ERA < post_date <= today and not is_reviewed:
