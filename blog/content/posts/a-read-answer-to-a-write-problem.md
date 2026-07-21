@@ -4,6 +4,7 @@ date: 2026-07-30
 draft: false
 tags: ["data", "architecture"]
 summary: "Naming a system of record settles which copy to believe after two numbers already disagree. The fork itself gets created at write time, by every screen that leaves a copied field editable."
+reviewed: true
 ---
 
 Somewhere in an architecture wiki near you sits a sentence like this: "The LIMS is the system of record for sample data."
