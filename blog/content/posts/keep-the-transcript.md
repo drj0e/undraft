@@ -1,9 +1,10 @@
 ---
 title: "Keep the Transcript"
 date: 2026-08-02
-draft: false
+draft: true
 tags: ["automation", "code-quality"]
 summary: "The author-you-can't-ask post got one thing wrong. An agent's reasoning does get written down, token by token, in the session transcript. Then we keep the code forever and let the only explanation expire."
+reviewed: true
 ---
 
 A merged agent commit leaves three artifacts behind. The diff, which will outlive every machine involved in producing it. The commit message. And, from the politer tools, a [Co-authored-by trailer](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) naming the agent. The transcript of the run that produced all three is not on that list, and it's the only one of the four with an expiration date.
