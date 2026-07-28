@@ -1,9 +1,10 @@
 ---
 title: "Category 5 All the Way Down"
 date: 2026-08-04
-draft: false
+draft: true
 tags: ["platform-engineering", "compliance"]
 summary: "The language of platform extraction points down: layer, plumbing, infrastructure. GAMP's category table sorts software by who wrote it, not where it sits, and that mismatch belongs in the extraction pitch."
+reviewed: true
 ---
 
 Platform extraction comes with a vocabulary, and all of it points down. Layer. Plumbing. Infrastructure. The words carry a promise: this code is on its way to becoming like the operating system, settled and boring, less watched rather than more. I've been [pulling a storage platform out of an application](/posts/your-app-is-wearing-a-platforms-clothes/) at work, so I've been saying these words for months.
