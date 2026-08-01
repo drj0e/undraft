@@ -4,6 +4,7 @@ date: 2026-08-08
 draft: false
 tags: ["data", "platform-engineering"]
 summary: "A storage platform can enforce any retention clock you hand it. What it can't do is know which clock a record is on, and the only moment that answer can enter the system is the write. So the real policy decision is a schema token: required, or defaulted?"
+reviewed: true
 ---
 
 How long is the platform allowed to keep this record?
