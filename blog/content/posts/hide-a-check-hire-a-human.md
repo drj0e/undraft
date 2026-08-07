@@ -1,9 +1,10 @@
 ---
 title: "Hide a Check, Hire a Human"
 date: 2026-08-11
-draft: false
+draft: true
 tags: ["ai-tooling", "code-quality"]
 summary: "I argued that the checks an agent can't see are the only ones whose green you can fully trust. The part I skipped: when a hidden check fails, there's no agent left to hand the red to. That makes it a page, and pages have a budget."
+reviewed: true
 ---
 
 The morning after an overnight run, the verdicts arrive pre-sorted. Everything the agent could see is green, because any red it saw got retried until it wasn't. The checks it never saw are the only place a red can still be sitting, and only one reader is left for those.
