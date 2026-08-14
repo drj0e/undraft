@@ -4,6 +4,7 @@ date: 2026-08-15
 draft: false
 tags: ["ai-tooling", "compliance", "life-sciences"]
 summary: "Last month's GxP post ended on an open question about agent-written changes swamping per-change assurance. Manufacturing hit that wall a hundred years ago and wrote down its answer, and the answer has an entry fee agent pipelines can't pay yet."
+reviewed: true
 ---
 
 In May 1924, Walter Shewhart sent his supervisor at Western Electric a memo that George Edwards, the man who received it, later described as [only about a page in length](https://mathshistory.st-andrews.ac.uk/Biographies/Shewhart/), a third of it taken up by a simple diagram: a measured quantity plotted over time, wandering between two statistical limits. It was [the first control chart](https://www.tandfonline.com/doi/full/10.1080/00224065.2023.2282926), and the argument compressed into it was that the factory had been asking its quality question at the wrong altitude. Not "is this part good." Is the process behaving.
