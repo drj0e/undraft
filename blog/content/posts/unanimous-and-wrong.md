@@ -4,6 +4,7 @@ date: 2026-08-24
 draft: false
 tags: ["data", "life-sciences"]
 summary: "Warehouse operations checks its records against the shelf on a rotating schedule and knows its match rate. A data stack checks records against records, so it can agree with itself completely and still be wrong about what's in the freezer."
+reviewed: true
 ---
 
 Sixty-five percent of a retailer's inventory records were wrong. That's from a 2008 study that [checked nearly 370,000 records across 37 stores](https://pubsonline.informs.org/doi/10.1287/mnsc.1070.0789) against physical audits of the shelves. Not wrong against another system. Wrong against the stock itself.
