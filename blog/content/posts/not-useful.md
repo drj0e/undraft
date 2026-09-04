@@ -4,6 +4,7 @@ date: 2026-09-05
 draft: false
 tags: ["automation", "code-quality"]
 summary: "Google's review tooling gives engineers a button that says the analyzer was wrong, and disables analyzers that collect too many of them. An agent never presses it, so a guard pipeline aimed at agents loses the only instrument that ever measured its own rules."
+reviewed: true
 ---
 
 An agent hits a rule, reads the verdict, changes the code, and comes back green. That loop can run all night without anything in it ever suggesting a rule was wrong.
