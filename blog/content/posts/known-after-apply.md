@@ -4,6 +4,7 @@ date: 2026-09-12
 draft: false
 tags: ["ai-tooling", "automation"]
 summary: "Dry-run is the default in the operational layer I built around an unattended coding agent, and I've been reading more into that flag than it can deliver. A dry run is faithful up to the first side effect the agent reads the result of. After that it's a run through a world the agent made up."
+reviewed: true
 ---
 
 Dry-run is the default in the [operational layer](/posts/the-stack-nobody-talks-about/) I built around an unattended coding agent. Anything with a side effect is opt-in. I wrote that down as a safety property, and I've been treating the flag as though it told me what a run would do.
