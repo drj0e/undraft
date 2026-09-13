@@ -4,6 +4,7 @@ date: 2026-09-14
 draft: false
 tags: ["platform-engineering", "leadership"]
 summary: "A vendor deprecates by announcing a date because it can't see its callers. An internal platform can read every caller and open a pull request against it, and most platform teams copy the vendor's playbook anyway. The part of the migration that lever can't cover is the consumer's sign-off."
+reviewed: true
 ---
 
 Go through your platform's consumers one at a time and check a single permission on each repo: can the platform team open a pull request there?
