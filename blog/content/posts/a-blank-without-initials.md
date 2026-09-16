@@ -4,6 +4,7 @@ date: 2026-09-17
 draft: false
 tags: ["data", "life-sciences"]
 summary: "Paper GMP records don't allow an empty box: you cross it out, write N/A, initial it, date it. The database that replaced the form has a type for the empty box, and it spells four different absences the same way. Every count you run picks one of the four for you."
+reviewed: true
 ---
 
 Not measured yet. Measured, and the instrument returned nothing. Not applicable to this kind of specimen. Measured, and the value lost somewhere between the instrument and the row. Four different things can have happened to one specimen's volume, and the row holds one spelling for all of them: NULL.
