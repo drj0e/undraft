@@ -4,6 +4,7 @@ date: 2026-09-27
 draft: false
 tags: ["ai-tooling", "compliance"]
 summary: "A model vendor's deprecation page puts a retirement date on every model it serves, with about sixty days between the notice and the day requests start failing. An approval bound to a hash of the spec voids itself when the spec changes and never hears about the executor changing."
+reviewed: true
 ---
 
 Between the notice that a model is deprecated and the morning requests to it start failing, the last four rounds on [one vendor's deprecation page](https://platform.claude.com/docs/en/about-claude/model-deprecations) ran between 60 and 62 days. The page promises at least 60. Every model still marked active has a tentative retirement date beside it, phrased "not sooner than" a day in 2026 or 2027.
