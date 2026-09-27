@@ -45,7 +45,7 @@ jobs:
             ttl=$(grep -m1 '^title:' "$f" | sed 's/^title:[[:space:]]*//; s/^"//; s/"$//')
             revline=$(grep -m1 -- " $slug: " docs/review-log.md 2>/dev/null | sed 's/^- //' || echo "(no review-log entry)")
             {
-              echo "**\"$ttl\"** is queued to publish on **$pdate**."
+              echo "**\"$ttl\"** is queued to publish on **$pdate** (the 13:10 UTC build that day)."
               echo ""
               echo "- Do nothing → it publishes automatically on $pdate."
               echo "- To STOP it → close this issue as **Not planned**."

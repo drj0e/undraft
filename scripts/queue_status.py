@@ -14,7 +14,9 @@ collapsed from a week to a day. This does the date math so the model doesn't:
     writing more only pushes posts further out.
 
 Prints the queue, the allowed dates, and a final DECISION line the routine
-acts on. Exit 0 always: skipping is a normal outcome, not an error.
+acts on. Exit 0 whether it says WRITE or SKIP (skipping is a normal outcome);
+non-zero only when it finds no posts at all, which means it's looking in the
+wrong place.
 """
 import datetime as dt
 import glob
@@ -22,8 +24,14 @@ import os
 import re
 import sys
 
-POSTS_DIR = "blog/content/posts"
-MIN_LEAD = 5
+# Resolved from this file, so running from the wrong directory can't find
+# zero posts and report an empty queue.
+POSTS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                         "blog", "content", "posts")
+# Six, not five: the preview issue opens when the reviewer stamps the post,
+# which can slip a day behind the writer, and the build publishes at 13:10 UTC
+# on the post's date. Six days out leaves Joe about five to veto.
+MIN_LEAD = 6
 GAP_MIN, GAP_MAX = 2, 4
 MAX_QUEUE = 3
 
@@ -66,6 +74,8 @@ def plan(dates, today):
 def main():
     today = dt.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else dt.date.today()
     posts = load()
+    if not posts:
+        sys.exit(f"FATAL: no posts found in {POSTS_DIR}; not planning a date blind.")
     allowed, queued, skip = plan([d for d, _ in posts], today)
     print(f"today: {today}")
     print(f"queued (future-dated, not held): {len(queued)}")
