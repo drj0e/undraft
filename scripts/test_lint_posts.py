@@ -31,6 +31,12 @@ class FindSelfCitations(unittest.TestCase):
         self.assertEqual(len(hits), 1)
         self.assertIn("the-stack", hits[0])
 
+    def test_flags_contracted_and_perfect_forms(self):
+        # "I'd argued" slipped past the cue list in a dry run.
+        for verb in ("I'd argued", "I had argued", "I've written"):
+            body = f"This is the part {verb} a platform [gets to do](/posts/sunset/).\n"
+            self.assertEqual(len(find_self_citations(body)), 1, verb)
+
     def test_ignores_a_plain_link_with_no_self_claim(self):
         body = "See [the guard pipeline](/posts/the-stack/) for the full ordering.\n"
         self.assertEqual(find_self_citations(body), [])

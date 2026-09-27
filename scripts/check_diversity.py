@@ -208,9 +208,11 @@ def main():
           + " (inbox posts exempt).")
 
     backlog = load_backlog()
+    print()
+    print("Topic backlog (open items):")
+    if not any(it["status"] == "open" for it in backlog):
+        print("  (none open)")
     if backlog:
-        print()
-        print("Topic backlog (open items):")
         stale = []
         for it in backlog:
             if it["status"] != "open":

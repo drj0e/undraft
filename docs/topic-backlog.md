@@ -13,6 +13,18 @@ Each item is a `###` heading `<id> | <reach> | <status>` followed by fields. `ch
 - **status**: `open`, `used: <post-slug>` (set by the writer), or `expired: <reason>` (set by the scout; items open longer than 28 days expire, since a weekly hook goes stale).
 - Fields: `added`, `thesis` (one sentence), `nearest post` (slug, and the new point this makes that the post doesn't), `prior art` (the search query run and what it found, and the operative delta), `hook` (a verified link, and why this week), `shape` (suggested, not binding), `anchor` (the published fact or public source that lets Joe write it without inventing experience).
 
+Exactly this syntax (shown indented here so the parser skips it; real items start at the left margin). Plain `- field: value` lines, no bold, or the parser silently loses the date and the item never expires:
+
+    ### B-2026-10-04-1 | adjacent | open
+    - added: 2026-10-04
+    - thesis: One sentence stating the claim the post would make.
+    - nearest post: some-published-slug; new point: what this says that it doesn't
+    - prior art: queries "..." and "..."; found ...; delta: ...
+    - hook: [Page title](https://example.com/primary-source) (verified 2026-10-04), why it matters this week, or none (evergreen)
+    - shape: teardown
+    - tags: data, compliance
+    - anchor: the published post or public source that lets Joe write this
+
 ## This week
 
 (The scout's top three open items, most promising first.)

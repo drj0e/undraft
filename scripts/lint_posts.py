@@ -137,7 +137,7 @@ def field(fm, name):
 # a citing post that lists a strict subset of a list in the post it links to.
 
 _CLAIM_CUE = re.compile(
-    r"\b(?:I (?:listed|argued|said|wrote|covered|called|described|noted|"
+    r"\b(?:I(?:'d| had| have|'ve)? (?:listed|argued|said|wrote|written|covered|called|described|noted|"
     r"mentioned|explained|made the case)|months? back|weeks? back|"
     r"a few weeks ago|last time|previously|earlier)\b",
     re.IGNORECASE,
