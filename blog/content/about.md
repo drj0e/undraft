@@ -1,20 +1,24 @@
 ---
 title: "About"
 layout: "single"
+summary: "Lead Data Architect working on regulated life sciences data platforms and the AI systems built on top of them."
 ---
 
-I'm a Lead Enterprise Architect working on life sciences software, regulated data platforms, and AI systems that ship.
+I'm a Lead Data Architect in life sciences. My work is the data layer of regulated scientific software: how data is modeled, governed, and trusted, and what it takes to put AI on top of it safely.
 
-I started in a QC lab pipetting samples. Today I help unify north of 100 software products across a $100M+ business unit. Before that, I spent five years embedded inside four of the largest pharmaceutical companies in the world, where I learned that large-scale software succeeds or fails as much through alignment, incentives, trust, and governance as it does through technology.
+I started in a QC lab pipetting samples, which is still the best training I've had for thinking about where data comes from. Before my current role, I spent five years embedded inside four of the largest pharmaceutical companies in the world. That's where I learned that large-scale software succeeds or fails as much through alignment, incentives, trust, and governance as through technology.
 
-My work centers on systems that hold up in real organizations. The hard part isn't building AI that demos well. It's building AI that's still working a quarter later, after the data has drifted and the team has reshuffled.
+Today I help unify more than 100 software products across a $100M+ business unit. Much of that work is getting systems to agree on what their data means: shared vocabularies and definitions, clear systems of record, retention rules that hold up in an inspection, and stewardship with a named person behind it. In a GxP environment, two systems that disagree about a count can become an inspection finding.
 
-I think a lot about evaluation. The model is not the system. The system is everything required to make output selectable, constrainable, auditable, and stoppable. The gap between "the demo worked" and "this is safe to put in front of a regulated customer" is where I do my best work.
+The same foundation decides whether AI works. A model reading ambiguous data gives confident, ambiguous answers, and an agent that writes to a regulated system needs the controls a regulator would expect of a person: an audit trail, an accountable owner, and a way to stop it. Much of my time goes into the gap between "the demo worked" and "this is safe to put in front of a regulated customer."
 
-Off the clock, I run a 24-container homelab behind Prometheus and Grafana. Partly because I enjoy it. Partly because I trust architectural opinions more when they come from people who have had to operate their own systems.
+What I write about here:
 
-I write about the parts of large-scale software that usually stay hidden: the platforms inside applications, the evaluation systems that decide whether AI is shippable, and the decisions that look obvious in retrospect but felt impossible in the moment.
+- Data modeling and governance in scientific platforms
+- Regulated data: GxP, 21 CFR Part 11, audit trails, and retention
+- Platform engineering inside enterprise software
+- Guardrails for AI and autonomous coding agents
 
-If you build software in a regulated industry and you're sorting out where AI fits, you've probably had some of the same arguments I have.
+Outside the day job I build [Stratum](/projects/), a guard pipeline for AI-generated code, and run a 24-container homelab monitored with Prometheus and Grafana. I trust architectural opinions more when they come from people who have operated their own systems.
 
-If you want the current snapshot instead of the bio, there's a [now page](/now/).
+If you work on data in a regulated industry and are figuring out where AI fits, I'd like to compare notes. You can find me on [LinkedIn](https://www.linkedin.com/in/josephcapozzoli/), and the [now page](/now/) has what I'm working on at the moment.
