@@ -1,6 +1,6 @@
 # Routine prompts
 
-The two scheduled Claude routines that run the blog pipeline. The prompts are configured in claude.ai (Routines), which keeps no history; these files are the versioned copy. Change the file, then paste it into the routine, so the diff here is the record of what the routine was told and when.
+The scheduled Claude routines that run the blog pipeline. Each routine in claude.ai (Routines) holds a one-line prompt telling it to follow its file here, on `main`, so these files are the live prompts and their history is the record of what each routine was told and when. Change a prompt by changing its file through a pull request; the guard reverts direct pushes to this folder. Never paste a full prompt into the routine: it would silently stop following this file.
 
 | File | Routine | Schedule |
 |---|---|---|
@@ -8,7 +8,7 @@ The two scheduled Claude routines that run the blog pipeline. The prompts are co
 | `reviewer.md` | Blog pre-publish reviewer (fixed) | `30 13 * * *` (13:30 UTC daily) |
 | `scout.md` | Blog topic scout | `50 11 * * 0` (11:50 UTC Sundays) |
 
-Everything below the `---` line in each file is the prompt, verbatim, with one redaction: `<INBOX_FOLDER_ID>` stands for the Drive folder ID of the Undraft inbox. The live routines carry the real ID. This repo is public, and the ID is left out so the inbox isn't one link-share away from the internet. Keep that folder shared with no one.
+Everything below the `---` line in each file is the prompt. `<INBOX_FOLDER_ID>` stands for the Drive folder ID of the Undraft inbox; each routine's one-line prompt supplies the real ID. This repo is public, and the ID is left out so the inbox isn't one link-share away from the internet. Keep that folder shared with no one.
 
 ## What routines may push
 
