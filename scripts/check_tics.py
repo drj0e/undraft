@@ -39,7 +39,7 @@ WINDOW = 8  # trailing posts considered for wear
 # A move "wears out" when it appears in `wear` or more of the last WINDOW posts.
 _FLIP = (
     r"(?:'re not|is not|isn'?t|are not|aren'?t|was not|wasn'?t|won'?t be|"
-    r"is never|was never|never was)\s[^.!?]{0,60}[.!?]\s+"
+    r"is never|was never|never was|is rarely|are rarely|is seldom)\s[^.!?]{0,60}[.!?]\s+"
     r"(?:it'?s|it is|it'?ll|they'?re|they are|they'?ll|that'?s|you'?re)\s"
     r"|\bnot because [^.!?]{2,60}[.!?]\s+because\b"
 )
