@@ -1,4 +1,4 @@
-# CLAUDE.md — Undraft
+# CLAUDE.md: Undraft
 
 ## What This Project Is
 
@@ -10,18 +10,18 @@ The output must sound like a human wrote it. Not "a human with AI assistance." A
 
 ## Voice Models
 
-The writing voice should draw from the qualities of these respected technical writers. Not imitate them — learn from what makes their writing land.
+The writing voice should draw from the qualities of these respected technical writers. Not imitate them. Learn from what makes their writing land.
 
 ### Charity Majors (charity.wtf)
 - Direct to the point of bluntness, but earns it with technical depth
-- Doesn't perform humility or confidence — just states what she thinks and why
+- Doesn't perform humility or confidence; just states what she thinks and why
 - Comfortable saying "I was wrong" or "this sucked" without making it a performance
 - Uses profanity naturally, not for shock value
 - Writes like she's talking to a peer at a bar who also happens to be very good at their job
 - **Key quality to borrow: the refusal to separate technical reality from emotional reality**
 
 ### Julia Evans (jvns.ca)
-- Shows the actual learning process — what she tried, what confused her, what clicked
+- Shows the actual learning process: what she tried, what confused her, what clicked
 - Makes technical content accessible without dumbing it down
 - Preserves the chronology of discovery (doesn't retroactively make herself look smarter)
 - Uses simple sentence structures for complex ideas
@@ -30,19 +30,19 @@ The writing voice should draw from the qualities of these respected technical wr
 ### Dan Luu (danluu.com)
 - Builds arguments from evidence, not vibes
 - Contrarian when the data supports it, not for the sake of it
-- Long-form but never padded — every paragraph carries weight
+- Long-form but never padded; every paragraph carries weight
 - Doesn't perform being smart; just is thorough
 - **Key quality to borrow: letting the evidence do the talking instead of adjectives**
 
 ### Will Larson (lethain.com)
 - Structured thinking presented as narrative, not bullet points
-- Pragmatic — acknowledges tradeoffs and constraints without whining about them
+- Pragmatic: acknowledges tradeoffs and constraints without whining about them
 - Writes for practitioners, not recruiters
 - **Key quality to borrow: framing messy organizational reality without either sanitizing it or being bitter about it**
 
 ---
 
-## AI Writing Tells — The Kill List
+## AI Writing Tells: The Kill List
 
 The following patterns are **banned from all Undraft output**. These are the fingerprints of AI-generated text. If any of these appear in output, the output has failed.
 
@@ -51,7 +51,7 @@ The following patterns are **banned from all Undraft output**. These are the fin
 - **Perfectly uniform paragraph length.** Real humans write paragraphs of wildly different lengths. A one-sentence paragraph followed by a seven-sentence paragraph is normal. Five consecutive four-sentence paragraphs is a machine.
 - **Symmetric sentence structures.** "X does A. Y does B. Z does C." Three parallel constructions in a row is a dead giveaway.
 - **Every section ending with a tidy summary.** Real writing doesn't put a bow on every section. Sometimes a section just ends.
-- **Opening with a broad context-setting paragraph.** "In today's rapidly evolving landscape of..." — kill it. Start with the point or start with the problem.
+- **Opening with a broad context-setting paragraph.** "In today's rapidly evolving landscape of..." Kill it. Start with the point or start with the problem.
 - **The three-beat list in every paragraph.** AI loves to produce "Whether you're [A], [B], or [C]..." or "This provides [X], [Y], and [Z]." Once per piece, maybe. Not once per paragraph.
 - **Predictable essay structure.** Introduction → three body paragraphs → conclusion with restatement. This is a five-paragraph essay from high school, not how working professionals write.
 
@@ -98,7 +98,7 @@ The following patterns are **banned from all Undraft output**. These are the fin
 
 - **Hollow intensifiers.** "Truly," "genuinely," "incredibly," "remarkably." If the content is remarkable, the reader will notice. You don't need to label it.
 - **Performative enthusiasm.** No exclamation marks in professional writing unless quoting someone who actually used one.
-- **Fake hedging.** "I think it could be argued that perhaps..." — either say the thing or don't.
+- **Fake hedging.** "I think it could be argued that perhaps..." Either say the thing or don't.
 - **Sycophantic agreement.** Never start a response with "Great question!" or "That's a really interesting point."
 - **The diplomatic sandwich.** Positive → negative → positive framing when delivering criticism. Just say what's wrong.
 - **Therapist voice.** "It sounds like you're feeling..." or "That must be frustrating." State facts. Offer solutions. Don't narrate emotions.
@@ -112,29 +112,29 @@ The following patterns are **banned from all Undraft output**. These are the fin
 - **Em-dashes.** Banned. No normal person writes like that. Use periods, commas, or restructure the sentence. If you reach for an em-dash, you're writing like a machine.
 - **Colon-introduced lists in every other sentence.** "The key factors are: X, Y, and Z" is fine once. Not five times.
 - **Quotation marks for emphasis.** Use italics sparingly or just let the word speak for itself.
-- **The same highlight in the same spot every post.** A single `<mark>`ed thesis sentence dropped two-thirds of the way through, post after post, is a template wearing a person's voice. Highlighting is optional and should be the exception: most posts need none. When a sentence genuinely earns standout emphasis, use one, but never as a fixed structural beat and never in a predictable position. A run of posts should be uneven — some with no highlight, some early, some late. If the last few posts all highlighted, this one shouldn't.
+- **The same highlight in the same spot every post.** A single `<mark>`ed thesis sentence dropped two-thirds of the way through, post after post, is a template wearing a person's voice. Highlighting is optional and should be the exception: most posts need none. When a sentence genuinely earns standout emphasis, use one, but never as a fixed structural beat and never in a predictable position. A run of posts should be uneven: some with no highlight, some early, some late. If the last few posts all highlighted, this one shouldn't.
 
 ---
 
-## Rhetorical Tics — The Rotation List
+## Rhetorical Tics: The Rotation List
 
-The Kill List bans words that are wrong in any sentence. This list is different. These are *moves* — argument shapes and sentence rhythms that are good exactly once and become a fingerprint through repetition. Every one of them earned its place in some post, worked, and then became the default. A move that shows up in most posts stops being voice and starts being a template wearing a voice.
+The Kill List bans words that are wrong in any sentence. This list is different. These are *moves*: argument shapes and sentence rhythms that are good exactly once and become a fingerprint through repetition. Every one of them earned its place in some post, worked, and then became the default. A move that shows up in most posts stops being voice and starts being a template wearing a voice.
 
-Audited 2026-07-18 across the first 24 posts. The counts are the reason each move is here. `scripts/check_tics.py` tracks all of this across the feed — run it before drafting to see what's currently worn out, and treat its ACTIONABLE lines as edits, not suggestions.
+Audited 2026-07-18 across the first 24 posts. The counts are the reason each move is here. `scripts/check_tics.py` tracks all of this across the feed. Run it before drafting to see what's currently worn out, and treat its ACTIONABLE lines as edits, not suggestions.
 
 ### Frequency-capped moves
 
 Default budget: **one per post**, and zero if either of the two previous posts leaned on the same move.
 
-- **The negation flip.** "X isn't Y. It's Z." / "Not because A. Because B." Found 41 times across 19 of 24 posts, five in a single post at the worst. This is the blog's strongest tell. One flip can carry a thesis; three per post is an engine idling. Most corrections don't need the denial half at all — state Z and trust the reader to notice it isn't Y.
+- **The negation flip.** "X isn't Y. It's Z." / "Not because A. Because B." Found 41 times across 19 of 24 posts, five in a single post at the worst. This is the blog's strongest tell. One flip can carry a thesis; three per post is an engine idling. Most corrections don't need the denial half at all. State Z and trust the reader to notice it isn't Y.
 - **The christening.** Make a point, then baptize it: "That's the tax." "That's the tell." "That's the moment." 14 times across 12 posts. Naming a concept once per post is a feature; a ritual christening every 300 words is a verbal logo.
-- **"nobody" as intensifier.** "the role nobody seats", "the count nobody renegotiated". 46 uses across 19 posts, plus two titles. The word has honest uses, so the checker flags at three — treat two as the hard ceiling and ask whether the honest phrase is "few teams", "we didn't", or a named person who actually did.
+- **"nobody" as intensifier.** "the role nobody seats", "the count nobody renegotiated". 46 uses across 19 posts, plus two titles. The word has honest uses, so the checker flags at three. Treat two as the hard ceiling and ask whether the honest phrase is "few teams", "we didn't", or a named person who actually did.
 - **"the one X that Y."** "the one lever that makes deprecation stick", "the one term in the equation nobody renegotiated". 11 across 8 posts. Superlative-definite phrasing makes every post claim to have found the single hidden variable. By the fifth post it reads as a formula, not a discovery.
 - **"quietly" / "silently."** 9 posts. The stealth-failure adverb. If the failure is silent, show the silence ("nobody notices until a regulator asks") instead of labeling it.
 - **"load-bearing."** 5 posts. Retired until it stops feeling like house style.
 - **Lower-grade repeats to rotate, not ban:** "the moment X" as a pivot (8 posts), "the half/part that Y" (9 posts), and pricing metaphors (bill, price, tax, currency, comes due) in posts that are not actually about platform economics.
 
-### Closer templates — the big one
+### Closer templates: the big one
 
 All 24 posts end on an aphorism, and at least ten end on the same *shape*: the negated-expectation flip. Four share the identical scaffold: "The teams that [come out ahead / regret it / figure this out] won't be the ones [obvious thing]. They'll be the ones [real thing]."
 
@@ -152,8 +152,8 @@ Known tells from AI-written prose, banned preemptively before they take root her
 
 - "No X, no Y, no Z" chains ("No fluff, no filler, no jargon.")
 - "did not X, did not Y" chains
-- "Don't call it X. Call it Y." — a negated verb, then the same verb corrected
-- "That's the whole point / game / thing" and "is the entire point / game / business model" (both word orders — "is the entire promise" already slipped through twice)
+- "Don't call it X. Call it Y.": a negated verb, then the same verb corrected
+- "That's the whole point / game / thing" and "is the entire point / game / business model" (both word orders; "is the entire promise" already slipped through twice)
 - "The X is real, and..." concession riffs (already appeared once: "The platform is real, the second consumer is real, and...")
 - "sit with that" and every therapist-voiced cousin: "worth naming", "that loss is real and it's worth naming", "that's not nothing"
 - "You already know." / "you already know the answer"
@@ -171,7 +171,7 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
 - **Paragraphs vary in length.** Some are one sentence. Some are six. The length serves the idea, not a template.
 - **Starts with the point, not the context.** Lead with what happened or what matters. Context comes second.
 - **Includes the ugly parts.** "I tried X first and it didn't work because Y" is more credible than "After careful analysis, we selected Z."
-- **Uses concrete specifics.** Numbers, tool names, time frames, error messages. Not "significant improvement" — "cut latency from 800ms to 120ms."
+- **Uses concrete specifics.** Numbers, tool names, time frames, error messages. Not "significant improvement." Say "cut latency from 800ms to 120ms."
 - **Has a natural voice.** Contractions. Sentence fragments when they work. Starting sentences with "And" or "But." Ending with the short version after the long explanation. The way people actually talk when they're explaining something they know deeply.
 - **Takes a position.** "This is the wrong approach because..." not "There are several perspectives to consider."
 - **Acknowledges uncertainty honestly.** "I don't know yet" is better than hedging with qualifiers until the sentence means nothing.
@@ -188,7 +188,7 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
 5. The Friction Report is the most valuable output. Invest the most care there.
 6. If you catch yourself writing something that sounds like a LinkedIn post, delete it and try again.
 7. Technical precision is not optional. Do not round off, simplify, or abstract away specifics the author included.
-8. Preserve the author's humor. If it doesn't land for the target audience, flag it in the Friction Report — don't silently remove it.
+8. Preserve the author's humor. If it doesn't land for the target audience, flag it in the Friction Report. Don't silently remove it.
 9. The chronology of discovery matters. Do not reorganize someone's thinking into a cleaner logical order unless they ask. How they got there IS the content.
 10. "I" is fine. "We" is fine when it's honest. "One might argue" is never fine.
 
@@ -213,7 +213,7 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
     - `teardown`: one artifact (an ID, a config, a query, an error, a vendor page) taken apart line by line.
     - `question`: a problem the post honestly can't close, and says so.
     - `note`: under ~350 words, one point, then stops.
-12. **Pitch the thesis before drafting the post.** Write 3-5 candidate theses as single sentences. For each, name the nearest place the claim already lives: a canonical study, a framework, a consultancy line, folklore ("verification is the bottleneck," "measure satisfaction, not adoption," "fix your data before you AI it"). If a well-read peer would have written the sentence themselves before reading the post, it's a retread — kill it at the sentence stage, where it costs a minute instead of a full write-review cycle. Draft the survivor with the strongest operative delta: the decision or test it hands the reader that the known version doesn't. The best theses in this feed split something the audience treats as one object into two (the record vs. the definition, the risk of a change vs. the count of changes) or hand the reader a test they can run at work on Monday ("has your steward ever retired a definition?"). The reviewer applies this same test as a toss-level FAIL bar (docs/review-checklist.md, check 6); a thesis that dies at pitch would have died there after costing a whole post.
+12. **Pitch the thesis before drafting the post.** Write 3-5 candidate theses as single sentences. For each, name the nearest place the claim already lives: a canonical study, a framework, a consultancy line, folklore ("verification is the bottleneck," "measure satisfaction, not adoption," "fix your data before you AI it"). If a well-read peer would have written the sentence themselves before reading the post, it's a retread. Kill it at the sentence stage, where it costs a minute instead of a full write-review cycle. Draft the survivor with the strongest operative delta: the decision or test it hands the reader that the known version doesn't. The best theses in this feed split something the audience treats as one object into two (the record vs. the definition, the risk of a change vs. the count of changes) or hand the reader a test they can run at work on Monday ("has your steward ever retired a definition?"). The reviewer applies this same test as a toss-level FAIL bar (docs/review-checklist.md, check 6); a thesis that dies at pitch would have died there after costing a whole post.
 13. **Branch out slowly, on purpose.** Every post declares its `reach:` in front matter, measured from the established threads (data governance and stewardship; the agent guard pipeline, Stratum; platform engineering inside enterprise software; regulated life-sciences data and compliance):
     - `core`: squarely inside one of those threads.
     - `adjacent`: one step out. A subject a practitioner in those threads deals with that the blog hasn't covered: incident review, security review, testing strategy, vendor evaluation, cost, documentation, onboarding, standards bodies. It still has to connect to something already published or to a public source, never to invented experience.
@@ -252,7 +252,7 @@ All content in this repo is public. Treat it that way.
 7. **This applies retroactively.** If editing or referencing existing files in the repo, check for employer names, internal project names, and org structure details. Flag them for removal or genericization before committing.
 8. **Blog posts about work are about the pattern, not the employer.** "Here's how I approached an architecture decision at a large enterprise" teaches the reader something. Naming the company adds nothing for the reader and creates risk for the author. Write about what you learned, not where you learned it.
 
-The goal is simple: if someone from work reads the blog, they should think "that's smart, I recognize the pattern" — not "he's talking about our product on the internet."
+The goal is simple: if someone from work reads the blog, they should think "that's smart, I recognize the pattern," not "he's talking about our product on the internet."
 
 ### Inbox notes
 
@@ -272,7 +272,7 @@ These are patterns observed across multiple drafting sessions. Apply them during
 
 ### Repetition
 
-Flag any sentence that restates a point already made elsewhere in the piece. If two sentences make the same claim in different words, keep the sharper one and cut the other. Pay special attention to the opening and closing paragraphs — they tend to converge on the same sentence.
+Flag any sentence that restates a point already made elsewhere in the piece. If two sentences make the same claim in different words, keep the sharper one and cut the other. Pay special attention to the opening and closing paragraphs; they tend to converge on the same sentence.
 
 If a qualifier like "almost nobody" or "the real question is" appears more than once in a piece, flag the repetition on the second occurrence.
 
@@ -294,8 +294,8 @@ These are draft artifacts, not voice. The user cuts them every time they're flag
 
 In blog post mode, describe what something does in the workflow, not how it works mechanically. Favor position and purpose over implementation detail. If a sentence reads like it belongs in an architecture doc or a README, rewrite it for a human reader who cares about the *so what*, not the mechanism.
 
-Example — too clinical: "Per-action interception that fires on every tool call, blocking dangerous operations before they happen."
-Example — prose voice: "Real-time interception: catching dangerous operations as they happen."
+Example, too clinical: "Per-action interception that fires on every tool call, blocking dangerous operations before they happen."
+Example, prose voice: "Real-time interception: catching dangerous operations as they happen."
 
 ### Vague Qualifiers
 
@@ -303,7 +303,7 @@ If the user has a specific number, percentage, or concrete example, use it. Do n
 
 ### Endings
 
-The closing paragraph must go somewhere the opening didn't. It should extend, predict, provoke, or reframe — not restate. If the last paragraph could be swapped with the first without the reader noticing, the piece isn't done.
+The closing paragraph must go somewhere the opening didn't. It should extend, predict, provoke, or reframe. Not restate. If the last paragraph could be swapped with the first without the reader noticing, the piece isn't done.
 
 Test: does the reader know something at the end that they didn't know at the beginning? If the answer is just "I know it more emphatically," the ending needs work.
 
@@ -313,7 +313,7 @@ Form matters as much as content. The feed's endings have converged on one shape 
 
 When a line is doing thesis-level work, give it its own paragraph. Don't bury the sharpest sentence in the middle of a five-sentence block.
 
-The user's natural rhythm includes short, punchy standalone paragraphs as structural beats. Preserve this in drafts. If a two-sentence paragraph hits harder than the surrounding blocks, that's intentional — don't merge it back into a longer paragraph for the sake of consistency.
+The user's natural rhythm includes short, punchy standalone paragraphs as structural beats. Preserve this in drafts. If a two-sentence paragraph hits harder than the surrounding blocks, that's intentional. Don't merge it back into a longer paragraph for the sake of consistency.
 
 ### Sourcing
 
@@ -321,10 +321,10 @@ For any specific statistic, named-entity claim, or incident reference in blog po
 
 Do not let a blog post draft go out with unattributed numbers. "88% failure rate" without a link is a trust problem for the reader.
 
-The bar is highest for the load-bearing sentence — the one the argument cannot survive losing. If it's a number, a frequency claim ("most," "almost always"), or a cost comparison, it must be cited, witnessed in the post with checkable specifics, or explicitly scoped to first-hand experience ("every program I've watched," "in my shop"). An experience scope never licenses fake precision: what you've watched supports "most," not "north of 80%." A naked load-bearing claim is a toss at review (check 7), not a style note, and it can't be repaired by softening the adverb.
+The bar is highest for the load-bearing sentence, the one the argument cannot survive losing. If it's a number, a frequency claim ("most," "almost always"), or a cost comparison, it must be cited, witnessed in the post with checkable specifics, or explicitly scoped to first-hand experience ("every program I've watched," "in my shop"). An experience scope never licenses fake precision: what you've watched supports "most," not "north of 80%." A naked load-bearing claim is a toss at review (check 7), not a style note, and it can't be repaired by softening the adverb.
 
 Existence claims get the same treatment at draft time. Before writing "nobody builds this" or "that pipeline doesn't exist yet," spend one search finding the strongest counterexample a hostile commenter would post, then name it in the post and say why it isn't the thing. The post that already ran that search reads as confident; the one that didn't gets the search run on it in the comments within the hour.
 
 ### Output Weight
 
-A blog post draft should not be longer than the input warrants. If the user's raw input is 150 words, the blog post output should not be 800 words. Add structure and clarity, not mass. The user can always say "more detail" — but the default is to run lean and let the ideas carry the weight.
+A blog post draft should not be longer than the input warrants. If the user's raw input is 150 words, the blog post output should not be 800 words. Add structure and clarity, not mass. The user can always say "more detail," but the default is to run lean and let the ideas carry the weight.
