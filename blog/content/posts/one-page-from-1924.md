@@ -3,6 +3,9 @@ title: "One Page From 1924"
 date: 2026-08-15
 draft: false
 tags: ["ai-tooling", "compliance", "life-sciences"]
+shape: analogy
+origin: thread
+reach: core
 summary: "Last month's GxP post ended on an open question about agent-written changes swamping per-change assurance. Manufacturing hit that wall a hundred years ago and wrote down its answer, and the answer has an entry fee agent pipelines can't pay yet."
 reviewed: true
 ---

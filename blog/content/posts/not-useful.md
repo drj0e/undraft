@@ -3,6 +3,9 @@ title: "Not Useful"
 date: 2026-09-05
 draft: false
 tags: ["automation", "code-quality"]
+shape: analogy
+origin: thread
+reach: core
 summary: "Google's review tooling gives engineers a button that says the analyzer was wrong, and disables analyzers that collect too many of them. An agent never presses it, so a guard pipeline aimed at agents loses the only instrument that ever measured its own rules."
 reviewed: true
 ---

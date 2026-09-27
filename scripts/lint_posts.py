@@ -67,6 +67,34 @@ TIC_KILL = [
     r"\bthe entire (?:point|game|thing|story|job|pitch|business model) is\b",
 ]
 REQUIRED_FIELDS = ["title", "date", "tags", "summary"]
+# Argument shape and provenance, tracked so check_diversity.py can see the
+# feed's skeleton the way tags let it see themes. Required for posts dated
+# after SHAPE_ERA; older posts may carry them (backfilled) or not.
+SHAPE_ERA = "2026-09-27"
+SHAPES = {"analogy", "argument", "story", "teardown", "question", "note"}
+ORIGINS = {"thread", "inbox"}
+REACHES = {"core", "adjacent", "new"}
+# Internal links, relative or absolute to the site's own domain. Absolute ones
+# used to skip the resolve check entirely.
+_POST_LINK = re.compile(
+    r"\]\((?:https?://(?:www\.)?josephcapozzoli\.com)?/posts/([^/)#?]+?)/?(?:[#?][^)]*)?\)"
+)
+
+
+def dead_link_targets(body, slugs, draft_slugs):
+    """Internal-link slugs in `body` that won't resolve on the built site.
+
+    A slug with no file is dead. So is a slug whose post is `draft: true`:
+    Hugo doesn't build drafts, so the file exists in the repo but the URL
+    404s. Returns (slug, reason) pairs.
+    """
+    out = []
+    for slug in _POST_LINK.findall(body):
+        if slug not in slugs:
+            out.append((slug, "resolves to no post"))
+        elif slug in draft_slugs:
+            out.append((slug, "points at a draft (held) post, which 404s live"))
+    return out
 
 
 def tic_hits(body):
@@ -109,7 +137,7 @@ def field(fm, name):
 # a citing post that lists a strict subset of a list in the post it links to.
 
 _CLAIM_CUE = re.compile(
-    r"\b(?:I (?:listed|argued|said|wrote|covered|called|described|noted|"
+    r"\b(?:I(?:'d| had| have|'ve)? (?:listed|argued|said|wrote|written|covered|called|described|noted|"
     r"mentioned|explained|made the case)|months? back|weeks? back|"
     r"a few weeks ago|last time|previously|earlier)\b",
     re.IGNORECASE,
@@ -201,6 +229,12 @@ def main():
     today = datetime.date.today().isoformat()
     posts = sorted(glob.glob(os.path.join(POSTS_DIR, "*.md")))
     slugs = {os.path.splitext(os.path.basename(p))[0] for p in posts}
+    draft_slugs = set()
+    for p in posts:
+        with open(p, encoding="utf-8") as f:
+            fm0, _ = split_front_matter(f.read())
+        if fm0 and (field(fm0, "draft") or "").strip().lower() == "true":
+            draft_slugs.add(os.path.splitext(os.path.basename(p))[0])
     errors = []
     bodies = {}
 
@@ -229,6 +263,14 @@ def main():
         # with no <mark> is fine (and common); the cap stops a post from turning
         # into a highlighter mess. Variety of placement is enforced at the feed
         # level by check_diversity.py, not here.
+        post_date = (field(fm, "date") or "")[:10]
+        for fld, allowed_vals in (("shape", SHAPES), ("origin", ORIGINS), ("reach", REACHES)):
+            val = (field(fm, fld) or "").strip().strip('"')
+            if val and val not in allowed_vals:
+                errors.append(f"{name}: {fld} '{val}' not one of {sorted(allowed_vals)}")
+            elif not val and post_date > SHAPE_ERA:
+                errors.append(f"{name}: missing '{fld}' (required after {SHAPE_ERA})")
+
         n_mark = len(re.findall(r"<mark>", body))
         if n_mark > 2:
             errors.append(f"{name}: {n_mark} <mark> tags, cap is 2 (0 is fine)")
@@ -245,18 +287,20 @@ def main():
             if m:
                 errors.append(f"{name}: banned phrase '{m.group(0).strip()}'")
 
-        post_date = (field(fm, "date") or "")[:10]
         if post_date > TIC_ERA:
             for hit in tic_hits(body):
                 errors.append(f"{name}: banned tic phrase '{hit}' "
                               f"(post-{TIC_ERA} posts; see CLAUDE.md Rhetorical Tics)")
 
-        for slug in re.findall(r"\]\(/posts/([^/)]+?)/?\)", body):
-            if slug not in slugs:
-                errors.append(f"{name}: internal link /posts/{slug}/ resolves to no post")
+        is_draft = (field(fm, "draft") or "false").strip().lower() == "true"
+
+        # A held post linking to another held post breaks nothing live, so
+        # drafts only need their links to exist.
+        for slug, reason in dead_link_targets(
+                body, slugs, set() if is_draft else draft_slugs):
+            errors.append(f"{name}: internal link /posts/{slug}/ {reason}")
 
         # Enforced review: a reviewer-era post may not go live unreviewed.
-        is_draft = (field(fm, "draft") or "false").strip().lower() == "true"
         is_reviewed = (field(fm, "reviewed") or "false").strip().lower() == "true"
         if not is_draft and REVIEW_ERA < post_date <= today and not is_reviewed:
             errors.append(
@@ -269,6 +313,8 @@ def main():
     dropped = []
     citations = []
     for slug, body in sorted(bodies.items()):
+        if slug in draft_slugs:
+            continue  # held posts never ship; their citations aren't work
         for hit in find_subset_enumerations(body, bodies):
             dropped.append((slug, hit))
         for sentence in find_self_citations(body):

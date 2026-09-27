@@ -25,3 +25,6 @@ hugo_stats.json
 # Python
 __pycache__/
 *.pyc
+
+# Claude Code agent worktrees (local, temporary)
+.claude/worktrees/

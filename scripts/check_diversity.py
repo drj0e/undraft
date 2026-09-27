@@ -20,6 +20,8 @@ import sys, re, glob, os
 from datetime import date
 
 POSTS_DIR = "blog/content/posts"
+BACKLOG = "docs/topic-backlog.md"
+BACKLOG_STALE_DAYS = 28
 SHARED_TAG_THRESHOLD = 2   # consecutive posts sharing this many tags = clash
 WINDOW = 5                 # trailing window for heavy-theme detection
 HEAVY = 3                  # a tag this many times in the window = heavy
@@ -33,6 +35,13 @@ def load():
         dm = re.search(r"(?m)^date:\s*(\d{4}-\d{2}-\d{2})", t)
         if not dm:
             continue
+        # Held posts (draft: true) never reach the feed, so they can't
+        # clash with, wear out, or set the shape for anything.
+        if re.search(r"(?m)^draft:\s*true\b", t):
+            continue
+        sm = re.search(r"(?m)^shape:\s*\"?([a-z]+)", t)
+        om = re.search(r"(?m)^origin:\s*\"?([a-z]+)", t)
+        rm = re.search(r"(?m)^reach:\s*\"?([a-z]+)", t)
         tm = re.search(r"(?m)^tags:\s*(.+)$", t)
         tags = re.findall(r'"([^"]+)"', tm.group(1)) if tm else []
         # Body = everything after the second front-matter fence. Used to locate
@@ -45,12 +54,52 @@ def load():
             "slug": os.path.splitext(os.path.basename(path))[0],
             "date": dm.group(1),
             "tags": tags,
+            "shape": sm.group(1) if sm else None,
+            "origin": om.group(1) if om else None,
+            "reach": rm.group(1) if rm else None,
             "n_mark": len(marks),
             # position of the first mark as a fraction through the body (None if no mark)
             "mark_pos": (marks[0] / blen) if marks else None,
         })
     posts.sort(key=lambda p: (p["date"], p["slug"]))
     return posts
+
+
+def allowed_reach(prior):
+    """Reach values the next post may take, given earlier posts' reach, oldest first.
+
+    Unlabeled history counts as core: every post before the field existed sat
+    inside an established thread. Branching is paced, not forced: a post must
+    step out (adjacent or new) only when none of the last three did, and `new`
+    is allowed at most once in any six posts, so the feed widens slowly instead
+    of lurching.
+    """
+    prior = [r or "core" for r in prior]
+    allowed = {"core", "adjacent", "new"}
+    if len(prior) >= 3 and all(r == "core" for r in prior[-3:]):
+        allowed.discard("core")
+    if "new" in prior[-5:]:
+        allowed.discard("new")
+    return allowed
+
+
+def load_backlog(path=BACKLOG):
+    """Backlog items as dicts: id, reach, status, added (date or None)."""
+    items = []
+    if not os.path.exists(path):
+        return items
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+    for m in re.finditer(r"(?m)^### (\S+) \| (core|adjacent|new) \| (.+?)\s*$", text):
+        block = text[m.end():text.find("\n### ", m.end()) if "\n### " in text[m.end():] else len(text)]
+        am = re.search(r"(?m)^- added:\s*(\d{4}-\d{2}-\d{2})", block)
+        tm = re.search(r"(?m)^- thesis:\s*(.+)$", block)
+        items.append({
+            "id": m.group(1), "reach": m.group(2), "status": m.group(3).strip(),
+            "added": am.group(1) if am else None,
+            "thesis": tm.group(1).strip() if tm else "",
+        })
+    return items
 
 
 def main():
@@ -115,7 +164,68 @@ def main():
             print("  NOTE: 3 in a row carry a highlight. A post with no <mark> "
                   "would vary the feed.")
 
-    actionable = any(a for *_, a in clashes)
+    # Argument-shape rotation. Tags catch "three compliance posts in a row";
+    # this catches "nine posts in a row that argue by analogy to another
+    # field", which no tag or phrase check can see. The next post's shape
+    # must differ from both of the last two.
+    print()
+    print("Shape and origin (last 6):")
+    for p in posts[-6:]:
+        flag = " [queued]" if p["date"] > today else ""
+        print(f"  {p['date']} | {p['shape'] or '?':9s} | {p['origin'] or '?':6s} | {p['slug']}{flag}")
+    shape_streak = False
+    for i, p in enumerate(posts):
+        prior = {q["shape"] for q in posts[max(0, i - 2):i] if q["shape"]}
+        if p["date"] > today and p["shape"] in prior:
+            shape_streak = True
+            print(f"  [ACTIONABLE] SHAPE REPEAT: {p['slug']} is '{p['shape']}', "
+                  "same as one of the two posts before it.")
+    banned = sorted({p["shape"] for p in posts[-2:] if p["shape"]})
+    if banned:
+        print("  NEXT POST: shape must not be " + " or ".join(banned) + ".")
+    inbox = sum(1 for p in posts[-6:] if p["origin"] == "inbox")
+    print(f"  inbox-origin posts in last 6: {inbox}")
+
+    # Reach: how far a post sits from the established threads. See CLAUDE.md
+    # Blog Post Rule 13. Inbox posts are exempt from the rule (Joe's real
+    # material outranks branching) but still count as history.
+    print()
+    print("Reach (last 6):")
+    for p in posts[-6:]:
+        flag = " [queued]" if p["date"] > today else ""
+        print(f"  {p['date']} | {p['reach'] or '(core)':9s} | {p['slug']}{flag}")
+    reach_bad = False
+    for i, p in enumerate(posts):
+        if p["date"] <= today or p["origin"] == "inbox":
+            continue
+        ok = allowed_reach([q["reach"] for q in posts[:i]])
+        if (p["reach"] or "core") not in ok:
+            reach_bad = True
+            print(f"  [ACTIONABLE] REACH: {p['slug']} is '{p['reach'] or 'core'}', "
+                  f"but the feed needed {' or '.join(sorted(ok))}.")
+    nxt = allowed_reach([p["reach"] for p in posts])
+    print("  NEXT POST: reach must be " + " or ".join(sorted(nxt))
+          + " (inbox posts exempt).")
+
+    backlog = load_backlog()
+    print()
+    print("Topic backlog (open items):")
+    if not any(it["status"] == "open" for it in backlog):
+        print("  (none open)")
+    if backlog:
+        stale = []
+        for it in backlog:
+            if it["status"] != "open":
+                continue
+            age = (date.fromisoformat(today) - date.fromisoformat(it["added"])).days if it["added"] else None
+            fits = "fits" if it["reach"] in nxt else "    "
+            print(f"  {fits} {it['id']} | {it['reach']:8s} | {age if age is not None else '?'}d | {it['thesis'][:90]}")
+            if age is not None and age > BACKLOG_STALE_DAYS:
+                stale.append(it["id"])
+        if stale:
+            print(f"  STALE (> {BACKLOG_STALE_DAYS} days, the scout should expire them): " + ", ".join(stale))
+
+    actionable = any(a for *_, a in clashes) or shape_streak or reach_bad
     print()
     print("RESULT:", "clash on a queued post (actionable)" if actionable else "ok")
     sys.exit(1 if actionable else 0)

@@ -206,8 +206,20 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
 8. **Don't hedge the opinion.** "I'm not saying X is bad, I'm just saying..." is defensive. If the post's argument is that X was wrong for this situation, say that directly. The reader can figure out that it might be right for other situations.
 9. **Not every post needs a scar.** Some posts are written from the middle of a problem, not after a failure. These don't need disaster to justify themselves. What they need is a pressure signal: one concrete moment where the current approach started feeling wrong, even if nothing has broken yet. "Nothing failed, but the second consumer immediately exposed assumptions in our data model" is enough. The authority comes from noticing the signal early, not surviving the damage.
 10. **One concrete anchor per post, minimum.** The posts readers quote are the ones with an incident in them: three numbers from three systems and a meeting to reconcile them, the AWS weekend that turned out to be a markdown file and `git push`. A post built entirely from assertion and aphorism is an op-ed, and op-eds are where the templates live. Every post carries at least one of: a specific incident, a real number, a named tool or regulation, an artifact (an error message, a header, a query, a log line). If the draft has none, it isn't ready.
-11. **Vary the essay shape across the feed.** The current default is one shape: assertion, escalation, flip, aphorism, ~700 words. It's a good shape. It can't be the only one. Some posts should be a story told in the order it happened, a teardown of one artifact, a question the post honestly fails to answer, or a 300-word note that makes one point and leaves. If the last three posts were argument essays, the next one isn't.
+11. **Vary the essay shape across the feed.** Every post declares its shape in front matter (`shape:`), and `scripts/check_diversity.py` prints the last six and which shapes the next post can't use: a post's shape must differ from both of the two posts before it. The shapes:
+    - `analogy`: another field or system already solved this, and ours hasn't. This became the default by September 2026 (seven of nine posts, 2026-08-15 to 2026-09-27), the way the negation flip was the default in July. It's a strong shape used sparingly.
+    - `argument`: a claim argued from first principles or from this blog's own threads.
+    - `story`: something that happened, told in the order it happened. Only from an inbox note or an incident already told in a published post. Never invented.
+    - `teardown`: one artifact (an ID, a config, a query, an error, a vendor page) taken apart line by line.
+    - `question`: a problem the post honestly can't close, and says so.
+    - `note`: under ~350 words, one point, then stops.
 12. **Pitch the thesis before drafting the post.** Write 3-5 candidate theses as single sentences. For each, name the nearest place the claim already lives: a canonical study, a framework, a consultancy line, folklore ("verification is the bottleneck," "measure satisfaction, not adoption," "fix your data before you AI it"). If a well-read peer would have written the sentence themselves before reading the post, it's a retread — kill it at the sentence stage, where it costs a minute instead of a full write-review cycle. Draft the survivor with the strongest operative delta: the decision or test it hands the reader that the known version doesn't. The best theses in this feed split something the audience treats as one object into two (the record vs. the definition, the risk of a change vs. the count of changes) or hand the reader a test they can run at work on Monday ("has your steward ever retired a definition?"). The reviewer applies this same test as a toss-level FAIL bar (docs/review-checklist.md, check 6); a thesis that dies at pitch would have died there after costing a whole post.
+13. **Branch out slowly, on purpose.** Every post declares its `reach:` in front matter, measured from the established threads (data governance and stewardship; the agent guard pipeline, Stratum; platform engineering inside enterprise software; regulated life-sciences data and compliance):
+    - `core`: squarely inside one of those threads.
+    - `adjacent`: one step out. A subject a practitioner in those threads deals with that the blog hasn't covered: incident review, security review, testing strategy, vendor evaluation, cost, documentation, onboarding, standards bodies. It still has to connect to something already published or to a public source, never to invented experience.
+    - `new`: territory the blog hasn't touched. It still has to pass "could only this author write this", which usually means an inbox note or a standing published fact anchors it.
+
+    `scripts/check_diversity.py` paces it: when none of the last three posts stepped out, the next one must be `adjacent` or `new`, and `new` is allowed at most once in any six posts. That's roughly one post in three or four leaving home, which is slow enough that the blog still reads as one person's body of work. Posts written from an inbox note are exempt from the pacing (Joe's real material outranks the rotation) but still count toward it. The weekly scout keeps `docs/topic-backlog.md` stocked with candidates at each reach, so the writer isn't inventing a detour on the spot.
 
 ---
 
@@ -216,7 +228,7 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
 **Tags:**
 1. 2-4 tags per post. No exceptions.
 2. Only use tags you expect to use on at least 2-3 other future posts. If a tag is one-and-done, it's not a tag, it's a keyword stuffed into metadata.
-3. Maintain a running tag taxonomy. Before creating a new tag, check what tags already exist across published posts. Reuse existing tags before inventing new ones. The taxonomy lives in `docs/tag-taxonomy.md`.
+3. Maintain a running tag taxonomy. Before creating a new tag, check what tags already exist across published posts. Reuse existing tags before inventing new ones. The taxonomy lives in `docs/tag-taxonomy.md`. Branching out (Rule 13) will eventually need new tags. A new tag is justified when the post and at least one other open item in `docs/topic-backlog.md` would both use it; add its row to the taxonomy in the same commit.
 4. Tags should be lowercase, hyphenated where needed. Keep them short: "aws" not "amazon-web-services", "architecture" not "software-architecture-decisions".
 5. Aim for 10-15 total unique tags across the first 20 posts. If you're approaching 1:1 tag-to-post ratio, you're tagging wrong.
 6. Good tags describe a recurring *topic* ("aws", "kubernetes", "architecture", "ai-tooling"). Bad tags describe the *post* ("my-first-blog", "things-i-learned-today").
@@ -241,6 +253,16 @@ All content in this repo is public. Treat it that way.
 8. **Blog posts about work are about the pattern, not the employer.** "Here's how I approached an architecture decision at a large enterprise" teaches the reader something. Naming the company adds nothing for the reader and creates risk for the author. Write about what you learned, not where you learned it.
 
 The goal is simple: if someone from work reads the blog, they should think "that's smart, I recognize the pattern" — not "he's talking about our product on the internet."
+
+### Inbox notes
+
+The writer routine reads raw notes from one Drive folder, the Undraft inbox, and nowhere else in Drive. A note in that folder is Joe saying "this is cleared as blog raw material". It is not cleared for publishing as written. Every rule above still applies to what comes out:
+
+1. **Publish the lesson, not the note.** No employer name, no product or internal project names, no people's names or titles, no team names, no internal field names or endpoints, and no quote or close paraphrase (reworded or negated versions included) of anything the note pastes or reports from a message, email, ticket, or document. Genericize every one. Joe's own commentary in the note is his voice and can stay close to his wording. A fact Joe learned through a message is fair game ("I heard the report was empty"); the message's wording, its author, and any opinion it expressed are not. The inbox also holds `_undraft-denylist`, Joe's list of terms that must never appear; the writer won't use the inbox until it has entries, and it greps every inbox post against it before committing.
+2. **The note is the ceiling for first-person claims.** An event, number, timeline, or reaction can appear in the post only if the note states it. Don't sharpen a number, add a detail that would make it punchier, invent dialogue, or give Joe a reaction the note doesn't express. If the post needs a specific the note doesn't have, leave it out. Analysis and advice built on the note's facts are fair game when they read as analysis.
+3. **The note's content stays private.** The repo is public. `docs/inbox-log.md` records the Drive file ID and the slug, never the note's title or text, and a skip reason is written generically ("too thin for a post", "internal-only detail") without quoting the note.
+4. **Posts from a note set `origin: inbox`.** Everything else is `origin: thread`. The reviewer checks inbox posts against the note itself.
+5. **A push is publication.** The repo is public, so a post is readable on GitHub the moment the writer pushes it, days before its date and before the reviewer runs. A post the reviewer holds for a leak stays in git history; removing it takes a history rewrite, not a `draft: true`. That's why the writer's leak check runs before the commit, not after.
 
 ---
 
@@ -273,7 +295,7 @@ These are draft artifacts, not voice. The user cuts them every time they're flag
 In blog post mode, describe what something does in the workflow, not how it works mechanically. Favor position and purpose over implementation detail. If a sentence reads like it belongs in an architecture doc or a README, rewrite it for a human reader who cares about the *so what*, not the mechanism.
 
 Example — too clinical: "Per-action interception that fires on every tool call, blocking dangerous operations before they happen."
-Example — prose voice: "Real-time interception — catching dangerous operations as they happen."
+Example — prose voice: "Real-time interception: catching dangerous operations as they happen."
 
 ### Vague Qualifiers
 

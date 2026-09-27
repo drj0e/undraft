@@ -12,7 +12,12 @@ import sys
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lint_posts import find_self_citations, find_subset_enumerations, tic_hits
+from lint_posts import (
+    dead_link_targets,
+    find_self_citations,
+    find_subset_enumerations,
+    tic_hits,
+)
 
 
 class FindSelfCitations(unittest.TestCase):
@@ -25,6 +30,12 @@ class FindSelfCitations(unittest.TestCase):
         hits = find_self_citations(body)
         self.assertEqual(len(hits), 1)
         self.assertIn("the-stack", hits[0])
+
+    def test_flags_contracted_and_perfect_forms(self):
+        # "I'd argued" slipped past the cue list in a dry run.
+        for verb in ("I'd argued", "I had argued", "I've written"):
+            body = f"This is the part {verb} a platform [gets to do](/posts/sunset/).\n"
+            self.assertEqual(len(find_self_citations(body)), 1, verb)
 
     def test_ignores_a_plain_link_with_no_self_claim(self):
         body = "See [the guard pipeline](/posts/the-stack/) for the full ordering.\n"
@@ -106,6 +117,30 @@ class TicHits(unittest.TestCase):
             "matters more than naming the tool.\n"
         )
         self.assertEqual(tic_hits(body), [])
+
+
+class DeadLinkTargets(unittest.TestCase):
+    SLUGS = {"live-post", "held-post"}
+    DRAFTS = {"held-post"}
+
+    def test_link_to_held_post_is_dead(self):
+        # The bug this exists for: a live post linked a quarantined one, the
+        # file existed so the old check passed, and the URL 404'd on the site.
+        body = "[I've spent enough time there.](/posts/held-post/)\n"
+        hits = dead_link_targets(body, self.SLUGS, self.DRAFTS)
+        self.assertEqual([s for s, _ in hits], ["held-post"])
+
+    def test_missing_post_is_dead(self):
+        hits = dead_link_targets("[x](/posts/nope/)\n", self.SLUGS, self.DRAFTS)
+        self.assertEqual([s for s, _ in hits], ["nope"])
+
+    def test_absolute_self_links_are_checked(self):
+        body = "[x](https://josephcapozzoli.com/posts/held-post/)\n"
+        self.assertEqual(len(dead_link_targets(body, self.SLUGS, self.DRAFTS)), 1)
+
+    def test_link_to_live_post_is_fine(self):
+        body = "[x](/posts/live-post/) and [y](/posts/live-post/#section)\n"
+        self.assertEqual(dead_link_targets(body, self.SLUGS, self.DRAFTS), [])
 
 
 if __name__ == "__main__":

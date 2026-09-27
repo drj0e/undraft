@@ -3,7 +3,11 @@ name: Blog review alerts
 # Emails Joe when the pre-publish reviewer holds or flags a post. The reviewer
 # records every decision in docs/review-log.md; when a push adds a HELD or NOTE
 # line, this opens an issue assigned to drj0e, which GitHub turns into a
-# notification email. Uses the built-in token, so no SMTP secret is needed.
+# notification email. Matches only the verdict token at the start of a line
+# ("<slug>: HELD" or a standalone "NOTE:" line): a case-insensitive grep for
+# HELD|NOTE also caught PASS lines mentioning a tic "NOTE", "noted" or
+# "footnote", which paged on nearly every clean review.
+# Uses the built-in token, so no SMTP secret is needed.
 # (Deploy/gate failures already email via GitHub's default Actions notifications.)
 
 on:
@@ -43,7 +47,7 @@ jobs:
           fi
           added="$(git diff "$before" "$after" -- docs/review-log.md \
             | grep '^+' | grep -vE '^\+\+\+' | sed 's/^+//' \
-            | grep -iE 'HELD|NOTE' || true)"
+            | grep -E '^- [0-9]{4}-[0-9]{2}-[0-9]{2} ([a-z0-9-]+: HELD\b|NOTE:)' || true)"
           if [ -n "$added" ]; then
             gh issue create \
               --title "Blog review alert" \
