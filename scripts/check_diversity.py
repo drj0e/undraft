@@ -33,6 +33,10 @@ def load():
         dm = re.search(r"(?m)^date:\s*(\d{4}-\d{2}-\d{2})", t)
         if not dm:
             continue
+        # Held posts (draft: true) never reach the feed, so they can't
+        # clash with, wear out, or set the shape for anything.
+        if re.search(r"(?m)^draft:\s*true\b", t):
+            continue
         tm = re.search(r"(?m)^tags:\s*(.+)$", t)
         tags = re.findall(r'"([^"]+)"', tm.group(1)) if tm else []
         # Body = everything after the second front-matter fence. Used to locate

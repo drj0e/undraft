@@ -31,6 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Lint self-tests
+        working-directory: ${{ github.workspace }}
+        run: python3 scripts/test_lint_posts.py
       - name: Pre-publish post gate
         working-directory: ${{ github.workspace }}
         run: python3 scripts/lint_posts.py

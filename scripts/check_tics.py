@@ -93,6 +93,10 @@ def load():
         dm = re.search(r"(?m)^date:\s*(\d{4}-\d{2}-\d{2})", t)
         if not dm:
             continue
+        # Held posts (draft: true) never reach the feed, so they can't
+        # clash with, wear out, or set the shape for anything.
+        if re.search(r"(?m)^draft:\s*true\b", t):
+            continue
         body = t.split("\n---", 1)[1] if t.startswith("---") else t
         body = body.split("\n---", 1)[1] if body.startswith("---") else body
         paras = [p.strip() for p in body.split("\n\n") if p.strip()]

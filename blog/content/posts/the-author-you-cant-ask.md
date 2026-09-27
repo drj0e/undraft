@@ -13,7 +13,7 @@ Run it on a line an autonomous agent wrote and it points at a service account.
 
 The commit is real. It passed review, or passed whatever we call review now. It's been in main for weeks doing its job. And the thing that wrote it was a scheduled run that finished, dropped its context, and doesn't exist anymore. There's no one to ask why this line instead of the obvious other one. The reason it reads the way it reads was never written down, because reasons don't live in the diff. They live in the author, and the author was a process that already exited.
 
-We keep arguing about whether agent code is correct. Guards, tests, the review that isn't quite review, all of it aimed at the output. [I've spent enough time there.](/posts/the-guard-the-agent-can-see/) Correctness is the tractable half. The half nobody costed is that debugging was never only about the code. It was about the author.
+We keep arguing about whether agent code is correct. Guards, tests, the review that isn't quite review, all of it aimed at the output. I've spent enough time there. Correctness is the tractable half. The half nobody costed is that debugging was never only about the code. It was about the author.
 
 "Why is this here" is a question you ask a person. So is "is it safe to change," "what did this replace," "what breaks if I pull it out." Each one assumes a human at the far end of the blame line who remembers, or can rebuild, an intent. Blame, the review thread, the ping to whoever last touched the file, the comment that says why and not what. None of those are records. They're routing. They exist to carry a question to the one person who can answer it.
 

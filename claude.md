@@ -273,7 +273,7 @@ These are draft artifacts, not voice. The user cuts them every time they're flag
 In blog post mode, describe what something does in the workflow, not how it works mechanically. Favor position and purpose over implementation detail. If a sentence reads like it belongs in an architecture doc or a README, rewrite it for a human reader who cares about the *so what*, not the mechanism.
 
 Example — too clinical: "Per-action interception that fires on every tool call, blocking dangerous operations before they happen."
-Example — prose voice: "Real-time interception — catching dangerous operations as they happen."
+Example — prose voice: "Real-time interception: catching dangerous operations as they happen."
 
 ### Vague Qualifiers
 
