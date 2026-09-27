@@ -5,6 +5,7 @@ draft: false
 tags: ["data", "life-sciences"]
 shape: analogy
 origin: thread
+reach: core
 summary: "Warehouse operations checks its records against the shelf on a rotating schedule and knows its match rate. A data stack checks records against records, so it can agree with itself completely and still be wrong about what's in the freezer."
 reviewed: true
 ---

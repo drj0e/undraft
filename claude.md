@@ -214,6 +214,12 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
     - `question`: a problem the post honestly can't close, and says so.
     - `note`: under ~350 words, one point, then stops.
 12. **Pitch the thesis before drafting the post.** Write 3-5 candidate theses as single sentences. For each, name the nearest place the claim already lives: a canonical study, a framework, a consultancy line, folklore ("verification is the bottleneck," "measure satisfaction, not adoption," "fix your data before you AI it"). If a well-read peer would have written the sentence themselves before reading the post, it's a retread — kill it at the sentence stage, where it costs a minute instead of a full write-review cycle. Draft the survivor with the strongest operative delta: the decision or test it hands the reader that the known version doesn't. The best theses in this feed split something the audience treats as one object into two (the record vs. the definition, the risk of a change vs. the count of changes) or hand the reader a test they can run at work on Monday ("has your steward ever retired a definition?"). The reviewer applies this same test as a toss-level FAIL bar (docs/review-checklist.md, check 6); a thesis that dies at pitch would have died there after costing a whole post.
+13. **Branch out slowly, on purpose.** Every post declares its `reach:` in front matter, measured from the established threads (data governance and stewardship; the agent guard pipeline, Stratum; platform engineering inside enterprise software; regulated life-sciences data and compliance):
+    - `core`: squarely inside one of those threads.
+    - `adjacent`: one step out. A subject a practitioner in those threads deals with that the blog hasn't covered: incident review, security review, testing strategy, vendor evaluation, cost, documentation, onboarding, standards bodies. It still has to connect to something already published or to a public source, never to invented experience.
+    - `new`: territory the blog hasn't touched. It still has to pass "could only this author write this", which usually means an inbox note or a standing published fact anchors it.
+
+    `scripts/check_diversity.py` paces it: when none of the last three posts stepped out, the next one must be `adjacent` or `new`, and `new` is allowed at most once in any six posts. That's roughly one post in three or four leaving home, which is slow enough that the blog still reads as one person's body of work. Posts written from an inbox note are exempt from the pacing (Joe's real material outranks the rotation) but still count toward it. The weekly scout keeps `docs/topic-backlog.md` stocked with candidates at each reach, so the writer isn't inventing a detour on the spot.
 
 ---
 
@@ -222,7 +228,7 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
 **Tags:**
 1. 2-4 tags per post. No exceptions.
 2. Only use tags you expect to use on at least 2-3 other future posts. If a tag is one-and-done, it's not a tag, it's a keyword stuffed into metadata.
-3. Maintain a running tag taxonomy. Before creating a new tag, check what tags already exist across published posts. Reuse existing tags before inventing new ones. The taxonomy lives in `docs/tag-taxonomy.md`.
+3. Maintain a running tag taxonomy. Before creating a new tag, check what tags already exist across published posts. Reuse existing tags before inventing new ones. The taxonomy lives in `docs/tag-taxonomy.md`. Branching out (Rule 13) will eventually need new tags. A new tag is justified when the post and at least one other open item in `docs/topic-backlog.md` would both use it; add its row to the taxonomy in the same commit.
 4. Tags should be lowercase, hyphenated where needed. Keep them short: "aws" not "amazon-web-services", "architecture" not "software-architecture-decisions".
 5. Aim for 10-15 total unique tags across the first 20 posts. If you're approaching 1:1 tag-to-post ratio, you're tagging wrong.
 6. Good tags describe a recurring *topic* ("aws", "kubernetes", "architecture", "ai-tooling"). Bad tags describe the *post* ("my-first-blog", "things-i-learned-today").

@@ -5,6 +5,7 @@ draft: false
 tags: ["data", "life-sciences"]
 shape: analogy
 origin: thread
+reach: core
 summary: "Paper GMP records don't allow an empty box: you cross it out, write N/A, initial it, date it. The database that replaced the form has a type for the empty box, and it spells four different absences the same way. Every count you run picks one of the four for you."
 reviewed: true
 ---

@@ -38,19 +38,26 @@ RAW MATERIAL: THE UNDRAFT INBOX (check it every WRITE run, before picking a topi
 - If the folder is empty, every note is used, or the Drive tools aren't available, write a thread post (origin: thread) as usual. Never write about the inbox, the notes, or this process in a post.
 - One note per run at most.
 
+WHAT TO WRITE ABOUT (take the first that applies):
+1. The oldest unused inbox note (RAW MATERIAL above).
+2. Otherwise, an item from docs/topic-backlog.md, which a weekly scout refills. Choose an item whose status is `open` and whose reach fits the 'NEXT POST: reach' line from check_diversity.py (the Topic backlog block marks those 'fits'). Prefer the scout's 'This week' picks. The scout's work is a starting point, not a verdict: re-check the hook link and the prior-art delta yourself, and pass the item over if either no longer holds. When you write from an item, change its status to `used: <your-post-slug>` in the same commit.
+3. Otherwise, a topic of your own that satisfies the reach line.
+Whatever the source, the post's shape, reach, and every rule below still apply.
+
 SOURCING:
 - Every statistic or named-entity claim needs a real source link. Use WebSearch/WebFetch to confirm the source actually exists AND says what you claim. If you cannot source it, CUT the claim. NEVER publish an unsourced number and NEVER leave a [SOURCE NEEDED] marker.
 
 PICK THE TOPIC (for an inbox post, the note sets the topic, and what the note describes counts as experience Joe can write about; the recycling bar and every other rule still apply):
-- One topic that continues an established thread: the data-governance / data-steward series, the AI-tooling / guard-pipeline (Stratum) arc, platform engineering inside enterprise software, or a direct extension of a specific claim in a recent post. No generic industry think-pieces. Test: could only this blog's author plausibly write this? If it needs experience Joe has not written about publicly, it is the wrong topic.
+- A core topic continues an established thread: the data-governance / data-steward series, the AI-tooling / guard-pipeline (Stratum) arc, platform engineering inside enterprise software, regulated life-sciences data, or a direct extension of a specific claim in a recent post. An adjacent or new topic steps outside those, as CLAUDE.md Blog Post Rule 13 defines, and must still connect to something already published or to a public source. No generic industry think-pieces at any reach. Test: could only this blog's author plausibly write this? If it needs experience Joe has not written about publicly (or put in the inbox note you're writing from), it is the wrong topic.
 - A 'direct extension' still has to clear the NO REPEATING bar: it adds a new load-bearing idea; it does not restate the claim it extends.
 
 WRITE THE POST:
 - Length: roughly 250 to 1100 words, and VARY it hard across posts. A sharp 300-word take is a real post; so is a 1100-word argument. Let the idea set the length, and let the run of posts be raggedly uneven.
-- Front matter: title; draft: false; tags (2-4, reused from docs/tag-taxonomy.md); summary (1-2 sentences, like a human describing it to a friend).
+- Front matter: title; draft: false; tags (2-4, reused from docs/tag-taxonomy.md, or a new one only as CLAUDE.md Tag rule 3 allows); summary (1-2 sentences, like a human describing it to a friend).
 - date: one of the ALLOWED DATES from scripts/queue_status.py.
 - shape: one of analogy, argument, story, teardown, question, note (definitions in CLAUDE.md Blog Post Rule 11). Choose it BEFORE drafting, from the 'Shape and origin' block that check_diversity.py prints. The shape must not be one its 'NEXT POST' line forbids. Beyond that rule: analogy (another field already solved this; ours hasn't) was seven of the nine posts from 2026-08-15 to 2026-09-27, so don't use it again until the block shows at least three other shapes since the last analogy. A story must come from an inbox note or retell an incident already published; never invent one.
 - origin: inbox if the post is written from an inbox note, otherwise thread.
+- reach: core, adjacent, or new (CLAUDE.md Blog Post Rule 13). A thread post's reach must be one the 'NEXT POST: reach' line from check_diversity.py allows. An inbox post is exempt from that line but still labels its reach honestly.
 - EMPHASIS (<mark>) IS OPTIONAL AND SHOULD BE THE EXCEPTION, NOT A FIXED BEAT. Most posts use NONE. Use at most one (the gate allows up to two but that should be rare) — only when a single sentence genuinely earns standout emphasis — and NEVER in a predictable position. Do not let a highlighted thesis line become the post's skeleton. Check the 'Highlight placement (last 3)' note from check_diversity.py: if the recent posts all carry a highlight, or all highlight in the same position band, THIS post gets NO <mark> at all, or one in a clearly different place. When in doubt, ship no highlight.
 - No em-dashes. No kill-list words/phrases. Vary paragraph length. The closing line must extend or reframe, never restate.
 - WRITE SHORTER SENTENCES. The feed's average sentence has drifted from about 11 words (March) to about 18 (September), and paragraphs from about 40 words to about 65. Dense, qualified, one-long-sentence paragraphs are this feed's current tell. Mix in short sentences and short paragraphs. Use "I" where Joe was actually there.
@@ -59,11 +66,11 @@ WRITE THE POST:
 PUBLISH (only if you decided to post this run):
 - Add the post slug to the relevant tag rows in docs/tag-taxonomy.md (and update its post-count line if it changes).
 - If you read an inbox note this run, append ONE line to the Log section of docs/inbox-log.md: '- YYYY-MM-DD <drive-file-id> -> <post-slug>' if you wrote from it, or '- YYYY-MM-DD <drive-file-id> -> skipped: <generic reason>' if you didn't. Never write the note's title, text, or a description of what it's about. The repo is public.
-- Before committing, run `python3 scripts/lint_posts.py` and `python3 scripts/check_diversity.py`. The lint must pass, and the Shape block must show no SHAPE REPEAT for your post.
+- Before committing, run `python3 scripts/lint_posts.py` and `python3 scripts/check_diversity.py`. The lint must pass, and check_diversity.py must show no SHAPE REPEAT and no REACH line for your post.
 - Commit the new post file and the taxonomy edit to main with message: Publish (scheduled): <title>
   End the commit message with: Co-Authored-By: Claude <noreply@anthropic.com>
   Then push.
 - The site has a daily build that publishes future-dated posts on their date, so a future date keeps the post hidden until then. Push is enough; do NOT change the date to today to force it live.
-- NEVER touch .github/ or scripts/. NEVER modify or delete other posts. Add exactly one new post plus the taxonomy update and, when you read a note, the inbox-log line. Nothing else. (A run that skips a note and then writes nothing commits just the inbox-log line, with message: Inbox: skip note.)
+- NEVER touch .github/ or scripts/. NEVER modify or delete other posts. Add exactly one new post plus the taxonomy update, the inbox-log line when you read a note, and the status change on the backlog item you wrote from, if any. Nothing else. (A run that skips a note and then writes nothing commits just the inbox-log line, with message: Inbox: skip note.)
 
-Success is EITHER: nothing committed this run (queue full, or a rare, justified skip), OR exactly one new, fully finished post dated on one of queue_status.py's ALLOWED DATES, built from the oldest unused inbox note when one exists, with shape and origin set and a shape the feed hasn't just used, that says something no existing post already says, adds no new feed-diversity clash, with no placeholders, no unsourced claims, highlighting used sparingly (often none) and NOT in the same position as the last few posts, a length that differs from recent posts, a structure that does not match the last few posts' skeleton, tag taxonomy updated, committed and pushed.
+Success is EITHER: nothing committed this run (queue full, or a rare, justified skip), OR exactly one new, fully finished post dated on one of queue_status.py's ALLOWED DATES, built from the oldest unused inbox note when one exists, with shape, origin, and reach set, a shape the feed hasn't just used, and a reach the feed allows, that says something no existing post already says, adds no new feed-diversity clash, with no placeholders, no unsourced claims, highlighting used sparingly (often none) and NOT in the same position as the last few posts, a length that differs from recent posts, a structure that does not match the last few posts' skeleton, tag taxonomy updated, committed and pushed.

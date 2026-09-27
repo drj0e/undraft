@@ -6,5 +6,6 @@ The two scheduled Claude routines that run the blog pipeline. The prompts are co
 |---|---|---|
 | `writer.md` | Blog post draft candidate | `0 13 */3 * *` (13:00 UTC every third day of the month) |
 | `reviewer.md` | Blog pre-publish reviewer (fixed) | `30 13 * * *` (13:30 UTC daily) |
+| `scout.md` | Blog topic scout | `50 11 * * 0` (11:50 UTC Sundays) |
 
 Everything below the `---` line in each file is the prompt, verbatim.

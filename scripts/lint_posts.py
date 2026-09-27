@@ -73,6 +73,7 @@ REQUIRED_FIELDS = ["title", "date", "tags", "summary"]
 SHAPE_ERA = "2026-09-27"
 SHAPES = {"analogy", "argument", "story", "teardown", "question", "note"}
 ORIGINS = {"thread", "inbox"}
+REACHES = {"core", "adjacent", "new"}
 # Internal links, relative or absolute to the site's own domain. Absolute ones
 # used to skip the resolve check entirely.
 _POST_LINK = re.compile(
@@ -263,7 +264,7 @@ def main():
         # into a highlighter mess. Variety of placement is enforced at the feed
         # level by check_diversity.py, not here.
         post_date = (field(fm, "date") or "")[:10]
-        for fld, allowed_vals in (("shape", SHAPES), ("origin", ORIGINS)):
+        for fld, allowed_vals in (("shape", SHAPES), ("origin", ORIGINS), ("reach", REACHES)):
             val = (field(fm, fld) or "").strip().strip('"')
             if val and val not in allowed_vals:
                 errors.append(f"{name}: {fld} '{val}' not one of {sorted(allowed_vals)}")

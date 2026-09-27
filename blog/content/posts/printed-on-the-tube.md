@@ -5,6 +5,7 @@ draft: false
 tags: ["data", "architecture"]
 shape: teardown
 origin: thread
+reach: core
 summary: "A sample ID like SITE04-PRT19-2021-00381 is four definitions promoted into a key. The audit trail can correct any column in the record and can't touch the key, and then the key gets printed on a tube that sits in a freezer for decades. No steward ever gets to retire that one."
 reviewed: true
 ---
