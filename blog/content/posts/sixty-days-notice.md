@@ -3,6 +3,8 @@ title: "Sixty Days' Notice"
 date: 2026-09-27
 draft: false
 tags: ["ai-tooling", "compliance"]
+shape: argument
+origin: thread
 summary: "A model vendor's deprecation page puts a retirement date on every model it serves, with about sixty days between the notice and the day requests start failing. An approval bound to a hash of the spec voids itself when the spec changes and never hears about the executor changing."
 reviewed: true
 ---

@@ -3,6 +3,8 @@ title: "Known After Apply"
 date: 2026-09-12
 draft: false
 tags: ["ai-tooling", "automation"]
+shape: analogy
+origin: thread
 summary: "Dry-run is the default in the operational layer I built around an unattended coding agent, and I've been reading more into that flag than it can deliver. A dry run is faithful up to the first side effect the agent reads the result of. After that it's a run through a world the agent made up."
 reviewed: true
 ---

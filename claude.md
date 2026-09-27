@@ -206,7 +206,13 @@ The same wear rule applies to titles. Current clusters: "nobody" twice (The Stac
 8. **Don't hedge the opinion.** "I'm not saying X is bad, I'm just saying..." is defensive. If the post's argument is that X was wrong for this situation, say that directly. The reader can figure out that it might be right for other situations.
 9. **Not every post needs a scar.** Some posts are written from the middle of a problem, not after a failure. These don't need disaster to justify themselves. What they need is a pressure signal: one concrete moment where the current approach started feeling wrong, even if nothing has broken yet. "Nothing failed, but the second consumer immediately exposed assumptions in our data model" is enough. The authority comes from noticing the signal early, not surviving the damage.
 10. **One concrete anchor per post, minimum.** The posts readers quote are the ones with an incident in them: three numbers from three systems and a meeting to reconcile them, the AWS weekend that turned out to be a markdown file and `git push`. A post built entirely from assertion and aphorism is an op-ed, and op-eds are where the templates live. Every post carries at least one of: a specific incident, a real number, a named tool or regulation, an artifact (an error message, a header, a query, a log line). If the draft has none, it isn't ready.
-11. **Vary the essay shape across the feed.** The current default is one shape: assertion, escalation, flip, aphorism, ~700 words. It's a good shape. It can't be the only one. Some posts should be a story told in the order it happened, a teardown of one artifact, a question the post honestly fails to answer, or a 300-word note that makes one point and leaves. If the last three posts were argument essays, the next one isn't.
+11. **Vary the essay shape across the feed.** Every post declares its shape in front matter (`shape:`), and `scripts/check_diversity.py` prints the last six and which shapes the next post can't use: a post's shape must differ from both of the two posts before it. The shapes:
+    - `analogy`: another field or system already solved this, and ours hasn't. This became the default by September 2026 (seven of nine posts, 2026-08-15 to 2026-09-27), the way the negation flip was the default in July. It's a strong shape used sparingly.
+    - `argument`: a claim argued from first principles or from this blog's own threads.
+    - `story`: something that happened, told in the order it happened. Only from an inbox note or an incident already told in a published post. Never invented.
+    - `teardown`: one artifact (an ID, a config, a query, an error, a vendor page) taken apart line by line.
+    - `question`: a problem the post honestly can't close, and says so.
+    - `note`: under ~350 words, one point, then stops.
 12. **Pitch the thesis before drafting the post.** Write 3-5 candidate theses as single sentences. For each, name the nearest place the claim already lives: a canonical study, a framework, a consultancy line, folklore ("verification is the bottleneck," "measure satisfaction, not adoption," "fix your data before you AI it"). If a well-read peer would have written the sentence themselves before reading the post, it's a retread — kill it at the sentence stage, where it costs a minute instead of a full write-review cycle. Draft the survivor with the strongest operative delta: the decision or test it hands the reader that the known version doesn't. The best theses in this feed split something the audience treats as one object into two (the record vs. the definition, the risk of a change vs. the count of changes) or hand the reader a test they can run at work on Monday ("has your steward ever retired a definition?"). The reviewer applies this same test as a toss-level FAIL bar (docs/review-checklist.md, check 6); a thesis that dies at pitch would have died there after costing a whole post.
 
 ---
@@ -241,6 +247,15 @@ All content in this repo is public. Treat it that way.
 8. **Blog posts about work are about the pattern, not the employer.** "Here's how I approached an architecture decision at a large enterprise" teaches the reader something. Naming the company adds nothing for the reader and creates risk for the author. Write about what you learned, not where you learned it.
 
 The goal is simple: if someone from work reads the blog, they should think "that's smart, I recognize the pattern" — not "he's talking about our product on the internet."
+
+### Inbox notes
+
+The writer routine reads raw notes from one Drive folder, the Undraft inbox, and nowhere else in Drive. A note in that folder is Joe saying "this is cleared as blog raw material". It is not cleared for publishing as written. Every rule above still applies to what comes out:
+
+1. **Publish the lesson, not the note.** No employer name, no product or internal project names, no people's names or titles, no team names, no quotes or close paraphrases of internal messages or documents. Genericize every one.
+2. **The note is the ceiling for first-person claims.** An event, number, timeline, or reaction can appear in the post only if the note states it. Don't sharpen a number, add a detail that would make it punchier, or invent dialogue. If the post needs a specific the note doesn't have, leave it out.
+3. **The note's content stays private.** The repo is public. `docs/inbox-log.md` records the Drive file ID and the slug, never the note's title or text, and a skip reason is written generically ("too thin for a post", "internal-only detail") without quoting the note.
+4. **Posts from a note set `origin: inbox`.** Everything else is `origin: thread`. The reviewer checks inbox posts against the note itself.
 
 ---
 

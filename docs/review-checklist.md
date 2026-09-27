@@ -20,6 +20,12 @@ Scope: future-dated, not-yet-live posts that lack `reviewed: true`. For each, wo
 
 5. **Rhetorical tics (fix-before-stamp bar).** Run `scripts/check_tics.py`. The deterministic gate already hard-fails the banned phrase forms (`TIC_KILL`); this covers the frequency moves a regex can't judge. If the post under review breaches a per-post budget, uses a move the trailing window has worn out, or extends a closer-shape streak (see CLAUDE.md "Rhetorical Tics — The Rotation List"), reword to break the pattern before stamping. Rewriting a flip or a closer is in the reviewer's scope; changing the argument is not. Log a NOTE naming the tic and the fix. If the post's whole structure is the tic — a flip in every section, a templated closer carrying the thesis — that is a **HELD** like any other failed bar. Flags on already-live posts are context, not work: published history does not get edited for style.
 
+10. **Inbox provenance (FAIL bar, toss-level; `origin: inbox` posts only).** The post came from a private note in the Undraft inbox (CLAUDE.md "Inbox notes"). Find its Drive file ID in `docs/inbox-log.md` and read the note. Then:
+    - Enumerate every first-person claim, event, number, timeline, and reaction in the post that no published post already states. Each must appear in the note. A sharpened number, an added detail, a reaction the note doesn't express, or invented dialogue is a fabrication: **HELD**. Check 7's classes still apply; a claim the note states is class (b) witnessed for that post.
+    - Check for leaks: an employer name, a product or internal project name, a person's name or title, a team name, or a quote or close paraphrase of an internal message or document. Any one is **HELD**. The note is allowed to contain them; the post is not.
+    - If you cannot read the note (no Drive access in this run, file missing, file ID not in the log), the claims are unverifiable: **HELD**, with the reason naming which. Never pass an inbox post on the strength of the writer's word.
+    - Log what you checked without quoting the note: the log is public. "12 first-person claims, all in the note; no leaks" is the right level of detail.
+
 ## Substance bar (checks 6-9)
 
 These extend check 2 from "new against our own feed" to "new against the field, and true enough to survive it." They exist to **toss** posts, not polish them: a retread thesis or a naked load-bearing claim is not fixable by rewording, only by a different argument. Run them immediately after check 2 and before checks 4-5 — there is no point de-ticcing a post that dies here. Checks 6 and 7 are toss-level (HELD). Checks 8 and 9 are revise-level: fixable by a targeted edit, HELD only when the fix would have to be a different post. For every check below, log what you nominated, searched, or marked — silent N/A and silent favorable nomination are the leniency paths, and an unlogged pass doesn't count.
@@ -50,7 +56,7 @@ These extend check 2 from "new against our own feed" to "new against the field, 
 
 - All FAIL-bar checks pass → set `reviewed: true`; log `PASS` with a one-line rationale per dimension (facts / recycling / self-citation / substance / consistency), naming what you verified — including the check-6 search you ran and the check-7 classifications.
 - Revise-level findings only (checks 5, 8, 9) → make the targeted edit yourself, then stamp; the PASS line names the edit. If the fix would change the argument rather than add a sentence or cut a block, it isn't revise-level — quarantine it.
-- Any toss-level check fails (1-3, 6, 7; or 8 where the counterexample defeats the thesis; or 9 where no residue stands) → set `draft: true` (quarantine); log `HELD` with the reason. The HELD/NOTE line is what triggers the email alert.
+- Any toss-level check fails (1-3, 6, 7, 10; or 8 where the counterexample defeats the thesis; or 9 where no residue stands) → set `draft: true` (quarantine); log `HELD` with the reason. The HELD/NOTE line is what triggers the email alert.
 
 Log format mirrors existing entries, e.g.:
 `- 2026-06-26 the-property-i-left-off-the-stack: HELD, self-citation: recaps the-stack-nobody-talks-about's 5-item list as 4, drops "affordable", and frames "resumable" as a left-off member it never was.`

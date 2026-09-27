@@ -67,6 +67,12 @@ TIC_KILL = [
     r"\bthe entire (?:point|game|thing|story|job|pitch|business model) is\b",
 ]
 REQUIRED_FIELDS = ["title", "date", "tags", "summary"]
+# Argument shape and provenance, tracked so check_diversity.py can see the
+# feed's skeleton the way tags let it see themes. Required for posts dated
+# after SHAPE_ERA; older posts may carry them (backfilled) or not.
+SHAPE_ERA = "2026-09-27"
+SHAPES = {"analogy", "argument", "story", "teardown", "question", "note"}
+ORIGINS = {"thread", "inbox"}
 # Internal links, relative or absolute to the site's own domain. Absolute ones
 # used to skip the resolve check entirely.
 _POST_LINK = re.compile(
@@ -256,6 +262,14 @@ def main():
         # with no <mark> is fine (and common); the cap stops a post from turning
         # into a highlighter mess. Variety of placement is enforced at the feed
         # level by check_diversity.py, not here.
+        post_date = (field(fm, "date") or "")[:10]
+        for fld, allowed_vals in (("shape", SHAPES), ("origin", ORIGINS)):
+            val = (field(fm, fld) or "").strip().strip('"')
+            if val and val not in allowed_vals:
+                errors.append(f"{name}: {fld} '{val}' not one of {sorted(allowed_vals)}")
+            elif not val and post_date > SHAPE_ERA:
+                errors.append(f"{name}: missing '{fld}' (required after {SHAPE_ERA})")
+
         n_mark = len(re.findall(r"<mark>", body))
         if n_mark > 2:
             errors.append(f"{name}: {n_mark} <mark> tags, cap is 2 (0 is fine)")
@@ -272,7 +286,6 @@ def main():
             if m:
                 errors.append(f"{name}: banned phrase '{m.group(0).strip()}'")
 
-        post_date = (field(fm, "date") or "")[:10]
         if post_date > TIC_ERA:
             for hit in tic_hits(body):
                 errors.append(f"{name}: banned tic phrase '{hit}' "

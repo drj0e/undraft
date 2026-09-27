@@ -37,6 +37,8 @@ def load():
         # clash with, wear out, or set the shape for anything.
         if re.search(r"(?m)^draft:\s*true\b", t):
             continue
+        sm = re.search(r"(?m)^shape:\s*\"?([a-z]+)", t)
+        om = re.search(r"(?m)^origin:\s*\"?([a-z]+)", t)
         tm = re.search(r"(?m)^tags:\s*(.+)$", t)
         tags = re.findall(r'"([^"]+)"', tm.group(1)) if tm else []
         # Body = everything after the second front-matter fence. Used to locate
@@ -49,6 +51,8 @@ def load():
             "slug": os.path.splitext(os.path.basename(path))[0],
             "date": dm.group(1),
             "tags": tags,
+            "shape": sm.group(1) if sm else None,
+            "origin": om.group(1) if om else None,
             "n_mark": len(marks),
             # position of the first mark as a fraction through the body (None if no mark)
             "mark_pos": (marks[0] / blen) if marks else None,
@@ -119,7 +123,29 @@ def main():
             print("  NOTE: 3 in a row carry a highlight. A post with no <mark> "
                   "would vary the feed.")
 
-    actionable = any(a for *_, a in clashes)
+    # Argument-shape rotation. Tags catch "three compliance posts in a row";
+    # this catches "nine posts in a row that argue by analogy to another
+    # field", which no tag or phrase check can see. The next post's shape
+    # must differ from both of the last two.
+    print()
+    print("Shape and origin (last 6):")
+    for p in posts[-6:]:
+        flag = " [queued]" if p["date"] > today else ""
+        print(f"  {p['date']} | {p['shape'] or '?':9s} | {p['origin'] or '?':6s} | {p['slug']}{flag}")
+    shape_streak = False
+    for i, p in enumerate(posts):
+        prior = {q["shape"] for q in posts[max(0, i - 2):i] if q["shape"]}
+        if p["date"] > today and p["shape"] in prior:
+            shape_streak = True
+            print(f"  [ACTIONABLE] SHAPE REPEAT: {p['slug']} is '{p['shape']}', "
+                  "same as one of the two posts before it.")
+    banned = sorted({p["shape"] for p in posts[-2:] if p["shape"]})
+    if banned:
+        print("  NEXT POST: shape must not be " + " or ".join(banned) + ".")
+    inbox = sum(1 for p in posts[-6:] if p["origin"] == "inbox")
+    print(f"  inbox-origin posts in last 6: {inbox}")
+
+    actionable = any(a for *_, a in clashes) or shape_streak
     print()
     print("RESULT:", "clash on a queued post (actionable)" if actionable else "ok")
     sys.exit(1 if actionable else 0)

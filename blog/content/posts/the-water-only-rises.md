@@ -3,6 +3,8 @@ title: "The Water Only Rises"
 date: 2026-09-01
 draft: false
 tags: ["platform-engineering", "compliance", "architecture"]
+shape: analogy
+origin: thread
 summary: "A shared platform ends up at the strictest requirement any of its consumers carries, and onboarding is when that gets decided. Vendors fence off the strict part. An internal platform team usually can't, and the mark only ever moves up."
 reviewed: true
 ---
