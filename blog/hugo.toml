@@ -4,6 +4,11 @@ title = "Joe Capozzoli"
 theme = "PaperMod"
 enableRobotsTXT = true
 
+# Tags only. Hugo also creates an empty /categories/ by default, which this
+# blog never uses; it was a thin page in the sitemap for Google to decline.
+[taxonomies]
+  tag = "tags"
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 
