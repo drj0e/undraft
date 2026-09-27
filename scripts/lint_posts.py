@@ -67,6 +67,26 @@ TIC_KILL = [
     r"\bthe entire (?:point|game|thing|story|job|pitch|business model) is\b",
 ]
 REQUIRED_FIELDS = ["title", "date", "tags", "summary"]
+# The site renders raw HTML (goldmark unsafe = true, which is what lets <mark>
+# through), and routines push posts to main without review. So a post may
+# carry inline formatting tags but nothing that executes, frames, or submits.
+UNSAFE_HTML = re.compile(
+    r"<\s*/?\s*(?:script|iframe|frame|object|embed|form|input|button|style|link|meta|base|svg|math)\b"
+    r"|<[^>]*\son[a-z]+\s*="
+    r"|(?:href|src|action|formaction)\s*=\s*[\"']?\s*(?:javascript|vbscript|data):",
+    re.IGNORECASE,
+)
+
+
+def unsafe_html(body):
+    """Executable or embedding HTML in a post body, as matched snippets.
+
+    Code blocks and inline code render escaped, so a post can still show
+    `<script>` as an example; only live markup counts.
+    """
+    live = re.sub(r"(?ms)^```.*?^```", "", body)
+    live = re.sub(r"`[^`\n]*`", "", live)
+    return [m.group(0)[:60] for m in UNSAFE_HTML.finditer(live)]
 # Argument shape and provenance, tracked so check_diversity.py can see the
 # feed's skeleton the way tags let it see themes. Required for posts dated
 # after SHAPE_ERA; older posts may carry them (backfilled) or not.
@@ -274,6 +294,9 @@ def main():
         n_mark = len(re.findall(r"<mark>", body))
         if n_mark > 2:
             errors.append(f"{name}: {n_mark} <mark> tags, cap is 2 (0 is fine)")
+
+        for hit in unsafe_html(body):
+            errors.append(f"{name}: unsafe HTML '{hit}' (posts may not carry script, frames, forms, or event handlers)")
 
         if "—" in body:
             errors.append(f"{name}: contains em-dash (banned)")

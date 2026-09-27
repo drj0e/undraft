@@ -17,6 +17,7 @@ from lint_posts import (
     find_self_citations,
     find_subset_enumerations,
     tic_hits,
+    unsafe_html,
 )
 
 
@@ -141,6 +142,22 @@ class DeadLinkTargets(unittest.TestCase):
     def test_link_to_live_post_is_fine(self):
         body = "[x](/posts/live-post/) and [y](/posts/live-post/#section)\n"
         self.assertEqual(dead_link_targets(body, self.SLUGS, self.DRAFTS), [])
+
+
+
+class UnsafeHtml(unittest.TestCase):
+    def test_executable_and_embedding_html_is_caught(self):
+        for body in ('<script>alert(1)</script>', '<SCRIPT src=x>', '<iframe src="https://x">',
+                     '<img src=x onerror="steal()">', '<a href="javascript:go()">x</a>',
+                     '<form action=https://x>', '<svg onload=x>', "<a href='data:text/html,x'>"):
+            self.assertTrue(unsafe_html(body), body)
+
+    def test_formatting_and_prose_pass(self):
+        for body in ('<mark>the point</mark>', '<em>x</em> and <sub>2</sub>',
+                     'Run the script on the form, then embed it.', 'the onboarding=fast flag',
+                     '[link](https://example.com/?on=1)', '`<script>` is banned in posts',
+                     '```html\n<script>x()</script>\n```\n'):
+            self.assertEqual(unsafe_html(body), [], body)
 
 
 if __name__ == "__main__":

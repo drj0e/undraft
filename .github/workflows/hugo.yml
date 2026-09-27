@@ -33,13 +33,74 @@ jobs:
       - uses: actions/checkout@v6
       - name: Lint self-tests
         working-directory: ${{ github.workspace }}
-        run: python3 scripts/test_lint_posts.py && python3 scripts/test_queue_status.py && python3 scripts/test_check_diversity.py
+        run: python3 scripts/test_lint_posts.py && python3 scripts/test_queue_status.py && python3 scripts/test_check_diversity.py && python3 scripts/test_guard_protected.py
       - name: Pre-publish post gate
         working-directory: ${{ github.workspace }}
         run: python3 scripts/lint_posts.py
 
+  # Routines push straight to main. A direct push may only touch the files they
+  # write (posts and the four logs); anything else has to arrive through a
+  # merged PR, or it is reverted here and never reaches the build. Scheduled
+  # runs skip this: the tree they build was already checked when it was pushed.
+  # Limit: GitHub runs a push's workflows from that push's own .github/, so a
+  # push that also rewrites this file can switch the guard off. It covers the
+  # realistic path (prompts, scripts, templates, claude.md), not that one.
+  guard:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Direct pushes stay inside the routine allowlist
+        working-directory: ${{ github.workspace }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.event.after }}
+        run: |
+          set -u
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          set +e
+          python3 scripts/guard_protected.py "$BEFORE" "$AFTER" --revert > guard.txt 2>&1
+          rc=$?
+          set -e
+          cat guard.txt
+          [ "$rc" -eq 0 ] && exit 0
+          outcome="Nothing was reverted: the pull-request lookup failed, so the push could not be verified. Check the commits by hand."
+          if [ "$rc" -eq 1 ] && git log --format=%s "$AFTER"..HEAD | grep -q '^Revert'; then
+            if git fetch -q origin main && git rebase -q origin/main && git push -q origin HEAD:main; then
+              outcome="The offending commits were reverted on main (whole commits, including any posts or log lines they carried). If the change was yours, re-apply it through a pull request."
+            else
+              git rebase --abort 2>/dev/null || true
+              outcome="The revert could not be pushed (main moved or conflicted). Revert the commits below by hand."
+            fi
+          elif [ "$rc" -eq 1 ]; then
+            outcome="The automatic revert failed. Revert the commits below by hand."
+          fi
+          {
+            echo "A direct push to main changed files outside the routine allowlist without a merged pull request. The site build for this push was blocked."
+            echo ""
+            echo "$outcome"
+            echo ""
+            echo '```'
+            cat guard.txt
+            echo '```'
+            echo ""
+            echo "Allowed without a PR: blog/content/posts/*.md, docs/review-log.md, docs/tag-taxonomy.md, docs/inbox-log.md, docs/topic-backlog.md. Everything else goes through a PR. See scripts/guard_protected.py."
+          } > body.md
+          gh issue create --title "Guard: unreviewed change to protected files" --body-file body.md --assignee drj0e
+          exit 1
+
   build:
-    needs: lint
+    needs: [lint, guard]
+    # Runs when lint passed and the guard passed or was skipped (scheduled run).
+    if: ${{ !failure() && !cancelled() }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
