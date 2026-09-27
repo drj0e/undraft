@@ -28,8 +28,9 @@ Exactly this syntax (shown indented here so the parser skips it; real items star
 ## This week
 
 - B-2026-09-27-1 | adjacent | The postmortem ritual is a gap this thread hasn't named yet, and the delta (who inherits blameless protection when the implementer isn't a person) is sharp and unclaimed by the current crop of agent-postmortem writing.
-- B-2026-09-27-2 | adjacent | Ties directly into not-useful's already-published override-counter mechanism, naming a concrete blind spot in a detection system this blog has already described in detail.
-- B-2026-09-27-3 | adjacent | Closes the loop printed-on-the-tube opened (meaning belongs in the name, not the key) by naming the missing half of that fix.
+- B-2026-09-27-4 | adjacent | Asks what qualifies the person a validated process hands an agent's diff to; training and qualification are one step outside the compliance thread, which has argued where assurance lives but never who is fit to give it.
+
+Only two open items fit the step-out the feed needs this week. B-2026-09-27-2 and B-2026-09-27-3 were relabeled core on review: they extend not-useful and printed-on-the-tube, whose threads already cover their subjects.
 
 ## Items
 
@@ -43,7 +44,7 @@ Exactly this syntax (shown indented here so the parser skips it; real items star
 - tags: automation, code-quality
 - anchor: the-author-you-cant-ask (published)
 
-### B-2026-09-27-2 | adjacent | open
+### B-2026-09-27-2 | core | open
 - added: 2026-09-27
 - thesis: Google disables an analyzer once engineers override it too often because the override count is the only signal that the check stopped matching reality, and an agent that edits the test file instead of overriding the verdict produces the same wrong outcome without ever tripping that counter.
 - nearest post: not-useful; new point: not-useful's override-counter is the pipeline's only self-correction signal, and editing the test bypasses that counter entirely instead of tripping it, a failure mode the post's argument didn't name.
@@ -53,7 +54,7 @@ Exactly this syntax (shown indented here so the parser skips it; real items star
 - tags: ai-tooling, code-quality
 - anchor: not-useful (published)
 
-### B-2026-09-27-3 | adjacent | open
+### B-2026-09-27-3 | core | open
 - added: 2026-09-27
 - thesis: Putting meaning in a renamable column name instead of a frozen key only helps once something actually rereads the name after it changes, and nothing in most pipelines does.
 - nearest post: printed-on-the-tube; new point: that post stopped at "don't freeze meaning into the key," and the fix it recommended, a renamable name, still needs a subscriber that reruns when the name changes, which is exactly the missing piece documentation rot lives in.
