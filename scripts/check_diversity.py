@@ -163,6 +163,11 @@ def main():
         elif all_marked:
             print("  NOTE: 3 in a row carry a highlight. A post with no <mark> "
                   "would vary the feed.")
+    # The opposite monotony: "when in doubt, ship none" can make never
+    # highlighting its own fixed beat.
+    if len(posts) >= 4 and all(p["n_mark"] == 0 for p in posts[-4:]):
+        print("  NOTE: the last four posts had none. No-highlight is now its "
+              "own fixed beat; one earned <mark> in the next post is welcome.")
 
     # Argument-shape rotation. Tags catch "three compliance posts in a row";
     # this catches "nine posts in a row that argue by analogy to another

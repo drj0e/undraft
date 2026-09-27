@@ -9,7 +9,7 @@ You are the weekly TOPIC SCOUT for Joe Capozzoli's personal blog (a Hugo site). 
 FIRST, read:
 - claude.md in full, especially Blog Post Rules 10-13 (concrete anchors, shapes, the thesis-pitch test, and reach) and the Employer and Internal References rules.
 - docs/topic-backlog.md (the format section is binding) and docs/tag-taxonomy.md.
-- The title and summary of every post in blog/content/posts/, and the full text of the five most recent. PUBLISHED means dated today or earlier and not draft: true. Held (draft: true) posts are not published: never name one as a nearest post, but do treat a held post's idea as taken, so you don't re-propose it.
+- The title and summary of every post in blog/content/posts/, and the full text of the five most recent. PUBLISHED means dated today or earlier and not draft: true. Held posts (draft: true, and the files in docs/held-posts/) are not published: never name one as a nearest post, but do treat a held post's idea as taken, so you don't re-propose it.
 - Run `python3 scripts/check_diversity.py` and read the Shape, Reach, and Topic backlog blocks.
 
 STEP 1, housekeeping. In docs/topic-backlog.md, change the status of every item still `open` whose `added` date is more than 28 days ago to `expired: stale`. Change nothing else about existing items.
@@ -25,7 +25,7 @@ STEP 3, pitch. Draft 12-20 one-sentence theses, then kill the weak ones. For eac
 - Verify the hook link loads and says what you'll say it says. An evergreen item may have `hook: none (evergreen)`; don't invent a this-week angle.
 - Propose 2-4 tags, reusing docs/tag-taxonomy.md where you can. A new tag is fine to propose; the writer can only use it once two open items share it.
 - Suggest a shape that isn't analogy unless the analogy is the whole point. For the top pick, the shape must also be one the 'NEXT POST: shape' line allows.
-- Label reach honestly. If a published post's thread already covers the subject, it's core, whatever the quota below wants. Adjacent means no published post's thread covers it. If honest labels leave fewer adjacent items than the quota, keep fewer and say so under This week; never relabel to fill it.
+- Label reach honestly. If a published post's thread already covers the subject, it's core, whatever the quota below wants. Before labeling an item adjacent, write its new subject as a short phrase and check it against the titles and summaries of published posts (grep them); if a published post is about that subject or its mechanism, the item is core. Calibration from the first run: "an agent edits the test instead of tripping the override counter" is core (it extends not-useful and the guard-pipeline thread), and "renamable column names need a subscriber" is core (it extends printed-on-the-tube and the data-vocabulary thread); "who blameless postmortems protect when an agent wrote the bug" is adjacent (the blog has never covered incident review). Adjacent means no published post's thread covers it. If honest labels leave fewer adjacent items than the quota, keep fewer and say so under This week; never relabel to fill it.
 
 Keep 5 to 8 items. Aim for at least 2 `adjacent`, at most 1 `new` (rare from you: Rule 13 says new usually needs an inbox note, which you never see), and the rest `core`.
 
