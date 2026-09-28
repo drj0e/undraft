@@ -34,7 +34,7 @@ Only two open items fit the step-out the feed needs this week. B-2026-09-27-2 an
 
 ## Items
 
-### B-2026-09-27-1 | adjacent | open
+### B-2026-09-27-1 | adjacent | used: the-protected-seat
 - added: 2026-09-27
 - thesis: A blameless postmortem protects the person who wrote the bug so they'll describe what happened honestly, and when an agent wrote it there's no one in that seat to protect, only the person who approved letting it run.
 - nearest post: the-author-you-cant-ask; new point: that post named the absence (nobody remembers why); this asks what a specific human ritual, the blameless postmortem, does when its protected party is missing, and names who the protection has to move to instead.
