@@ -7,6 +7,7 @@ shape: question
 origin: thread
 reach: adjacent
 summary: "A blameless postmortem is a trade: the engineer who broke it gives a full account of what they did and saw, and in return the account can't be used against them. When an agent wrote the change, its account is already in the transcript. The person whose account isn't is the one who approved the run."
+reviewed: true
 ---
 
 Blameless names a trade. John Allspaw's [2012 post](https://www.etsy.com/codeascraft/blameless-postmortems) set the terms: the engineer closest to the failure gives a detailed account of what actions they took at what time, what effects they observed, what they expected, what they assumed, and how they understood the timeline as it ran. In exchange, nothing in that account gets them punished. Drop the second half and the first half dries up. An engineer expecting a reprimand, in his words, is disincentivized to give the details necessary to get an understanding of the mechanism, pathology, and operation of the failure.
