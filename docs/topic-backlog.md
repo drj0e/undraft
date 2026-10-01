@@ -54,7 +54,7 @@ Only two open items fit the step-out the feed needs this week. B-2026-09-27-2 an
 - tags: ai-tooling, code-quality
 - anchor: not-useful (published)
 
-### B-2026-09-27-3 | core | open
+### B-2026-09-27-3 | core | used: the-old-name-still-answers
 - added: 2026-09-27
 - thesis: Putting meaning in a renamable column name instead of a frozen key only helps once something actually rereads the name after it changes, and nothing in most pipelines does.
 - nearest post: printed-on-the-tube; new point: that post stopped at "don't freeze meaning into the key," and the fix it recommended, a renamable name, still needs a subscriber that reruns when the name changes, which is exactly the missing piece documentation rot lives in.
