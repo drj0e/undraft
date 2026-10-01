@@ -7,6 +7,7 @@ shape: note
 origin: thread
 reach: core
 summary: "The safe way to rename a column keeps the old name alive as an alias until the last consumer moves. For a reader that binds to names, the alias is a second column with the stale meaning, and the rename isn't done until the step most shops never schedule."
+reviewed: true
 ---
 
 ```sql
