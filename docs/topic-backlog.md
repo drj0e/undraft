@@ -64,7 +64,7 @@ Only two open items fit the step-out the feed needs this week. B-2026-09-27-2 an
 - tags: data, ai-tooling
 - anchor: printed-on-the-tube (published), agents-dont-read-the-glossary (published)
 
-### B-2026-09-27-4 | adjacent | open
+### B-2026-09-27-4 | adjacent | used: education-training-and-experience
 - added: 2026-09-27
 - thesis: Every SOP names a qualified reviewer for a validated output, and "trained on AI fundamentals" is the entire curriculum the industry has written so far for what qualifies someone to review an agent's diff.
 - nearest post: one-page-from-1924; new point: that post argued assurance has to move from the diff to the process; this asks what qualifies the person the process hands the diff to, a credential nobody has specified.

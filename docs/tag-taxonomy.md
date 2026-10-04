@@ -12,8 +12,8 @@ Running list of tags in use across published posts. Per CLAUDE.md: reuse before 
 | `infrastructure` | Hosting, deployment, ops | github-pages-not-aws |
 | `code-quality` | Verification, review, guard rails | who-watches-the-watcher, the-author-you-cant-ask, not-useful, the-protected-seat |
 | `platform-engineering` | Platforms inside and underneath apps | platforms-clothes, two-consumers, the-platform-tax, nobody-chose-your-platform, the-410-you-cant-send, every-request-weighs-the-same, the-default-is-the-policy, the-water-only-rises, sunset-dates-are-for-strangers |
-| `life-sciences` | Regulated life sciences domain context | data-governance-inspection, record-is-not-the-definition, required-to-delete-this, the-diff-never-had-a-price, one-page-from-1924, unanimous-and-wrong, a-blank-without-initials |
-| `compliance` | GxP, inspections, regulatory data integrity | data-governance-inspection, agent-world-part-11, agent-is-a-custodian, the-answer-has-no-audit-trail, the-diff-never-had-a-price, one-page-from-1924, the-water-only-rises, sixty-days-notice |
+| `life-sciences` | Regulated life sciences domain context | data-governance-inspection, record-is-not-the-definition, required-to-delete-this, the-diff-never-had-a-price, one-page-from-1924, unanimous-and-wrong, a-blank-without-initials, education-training-and-experience |
+| `compliance` | GxP, inspections, regulatory data integrity | data-governance-inspection, agent-world-part-11, agent-is-a-custodian, the-answer-has-no-audit-trail, the-diff-never-had-a-price, one-page-from-1924, the-water-only-rises, sixty-days-notice, education-training-and-experience |
 | `leadership` | Engineering decisions, org dynamics, how teams are measured | nobody-chose-your-platform, generation-got-cheap-review-didnt, every-request-weighs-the-same, sunset-dates-are-for-strangers |
 
-11 unique tags across 36 published posts (held drafts live in docs/held-posts/ and aren't counted). Budget: 10-15 across the first 20 posts, so new tags need a strong case.
+11 unique tags across 37 published posts (held drafts live in docs/held-posts/ and aren't counted). Budget: 10-15 across the first 20 posts, so new tags need a strong case.
