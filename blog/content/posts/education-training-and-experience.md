@@ -1,12 +1,13 @@
 ---
 title: "Education, Training, and Experience"
 date: 2026-10-12
-draft: false
+draft: true
 tags: ["compliance", "life-sciences"]
 shape: teardown
 origin: thread
 reach: adjacent
 summary: "Part 11 has a clause requiring that the people who develop, maintain, or use a system be qualified for their assigned tasks. An agent now sits in the develop seat, and every regulatory text written since says the human checking its output must be qualified without saying in what."
+reviewed: true
 ---
 
 Part 11 has a clause that never makes the slide. It's paragraph (i) of [11.10](https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11/subpart-B/section-11.10), after the audit trail and the signature controls everyone quotes:
