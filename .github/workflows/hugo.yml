@@ -125,6 +125,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    # Without this, a skipped guard (every scheduled run) skips deploy too:
+    # a job's default condition fails when anything upstream was skipped, so
+    # build succeeded but future-dated posts never went live on their date.
+    if: ${{ !failure() && !cancelled() && needs.build.result == 'success' }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
