@@ -85,7 +85,7 @@ One adjacent item this week, short of the quota. The other candidates that looke
 - tags: data, compliance
 - anchor: agent-is-a-custodian (published), record-is-not-the-definition (published)
 
-### B-2026-10-04-1 | core | open
+### B-2026-10-04-1 | core | used: before-the-replacement-had-a-name
 - added: 2026-10-04
 - thesis: A deprecation notice names the replacement model, and acceptance criteria for moving to it count as evidence only if they were written and dated before that notice, which is what a predetermined change control plan requires of device makers and what an eval suite assembled after the email cannot be.
 - nearest post: sixty-days-notice; new point: that post said re-earned evidence has to come from a script and put the model string under change control; this says what the script has to contain and when its criteria have to be dated, and names the regulator's form for exactly that, the PCCP's modification protocol with pre-specified acceptance criteria.
