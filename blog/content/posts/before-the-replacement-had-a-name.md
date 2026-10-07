@@ -7,6 +7,7 @@ shape: teardown
 origin: thread
 reach: core
 summary: "A model vendor's deprecation notice names the replacement and tells you to test against it before the retirement date, so every criterion written inside that window was written knowing the answer. Device regulators already settled what counts instead: criteria dated before the change."
+reviewed: true
 ---
 
 Three days after I called the vendor's deprecation page a [change-control calendar](/posts/sixty-days-notice/), it got a new row. On September 30 the notice went out: `claude-sonnet-4-5-20250929` retires on November 30, and the recommended replacement is `claude-sonnet-5-5`. ([Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations))
