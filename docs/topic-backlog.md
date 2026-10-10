@@ -95,7 +95,7 @@ One adjacent item this week, short of the quota. Candidates that looked like a s
 - tags: compliance, ai-tooling, life-sciences
 - anchor: sixty-days-notice and one-page-from-1924 (published); the FDA final guidance "Marketing Submission Recommendations for a Predetermined Change Control Plan for Artificial Intelligence-Enabled Device Software Functions" (Federal Register 2024-28361, 2024-12-04; fda.gov and federalregister.gov were not reachable from the scout's network, so the writer confirms the three-part structure on the page before quoting it).
 
-### B-2026-10-04-2 | adjacent | open
+### B-2026-10-04-2 | adjacent | used: both-ends-of-the-run
 - added: 2026-10-04
 - thesis: A security review of a coding-agent setup lists what the agent may do inside a session, and both of September's agent disclosures fell outside that list: one ran code before the first prompt appeared, the other published to repositories the organization never watched.
 - nearest post: the-stack-nobody-talks-about; new point: that post drew the system as everything that makes model output selectable, constrainable, auditable, and stoppable, all of it inside the run; this says the review boundary has to start at clone and end at every destination the credentials can reach, and gives the two lists to write.
