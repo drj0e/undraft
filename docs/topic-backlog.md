@@ -135,7 +135,7 @@ One adjacent item this week, short of the quota. Candidates that looked like a s
 - tags: data, life-sciences, compliance
 - anchor: record-is-not-the-definition and a-blank-without-initials (published; the latter already cites SDTMIG); the CDISC Controlled Terminology FAQ (https://www.cdisc.org/kb/articles/controlled-terminology-faqs) and the NCI EVS changes files (https://evs.nci.nih.gov/ftp1/CDISC/), public but not loaded by the scout on 2026-10-04.
 
-### B-2026-10-10-1 | core | open
+### B-2026-10-10-1 | core | used: the-bill-was-right
 - added: 2026-10-10
 - thesis: An adoption dashboard that spells "no agent activity" and "activity it couldn't attribute" the same way is a blank without initials, and the number in the same system that stayed right through months of it was the bill.
 - nearest post: a-blank-without-initials; new point: that post put the four absences in a nullable column at the record grain; this puts the same absence in the metric that gets reported up, where an unattributed session reads as a zero, and names the test the bill passes and the dashboard fails: someone would have noticed if it were wrong. Also extends nobody-chose-your-platform, which argued the chart isn't a vote; this says it isn't a measurement either until an absence has a status.
