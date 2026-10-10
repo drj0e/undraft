@@ -1,12 +1,13 @@
 ---
 title: "Both Ends of the Run"
 date: 2026-10-17
-draft: false
+draft: true
 tags: ["security", "architecture"]
 shape: argument
 origin: thread
 reach: adjacent
 summary: "Two September disclosures bracket the coding-agent session. One ran code before the first prompt, the other published to repositories the company never watched. A security review that inventories what the agent may do inside a session sees neither, so it needs two more lists."
+reviewed: true
 ---
 
 Thirteen thousand screenshots is the count Glow Security put on it. Internal, pre-release images from more than 300 organizations, in over 900 public GitHub repositories, and in 93 percent of cases the repository sat under an employee's personal username. ([PixelLeak](https://glow.io/blogs/how-ai-agents-exposed-developer-screenshots-from-leading-tech-companies), September 29)
