@@ -7,6 +7,7 @@ shape: argument
 origin: thread
 reach: core
 summary: "GitHub's agent adoption metrics undercounted for a stretch this year while the invoice stayed correct, and the difference between the two numbers is who would have noticed. An adoption chart with no such person on it isn't a measurement yet."
+reviewed: true
 ---
 
 Who would have noticed, inside a week, if your agent adoption number had started undercounting?
